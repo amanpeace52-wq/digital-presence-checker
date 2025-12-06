@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital Footprint & Online Presence Checker</title>
+<style>
+    :root {
+        --primary: #4f46e5;
+        --primary-dark: #3730a3;
+        --accent: #f97316;
+        --bg-gradient-start: #0f172a;
+        --bg-gradient-end: #1e293b;
+        --card-bg: #ffffff;
+        --text-main: #0f172a;
+        --muted: #6b7280;
+        --border-subtle: #e5e7eb;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top left, #1e293b, #020617);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .outer {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .header {
+        text-align: center;
+        color: #e5e7eb;
+        margin-bottom: 16px;
+    }
+
+    .header h1 {
+        margin: 0 0 10px;
+        font-size: 1.9rem;
+    }
+
+    .header p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #9ca3af;
+    }
+
+    .container {
+        background: linear-gradient(135deg, #f9fafb, #eef2ff);
+        border-radius: 16px;
+        padding: 22px 22px 26px;
+        box-shadow:
+            0 18px 40px rgba(15, 23, 42, 0.55),
+            0 0 0 1px rgba(148, 163, 184, 0.4);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        background: rgba(15, 23, 42, 0.85);
+        color: #e5e7eb;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+    }
+
+    .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+    }
+
+    .subtext {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 16px;
+    }
+
+    .question {
+        margin-bottom: 16px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-subtle);
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .question-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+        color: var(--text-main);
+    }
+
+    .question-note {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    select {
+        width: 100%;
+        padding: 7px 9px;
+        border-radius: 8px;
+        border: 1px solid #cbd5f5;
+        font-size: 0.9rem;
+        outline: none;
+    }
+
+    select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.35);
+    }
+
+    .section-label {
+        margin: 18px 0 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .section-label span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--primary);
+    }
+
+    .btn-primary {
+        padding: 11px 18px;
+        background: var(--primary);
+        color: #f9fafb;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+
+    .btn-primary span {
+        font-size: 1.1rem;
+    }
+
+    #resultBox {
+        margin-top: 22px;
+        padding: 18px 16px 20px;
+        background: #eef2ff;
+        border-radius: 14px;
+        display: none;
+        border: 1px solid rgba(129, 140, 248, 0.6);
+    }
+
+    .score {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .score small {
+        font-weight: 500;
+        color: var(--muted);
+        font-size: 0.8rem;
+    }
+
+    .risk {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 8px;
+    }
+
+    .risk.high {
+        color: #b91c1c;
+    }
+
+    .risk.medium {
+        color: #b45309;
+    }
+
+    .risk.low {
+        color: #047857;
+    }
+
+    .advice {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: var(--text-main);
+    }
+
+    .premium-box {
+        margin-top: 16px;
+        background: #fffbeb;
+        padding: 12px 12px 14px;
+        border-left: 4px solid var(--accent);
+        border-radius: 10px;
+        font-size: 0.88rem;
+    }
+
+    .premium-box h3 {
+        margin: 0 0 6px;
+        font-size: 0.95rem;
+        color: #92400e;
+    }
+
+    .premium-box ul {
+        padding-left: 20px;
+        margin: 4px 0 6px;
+    }
+
+    .premium-box li {
+        margin-bottom: 2px;
+    }
+
+    .btn-secondary {
+        margin-top: 6px;
+        padding: 8px 13px;
+        border-radius: 999px;
+        border: 1px solid #fed7aa;
+        background: #fff7ed;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #9a3412;
+    }
+
+    .btn-secondary:hover {
+        background: #fed7aa;
+    }
+
+    .footnote {
+        margin-top: 10px;
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+</style>
+</head>
+<body>
+
+<div class="outer">
+    <div class="header">
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Instant self-check • No login • No data stored
+        </div>
+        <h1>Digital Footprint & Online Presence Checker</h1>
+        <p>See how exposed, consistent, and safe your online identity is in under 3 minutes.</p>
+    </div>
+
+    <div class="container">
+        <h2>Check your exposure in 15 quick questions</h2>
+        <p class="subtext">
+            Answer honestly. This tool gives you a personal score and simple next steps – nothing is saved or shared.
+        </p>
+
+        <form id="quizForm">
+
+            <div class="section-label"><span></span> Core security habits</div>
+
+            <div class="question">
+                <div class="question-title">1. Do you reuse the same password across multiple accounts?</div>
+                <div class="question-note">Think about email, banking, social media, shopping etc.</div>
+                <select name="q1">
+                    <option value="0">Yes, almost everywhere</option>
+                    <option value="5">On some accounts</option>
+                    <option value="10">No, they are all unique</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">2. Do you use two-factor authentication (2FA/MFA)?</div>
+                <div class="question-note">For example SMS codes, authenticator apps, security keys.</div>
+                <select name="q2">
+                    <option value="0">No, I don't use it</option>
+                    <option value="5">Only on a few important accounts</option>
+                    <option value="10">Yes, on most or all important accounts</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">3. Do you use a password manager?</div>
+                <div class="question-note">Any tool or browser that securely stores and generates passwords.</div>
+                <select name="q3">
+                    <option value="0">No, I don't use one</option>
+                    <option value="5">I have one but barely use it</option>
+                    <option value="10">Yes, I use it for most logins</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">4. Do you regularly update your devices (phone, laptop, apps)?</div>
+                <div class="question-note">Security patches and app updates.</div>
+                <select name="q4">
+                    <option value="0">Only when something breaks</option>
+                    <option value="5">Sometimes, when I remember</option>
+                    <option value="10">Yes, I keep things fairly up to date</option>
+                </select>
+            </div>
+
+            <div class="section-label"><span></span> Social media & public sharing</div>
+
+            <div class="question">
+                <div class="question-title">5. How visible are your main social media profiles?</div>
+                <div class="question-note">Instagram, Facebook, TikTok, LinkedIn, etc.</div>
+                <select name="q5">
+                    <option value="0">Mostly public</option>
+                    <option value="5">Mixed – some public, some private</option>
+                    <option value="10">Mostly private or restricted</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">6. How often do you share personal details (location, family, routines) publicly?</div>
+                <div class="question-note">Posts, stories, reels that anyone can view.</div>
+                <select name="q6">
+                    <option value="0">Very often</option>
+                    <option value="5">Sometimes</option>
+                    <option value="10">Rarely or never</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">7. Do you delete or clean up old posts and accounts?</div>
+                <div class="question-note">Old photos, outdated accounts, unused logins.</div>
+                <select name="q7">
+                    <option value="0">Almost never</option>
+                    <option value="5">Occasionally</option>
+                    <option value="10">Yes, I review and clean up regularly</option>
+                </select>
+            </div>
+
+            <div class="section-label"><span></span> Website & online identity</div>
+
+            <div class="question">
+                <div class="question-title">8. Is your website or public profile clear about who you are and what you do?</div>
+                <div class="question-note">Would a stranger instantly understand?</div>
+                <select name="q8">
+                    <option value="0">No, it's confusing or empty</option>
+                    <option value="5">Somewhat clear</option>
+                    <option value="10">Very clear and simple</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">9. Is your website or main profile mobile-friendly?</div>
+                <div class="question-note">Easy to read and use on a phone.</div>
+                <select name="q9">
+                    <option value="0">No, it's quite hard to use</option>
+                    <option value="5">It's okay but not great</option>
+                    <option value="10">Yes, it works smoothly on mobile</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">10. How consistent is your online identity (name, image, branding)?</div>
+                <div class="question-note">Across website, LinkedIn, Instagram, etc.</div>
+                <select name="q10">
+                    <option value="0">Very inconsistent or messy</option>
+                    <option value="5">Somewhat consistent</option>
+                    <option value="10">Very consistent and intentional</option>
+                </select>
+            </div>
+
+            <div class="section-label"><span></span> Scenario-based questions</div>
+
+            <div class="question">
+                <div class="question-title">
+                    11. You receive a DM from a friend’s account saying “URGENT, click this link now!” with a strange URL.
+                </div>
+                <div class="question-note">What are you most likely to do?</div>
+                <select name="q11">
+                    <option value="0">Click it immediately to see what’s happening</option>
+                    <option value="5">Click it, but only after asking them if it’s real</option>
+                    <option value="10">Do not click – verify on another channel or ignore and report</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">
+                    12. You’re posting a cute photo of your child at a regular weekly activity, with the location tagged.
+                </div>
+                <div class="question-note">How do you handle this?</div>
+                <select name="q12">
+                    <option value="0">Post publicly with location and time visible</option>
+                    <option value="5">Post but remove location or limit audience a bit</option>
+                    <option value="10">Avoid posting exact routine/location publicly or share only to a close friends list</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">
+                    13. You get an email that looks like your bank, saying “Your account is locked – log in now using this link.”
+                </div>
+                <div class="question-note">The message feels urgent.</div>
+                <select name="q13">
+                    <option value="0">Click the link in the email and log in quickly</option>
+                    <option value="5">Check the sender address but still might click the link</option>
+                    <option value="10">Ignore the link and log in only via the official app/website or call the bank</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">
+                    14. A new free app asks for access to your contacts, photos, microphone, and location – all at once.
+                </div>
+                <div class="question-note">You just want to test it.</div>
+                <select name="q14">
+                    <option value="0">Allow everything so it works properly</option>
+                    <option value="5">Allow some permissions and hope it's fine</option>
+                    <option value="10">Deny most permissions or uninstall if it asks for too much</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <div class="question-title">
+                    15. You’re using public Wi-Fi at a café to check emails and log in to multiple accounts.
+                </div>
+                <div class="question-note">How do you usually handle this?</div>
+                <select name="q15">
+                    <option value="0">Use public Wi-Fi for everything, including banking</option>
+                    <option value="5">Avoid banking, but still log in to some accounts</option>
+                    <option value="10">Use a VPN / mobile data for sensitive logins or avoid logging in at all</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn-primary" onclick="calculateScore()">
+                <span>▶</span> Get my score
+            </button>
+        </form>
+
+        <div id="resultBox">
+            <div class="score" id="scoreDisplay"></div>
+            <div class="risk" id="riskLevel"></div>
+
+            <div class="advice" id="adviceText"></div>
+
+            <div class="premium-box">
+                <h3>✨ Want a personalised full report + action plan?</h3>
+                <ul>
+                    <li>Full review of your answers</li>
+                    <li>Social media & search exposure check</li>
+                    <li>Online identity & website clarity feedback</li>
+                    <li>Prioritised action plan for the next 30 days</li>
+                </ul>
+                <strong>Upgrade for $19 (basic) or $49 (complete).</strong><br/>
+                <button class="btn-secondary"
+                    onclick="window.location.href='mailto:amanpeace52@gmail.com?subject=Digital%20Footprint%20Report%20Request'">
+                    ✉ Request premium report
+                </button>
+            </div>
+
+            <div class="footnote">
+                This is a high-level awareness tool. It does not replace professional legal, financial, or technical audits.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculateScore() {
+    let form = document.forms["quizForm"];
+    let total = 0;
+    const maxScore = 15 * 10; // 15 questions * 10 points
+
+    for (let i = 1; i <= 15; i++) {
+        total += parseInt(form["q" + i].value);
+    }
+
+    const percentage = Math.round((total / maxScore) * 100);
+
+    const resultBox = document.getElementById("resultBox");
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    const riskLevel = document.getElementById("riskLevel");
+    const adviceText = document.getElementById("adviceText");
+
+    resultBox.style.display = "block";
+    scoreDisplay.innerHTML = `Your Score: ${percentage}/100 <small>(${total} / ${maxScore} raw)</small>`;
+
+    let risk = "";
+    let advice = "";
+    let riskClass = "";
+
+    if (percentage <= 40) {
+        risk = "⚠ HIGH RISK — Your digital exposure is quite unsafe.";
+        advice = "<strong>Start here:</strong><br>• Turn on 2FA for email and banking<br>• Change any reused passwords<br>• Make key social profiles private or limited<br>• Avoid clicking urgent links from email/DMs<br>• Be careful with posting routines and locations";
+        riskClass = "high";
+    } else if (percentage <= 70) {
+        risk = "⚠ MODERATE RISK — You have some good habits, but important gaps remain.";
+        advice = "<strong>Next steps:</strong><br>• Move towards a password manager<br>• Review old public posts and clean up<br>• Limit permissions for new apps<br>• Improve clarity & consistency across profiles<br>• Avoid sensitive logins on public Wi-Fi";
+        riskClass = "medium";
+    } else {
+        risk = "✅ LOW RISK — You maintain a relatively strong and mindful digital presence.";
+        advice = "<strong>Keep going:</strong><br>• Maintain 2FA and strong passwords<br>• Regularly review what’s public about you<br>• Strengthen personal or business branding<br>• Schedule a quarterly check of settings and search results";
+        riskClass = "low";
+    }
+
+    riskLevel.className = "risk " + riskClass;
+    riskLevel.innerHTML = risk;
+    adviceText.innerHTML = advice;
+}
+</script>
+
+</body>
+</html>
+
