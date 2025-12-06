@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Digital Hygiene Checklist • Aman P Kaur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:#020617;
+      color:#e5e7eb;
+    }
+    .wrap{max-width:750px;margin:auto;padding:18px}
+    a{color:#38bdf8;text-decoration:none}
+    .card{
+      background:#0b1220;
+      border-radius:20px;
+      border:1px solid #1f2937;
+      padding:22px;
+      margin-bottom:20px;
+    }
+    .checklist-group{
+      margin-bottom:16px;
+      border-bottom:1px dashed #1f2937;
+      padding-bottom:10px;
+    }
+    .checklist-group h3{margin-bottom:4px}
+    .checklist-item{
+      display:flex;
+      gap:6px;
+      margin:4px 0;
+      align-items:flex-start;
+    }
+    .checklist-item label{font-size:.9rem}
+    .checklist-notes{
+      width:100%;
+      margin-top:6px;
+      font-size:.85rem;
+      padding:8px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#020617;
+      color:#e5e7eb;
+    }
+    .btn{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      padding:8px 16px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:.9rem;
+      color:#022c22;
+      margin-top:10px;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <p><a href="index.html">← Back to main site</a></p>
+
+  <div class="card">
+    <h1>Digital Hygiene Checklist</h1>
+    <p>
+      Tick what already feels true for you, and add notes where you want to improve.
+      When you’re done, you can download a simple snapshot file for yourself
+      — or to share parts of it with me in a session.
+    </p>
+  </div>
+
+  <div class="card" id="checklistContainer">
+
+    <div class="checklist-group">
+      <h3>1. Passwords</h3>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I use different passwords for important accounts.">
+        <label>I use different passwords for important accounts.</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="My main email password is strong and not easily guessed.">
+        <label>My main email password is strong and not easily guessed.</label>
+      </div>
+      <textarea class="checklist-notes" data-label="Password notes" placeholder="Any notes about your passwords (optional)"></textarea>
+    </div>
+
+    <div class="checklist-group">
+      <h3>2. Two-Factor Authentication (2FA)</h3>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I use 2FA on my main email account.">
+        <label>I use 2FA on my main email account.</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I use 2FA on banking or payment apps.">
+        <label>I use 2FA on banking or payment apps.</label>
+      </div>
+      <textarea class="checklist-notes" data-label="2FA notes" placeholder="Any notes about 2FA (optional)"></textarea>
+    </div>
+
+    <div class="checklist-group">
+      <h3>3. Devices & Updates</h3>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="My devices have automatic updates turned on.">
+        <label>My devices have automatic updates turned on.</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I have some basic protection enabled (e.g. built-in security).">
+        <label>I have some basic protection enabled (e.g. built-in security).</label>
+      </div>
+      <textarea class="checklist-notes" data-label="Device notes" placeholder="Any notes about your devices (optional)"></textarea>
+    </div>
+
+    <div class="checklist-group">
+      <h3>4. Social Media & Privacy</h3>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I have checked my privacy settings in the last 12 months.">
+        <label>I have checked my privacy settings in the last 12 months.</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="I'm comfortable with what a stranger can see on my profile.">
+        <label>I'm comfortable with what a stranger can see on my profile.</label>
+      </div>
+      <textarea class="checklist-notes" data-label="Social media notes" placeholder="Any notes about socials (optional)"></textarea>
+    </div>
+
+    <div class="checklist-group">
+      <h3>5. Backups & Important Files</h3>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="My important photos/documents are backed up somewhere.">
+        <label>My important photos/documents are backed up somewhere.</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="chk-item" data-label="If I lost my phone, I know how to recover key data.">
+        <label>If I lost my phone, I know how to recover key data.</label>
+      </div>
+      <textarea class="checklist-notes" data-label="Backup notes" placeholder="Any notes about backups (optional)"></textarea>
+    </div>
+
+    <button class="btn" type="button" onclick="downloadChecklistSnapshot()">
+      Download my checklist snapshot
+    </button>
+    <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
+      This creates a simple text file on your device. If you book a session, you can copy-paste a few lines
+      from it into your enquiry or email so we can start from where you already are.
+    </p>
+  </div>
+
+</div>
+
+<script>
+function downloadChecklistSnapshot(){
+  const checkboxes = document.querySelectorAll('.chk-item');
+  const notes = document.querySelectorAll('.checklist-notes');
+  let content = "";
+
+  content += "Digital Hygiene Snapshot\n";
+  content += "Generated on: " + new Date().toLocaleString() + "\n\n";
+
+  content += "Ticked items:\n";
+  let anyTicked = false;
+  checkboxes.forEach(cb => {
+    const label = cb.getAttribute('data-label');
+    if (cb.checked){
+      anyTicked = true;
+      content += "  [x] " + label + "\n";
+    }
+  });
+  if (!anyTicked){
+    content += "  (No items ticked yet)\n";
+  }
+
+  content += "\nNotes:\n";
+  let anyNotes = false;
+  notes.forEach(t => {
+    const label = t.getAttribute('data-label');
+    const value = t.value.trim();
+    if (value){
+      anyNotes = true;
+      content += "  " + label + ":\n    " + value.split("\n").join("\n    ") + "\n";
+    }
+  });
+  if (!anyNotes){
+    content += "  (No notes added yet)\n";
+  }
+
+  content += "\nIf you’d like help making sense of this, you can share it (or parts of it) with Aman in a session.";
+
+  const blob = new Blob([content], {type: 'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = "digital-hygiene-snapshot.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
