@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>2-Minute Cyber Safety Quiz • Aman P Kaur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:#020617;
+      color:#e5e7eb;
+    }
+    .wrap{max-width:700px;margin:auto;padding:18px}
+    a{color:#38bdf8;text-decoration:none}
+    .card{
+      background:#0b1220;
+      border-radius:20px;
+      border:1px solid #1f2937;
+      padding:22px;
+      margin-bottom:20px;
+    }
+    .btn{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      padding:8px 16px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:.9rem;
+      color:#022c22;
+      margin:4px 4px 0 0;
+    }
+    .timer{color:#22c55e;font-weight:bold;margin-bottom:8px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <p><a href="index.html">← Back to main site</a></p>
+
+  <div class="card">
+    <h1>2-Minute Cyber Safety Quiz</h1>
+    <p>
+      This quick quiz gives you a simple awareness score.
+      Answer honestly — there is no “perfect”, only a starting point.
+    </p>
+    <div class="timer" id="timer">Time left: 02:00</div>
+
+    <div id="quiz">
+      <p><strong>1. Passwords:</strong> Do you reuse the same or very similar password across important accounts?</p>
+      <button class="btn" type="button" onclick="answer(0)">Yes, mostly</button>
+      <button class="btn" type="button" onclick="answer(2)">No, I keep them different</button>
+
+      <p><strong>2. 2FA:</strong> Do you use two-factor authentication on your main email?</p>
+      <button class="btn" type="button" onclick="answer(0)">No / Not sure</button>
+      <button class="btn" type="button" onclick="answer(2)">Yes</button>
+
+      <p><strong>3. Links:</strong> When you get an urgent strange link by email or message…</p>
+      <button class="btn" type="button" onclick="answer(0)">I often click, then think</button>
+      <button class="btn" type="button" onclick="answer(2)">I pause, check, and usually avoid</button>
+    </div>
+
+    <p id="result" style="margin-top:12px;"></p>
+  </div>
+
+  <div class="card">
+    <h2>What to Do With Your Result</h2>
+    <p>
+      ✅ Under 3: start with passwords & 2FA  
+      ✅ 3–4: tighten links, privacy & device updates  
+      ✅ 5–6: you’re doing well; focus on AI-related threats and keeping habits current.
+    </p>
+    <p>
+      If you’d like a human to look at your situation, you can mention your quiz score when you
+      <a href="index.html#enquiry">send an enquiry</a>.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  let score = 0;
+  let timeLeft = 120;
+  let locked = false;
+
+  function renderTimer(){
+    const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
+    const s = String(timeLeft%60).padStart(2,'0');
+    document.getElementById('timer').textContent = "Time left: " + m + ":" + s;
+  }
+  renderTimer();
+
+  const interval = setInterval(()=>{
+    if(timeLeft<=0){
+      clearInterval(interval);
+      locked = true;
+      showResult(true);
+      return;
+    }
+    timeLeft--;
+    renderTimer();
+  },1000);
+
+  function answer(points){
+    if(locked) return;
+    score += points;
+    document.getElementById('result').innerHTML =
+      "Current awareness score: <strong>"+score+" / 6</strong>";
+  }
+
+  function showResult(fromTimeout){
+    let msg="";
+    if(score<=2){
+      msg="You’re at the very beginning of your digital safety journey. Even one change, like updating a few passwords, is a powerful start.";
+    }else if(score<=4){
+      msg="You’re doing some things well, and there’s room to gently improve. A few focused tweaks will make a big difference.";
+    }else{
+      msg="You already have some strong habits. The next step is tightening a few gaps and staying updated on AI-driven risks.";
+    }
+    document.getElementById('result').innerHTML =
+      (fromTimeout ? "Time’s up. " : "") +
+      "Your final awareness score: <strong>"+score+" / 6</strong><br/>"+msg;
+  }
+</script>
+</body>
+</html>
