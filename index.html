@@ -68,10 +68,9 @@
       to{opacity:1;transform:translateY(0)}
     }
 
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:900px){
-      .grid-2,.grid-3{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
     }
 
     h1{font-size:2rem;margin-bottom:10px}
@@ -93,6 +92,10 @@
     }
     .btn:hover{transform:translateY(-1px);opacity:.95}
     .btn.small{padding:6px 14px;font-size:.8rem;margin-top:4px;}
+    .btn.big{
+      padding:14px 26px;
+      font-size:1rem;
+    }
 
     .pill{
       display:inline-block;
@@ -178,61 +181,6 @@
       font-size:.9rem;
     }
 
-    /* Quick checks mini-section */
-    .step-tab{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      background:#020617;
-      border:1px solid #1f2937;
-      border-radius:16px;
-      padding:12px;
-      gap:8px;
-    }
-    .step-badge{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      color:#022c22;
-      font-weight:600;
-      border-radius:999px;
-      padding:3px 10px;
-      font-size:.75rem;
-    }
-
-    .thermo-row{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-top:8px;
-    }
-    .thermo-bar{
-      width:100%;
-    }
-    .thermo-labels{
-      display:flex;
-      justify-content:space-between;
-      font-size:.75rem;
-      color:#9ca3af;
-    }
-    .breathe-display{
-      font-size:.9rem;
-      margin-top:8px;
-      color:#e5e7eb;
-    }
-    .breathe-timer{
-      font-size:1.4rem;
-      margin-top:4px;
-    }
-    .breathe-note{
-      font-size:.8rem;
-      color:#9ca3af;
-      margin-top:4px;
-    }
-    .feedback{
-      margin-top:8px;
-      font-size:.9rem;
-      color:#86efac;
-    }
-
     footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
   </style>
 </head>
@@ -252,7 +200,7 @@
       <a href="#home">Home</a>
       <a href="#about">My Story</a>
       <a href="#ai">AI & You</a>
-      <a href="#quick">Quick Checks</a>
+      <a href="quick-checks.html">Quick Checks</a>
       <a href="#tools">Tools</a>
       <a href="#services">Services</a>
       <a href="#coaching">Coaching</a>
@@ -313,90 +261,18 @@
     </p>
   </section>
 
-  <!-- QUICK CHECKS (small combined section) -->
-  <section id="quick" class="card">
-    <h2>Quick Self-Checks (Small but Powerful)</h2>
-    <p>
-      If you only have a few minutes, this corner is enough to get a meaningful snapshot and a little more calm.
+  <!-- BIG CTA: LET'S START HERE -->
+  <section class="card" style="text-align:center;">
+    <h2>Not Sure Where to Start?</h2>
+    <p style="max-width:560px;margin:0 auto 10px;">
+      If you’re feeling a mix of curiosity and anxiety about your online life,
+      I suggest starting with a small set of calm, guided self-checks.
+      No jargon, no judgment — just a clearer picture of where you are.
     </p>
-
-    <!-- Row 1: Thermometer + Steps -->
-    <div class="grid-2" style="margin-top:8px;">
-      <div>
-        <h3>1. Digital Stress Thermometer</h3>
-        <p style="font-size:.9rem;">
-          Without overthinking it — where would you place yourself <strong>right now</strong> with your digital life and AI?
-        </p>
-        <div class="thermo-row">
-          <span>🙂</span>
-          <input type="range" min="1" max="5" value="3" id="thermo" class="thermo-bar" oninput="updateThermo()">
-          <span>😵‍💫</span>
-        </div>
-        <div class="thermo-labels">
-          <span>Calm</span><span>Stretched</span><span>Overloaded</span>
-        </div>
-        <p id="thermoText" style="margin-top:6px;font-size:.9rem;color:#e5e7eb;">
-          You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.
-        </p>
-      </div>
-
-      <div>
-        <h3>2. Two-Step Awareness Path</h3>
-        <div class="step-tab" style="margin-bottom:8px;">
-          <div>
-            <div class="step-badge">Step 1</div>
-            <p style="margin:4px 0;font-size:.9rem;">Smart Cyber Awareness Quiz</p>
-          </div>
-          <a class="btn small" href="quiz.html">Start</a>
-        </div>
-        <div class="step-tab">
-          <div>
-            <div class="step-badge">Step 2</div>
-            <p style="margin:4px 0;font-size:.9rem;">Digital Hygiene Checklist</p>
-          </div>
-          <a class="btn small" href="checklist.html">Open</a>
-        </div>
-        <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
-          Do them in order when you have a spare moment. They pair well together.
-        </p>
-      </div>
-    </div>
-
-    <!-- Row 2: Breathing + Reflection -->
-    <div class="grid-2" style="margin-top:16px;">
-      <div>
-        <h3>3. 30-Second Digital Pause</h3>
-        <p style="font-size:.9rem;">
-          Before you rush into decisions, give your nervous system a tiny reset.
-        </p>
-        <button class="btn small" type="button" onclick="startBreathing()">Start 30s reset</button>
-        <div class="breathe-display" id="breatheText">Press start when you’re ready.</div>
-        <div class="breathe-timer" id="breatheTimer"></div>
-        <div class="breathe-note">
-          You can close your eyes if it feels safe, or simply soften your gaze.
-        </div>
-      </div>
-
-      <div>
-        <h3>4. Reflection & Gentle Feedback</h3>
-        <p style="font-size:.9rem;">
-          After the quiz and checklist, how do you feel about your digital life right now?
-        </p>
-        <select id="reflection" style="width:100%;padding:8px;border-radius:10px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;">
-          <option value="">Choose what feels closest</option>
-          <option value="overwhelmed">A bit overwhelmed</option>
-          <option value="aware">More aware than before</option>
-          <option value="motivated">Motivated to improve</option>
-          <option value="confident">Mostly confident already</option>
-        </select>
-        <textarea id="concern" placeholder="One small worry or thought (optional)" style="width:100%;margin-top:6px;padding:8px;border-radius:10px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;"></textarea>
-        <button class="btn small" type="button" onclick="generateFeedback()">Get reflection feedback</button>
-        <div id="feedback" class="feedback"></div>
-        <p style="font-size:.8rem;color:#9ca3af;margin-top:4px;">
-          Your reflection will be copied into the contact form if you decide to reach out.
-        </p>
-      </div>
-    </div>
+    <p style="font-size:.9rem;color:#9ca3af;margin-bottom:10px;">
+      You’ll get a feel for your digital stress level, your habits, and a gentle next step.
+    </p>
+    <a class="btn big" href="quick-checks.html">Let’s start here</a>
   </section>
 
   <!-- TOOLS HUB -->
@@ -576,13 +452,12 @@
   <section id="enquiry" class="card">
     <h2>Want a Real Human to Walk This With You?</h2>
     <p>
-      If something from the quiz, checklist, thermometer or reflection stood out — you can share it here.
-      Your reflection will already be added if you’ve used the feedback button above.
+      You can reach out in your own words — or after you’ve tried the quick checks and tools.
     </p>
     <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="_replyto" placeholder="Your email" required>
-      <textarea id="finalMessage" name="message" placeholder="Your message..."></textarea>
+      <textarea name="message" placeholder="Tell me a little about where you’re at, and what’s worrying or confusing you most."></textarea>
       <button class="btn" type="submit">Send</button>
     </form>
   </section>
@@ -595,110 +470,6 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Thermometer
-  function updateThermo(){
-    const val = parseInt(document.getElementById("thermo").value, 10);
-    const text = document.getElementById("thermoText");
-    let msg = "";
-    if(val === 1){
-      msg = "You’re feeling quite calm around your digital life. That’s a lovely place to be — stay gently curious and keep checking in with yourself.";
-    } else if(val === 2){
-      msg = "You’re mostly okay, with a few small worries. A couple of simple changes can give you even more peace of mind.";
-    } else if(val === 3){
-      msg = "You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.";
-    } else if(val === 4){
-      msg = "You’re feeling stretched. This is your sign to slow down, tidy a few basics, and not try to fix everything in one day.";
-    } else {
-      msg = "You’re feeling overloaded. You don’t have to fix it all alone — even one supportive conversation can make a big difference.";
-    }
-    text.textContent = msg;
-  }
-
-  // Breathing exercise
-  let breatheInterval = null;
-  function startBreathing(){
-    const text = document.getElementById("breatheText");
-    const timerEl = document.getElementById("breatheTimer");
-    let timeLeft = 30;
-    let phase = 0; // 0=in, 1=hold, 2=out
-
-    if(breatheInterval){
-      clearInterval(breatheInterval);
-    }
-
-    function setPhaseMessage(){
-      if(phase === 0){
-        text.textContent = "Breathe in gently through your nose...";
-      } else if(phase === 1){
-        text.textContent = "Hold softly...";
-      } else {
-        text.textContent = "Breathe out slowly through your mouth...";
-      }
-    }
-
-    setPhaseMessage();
-    timerEl.textContent = timeLeft + "s";
-
-    breatheInterval = setInterval(()=>{
-      timeLeft--;
-      timerEl.textContent = timeLeft + "s";
-
-      const cyclePos = (30 - timeLeft) % 12;
-      if(cyclePos === 0){
-        phase = 0; setPhaseMessage();
-      } else if(cyclePos === 4){
-        phase = 1; setPhaseMessage();
-      } else if(cyclePos === 8){
-        phase = 2; setPhaseMessage();
-      }
-
-      if(timeLeft <= 0){
-        clearInterval(breatheInterval);
-        breatheInterval = null;
-        text.textContent = "Notice how your body feels now. You can repeat this any time you need a reset.";
-        timerEl.textContent = "";
-      }
-    },1000);
-  }
-
-  // Reflection + auto-fill
-  function generateFeedback(){
-    const feeling = document.getElementById("reflection").value;
-    const concern = document.getElementById("concern").value.trim();
-    const output = document.getElementById("feedback");
-    const finalBox = document.getElementById("finalMessage");
-
-    if(!feeling){
-      output.innerHTML = "Take your time — choose the option that feels closest to you.";
-      return;
-    }
-
-    let msg = "";
-    if(feeling === "overwhelmed"){
-      msg = "Feeling overwhelmed is completely human. The fact that you showed up already means you’re moving in the right direction.";
-    }else if(feeling === "aware"){
-      msg = "Awareness is the first real shift. You now see what you couldn’t see before — and that’s powerful.";
-    }else if(feeling === "motivated"){
-      msg = "That motivation you feel is exactly what creates lasting change. Start small — momentum will follow.";
-    }else if(feeling === "confident"){
-      msg = "Confidence with curiosity is the healthiest place to be. Keep checking in as tools and AI evolve.";
-    }
-
-    output.innerHTML = msg;
-
-    let message = "My reflection after trying the tools:\n";
-    message += "Feeling: " + feeling + "\n";
-    if(concern){
-      message += "Note: " + concern + "\n";
-    }
-    const thermoVal = parseInt(document.getElementById("thermo").value, 10);
-    if(thermoVal){
-      message += "Digital stress level (1–5): " + thermoVal + "\n";
-    }
-
-    finalBox.value = message;
-  }
 </script>
 
 </body>
