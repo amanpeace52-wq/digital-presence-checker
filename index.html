@@ -1,536 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Digital Footprint & Online Presence Checker</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amanpreet Kaur • Digital Presence & Safety Lab</title>
+  <style>
     :root {
-        --primary: #4f46e5;
-        --primary-dark: #3730a3;
-        --accent: #f97316;
-        --bg-gradient-start: #0f172a;
-        --bg-gradient-end: #1e293b;
-        --card-bg: #ffffff;
-        --text-main: #0f172a;
-        --muted: #6b7280;
-        --border-subtle: #e5e7eb;
+      --bg: #020617;
+      --bg-soft: #0b1220;
+      --card: #020617;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.08);
+      --accent-2: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: #1f2937;
     }
 
     * {
-        box-sizing: border-box;
+      box-sizing: border-box;
     }
 
     body {
-        margin: 0;
-        padding: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at top left, #1e293b, #020617);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #0f172a, #020617),
+        radial-gradient(circle at bottom right, #022c22, #020617);
+      color: var(--text-main);
     }
 
-    .outer {
-        max-width: 900px;
-        width: 100%;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .header {
-        text-align: center;
-        color: #e5e7eb;
-        margin-bottom: 16px;
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
     }
 
-    .header h1 {
-        margin: 0 0 10px;
-        font-size: 1.9rem;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 4px 20px;
     }
 
-    .header p {
-        margin: 0;
-        font-size: 0.95rem;
-        color: #9ca3af;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .container {
-        background: linear-gradient(135deg, #f9fafb, #eef2ff);
-        border-radius: 16px;
-        padding: 22px 22px 26px;
-        box-shadow:
-            0 18px 40px rgba(15, 23, 42, 0.55),
-            0 0 0 1px rgba(148, 163, 184, 0.4);
-        border: 1px solid rgba(148, 163, 184, 0.4);
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top left, #22c55e, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
     }
 
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.75rem;
-        background: rgba(15, 23, 42, 0.85);
-        color: #e5e7eb;
-        padding: 4px 10px;
-        border-radius: 999px;
-        margin-bottom: 8px;
+    .brand-text-title {
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
-    .badge-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 999px;
-        background: var(--accent);
+    .brand-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
     }
 
-    h2 {
-        margin-top: 0;
-        margin-bottom: 4px;
-        font-size: 1.2rem;
-        color: var(--primary-dark);
+    nav {
+      display: flex;
+      gap: 10px;
+      font-size: 0.85rem;
     }
 
-    .subtext {
-        font-size: 0.9rem;
-        color: var(--muted);
-        margin-bottom: 16px;
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--text-soft);
     }
 
-    .question {
-        margin-bottom: 16px;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--border-subtle);
-        background: rgba(255, 255, 255, 0.8);
+    nav a:hover {
+      background: rgba(148, 163, 184, 0.16);
+      color: #e5e7eb;
     }
 
-    .question-title {
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-bottom: 4px;
-        color: var(--text-main);
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
+      gap: 26px;
+      align-items: center;
+      padding: 16px 4px 26px;
     }
 
-    .question-note {
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-bottom: 6px;
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
     }
 
-    select {
-        width: 100%;
-        padding: 7px 9px;
-        border-radius: 8px;
-        border: 1px solid #cbd5f5;
-        font-size: 0.9rem;
-        outline: none;
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
     }
 
-    select:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.35);
+    .hero-label span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
-    .section-label {
-        margin: 18px 0 8px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--primary-dark);
-        display: flex;
-        align-items: center;
-        gap: 6px;
+    .hero-title {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      margin: 0 0 12px;
     }
 
-    .section-label span {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: var(--primary);
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .btn-primary {
-        padding: 11px 18px;
-        background: var(--primary);
-        color: #f9fafb;
-        border: none;
-        border-radius: 999px;
-        cursor: pointer;
-        font-size: 0.95rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 8px;
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #022c22;
+      padding: 9px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
     }
 
     .btn-primary:hover {
-        background: var(--primary-dark);
+      background: #16a34a;
     }
 
-    .btn-primary span {
-        font-size: 1.1rem;
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 14px;
+      font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-soft);
     }
 
-    #resultBox {
-        margin-top: 22px;
-        padding: 18px 16px 20px;
-        background: #eef2ff;
-        border-radius: 14px;
-        display: none;
-        border: 1px solid rgba(129, 140, 248, 0.6);
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.7);
+      color: #e5e7eb;
     }
 
-    .score {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--primary-dark);
+    .hero-side {
+      background: radial-gradient(circle at top, #22c55e22, #020617);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 16px 16px 18px;
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.8),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
     }
 
-    .score small {
-        font-weight: 500;
-        color: var(--muted);
-        font-size: 0.8rem;
+    .hero-side-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .risk {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-top: 8px;
+    .hero-side-text {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
     }
 
-    .risk.high {
-        color: #b91c1c;
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
-    .risk.medium {
-        color: #b45309;
+    .tag {
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-soft);
     }
 
-    .risk.low {
-        color: #047857;
+    .section {
+      margin-top: 30px;
+      padding: 18px 14px 8px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #020617, #020617);
+      border: 1px solid var(--border-subtle);
     }
 
-    .advice {
-        margin-top: 10px;
-        font-size: 0.9rem;
-        color: var(--text-main);
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .premium-box {
-        margin-top: 16px;
-        background: #fffbeb;
-        padding: 12px 12px 14px;
-        border-left: 4px solid var(--accent);
-        border-radius: 10px;
-        font-size: 0.88rem;
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
     }
 
-    .premium-box h3 {
-        margin: 0 0 6px;
-        font-size: 0.95rem;
-        color: #92400e;
+    .section-sub {
+      font-size: 0.8rem;
+      color: var(--text-soft);
     }
 
-    .premium-box ul {
-        padding-left: 20px;
-        margin: 4px 0 6px;
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .premium-box li {
-        margin-bottom: 2px;
+    @media (max-width: 950px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    .btn-secondary {
-        margin-top: 6px;
-        padding: 8px 13px;
-        border-radius: 999px;
-        border: 1px solid #fed7aa;
-        background: #fff7ed;
-        cursor: pointer;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        color: #9a3412;
+    @media (max-width: 640px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .btn-secondary:hover {
-        background: #fed7aa;
+    .tool-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 12px 12px 14px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .footnote {
-        margin-top: 10px;
-        font-size: 0.75rem;
-        color: #6b7280;
+    .tool-pill {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 6px;
     }
-</style>
+
+    .tool-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tool-text {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .tool-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      margin-top: 4px;
+    }
+
+    .tool-link {
+      font-size: 0.8rem;
+      color: var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tool-link:hover {
+      text-decoration: underline;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .about-highlight {
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+
+    .about-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      font-size: 0.85rem;
+    }
+
+    .service-card {
+      background: #020617;
+      border-radius: 14px;
+      padding: 12px 12px 14px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+    }
+
+    .service-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .service-text {
+      font-size: 0.83rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .service-tagline {
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+
+    .contact {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .contact a {
+      color: var(--accent-2);
+    }
+
+    footer {
+      margin-top: 18px;
+      padding: 10px 4px 0;
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-
-<div class="outer">
-    <div class="header">
-        <div class="badge">
-            <span class="badge-dot"></span>
-            Instant self-check • No login • No data stored
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">AK</div>
+        <div>
+          <div class="brand-text-title">Amanpreet Kaur</div>
+          <div class="brand-text-sub">Digital Presence • Safety • UX</div>
         </div>
-        <h1>Digital Footprint & Online Presence Checker</h1>
-        <p>See how exposed, consistent, and safe your online identity is in under 3 minutes.</p>
-    </div>
+      </div>
+      <nav>
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <div class="container">
-        <h2>Check your exposure in 15 quick questions</h2>
-        <p class="subtext">
-            Answer honestly. This tool gives you a personal score and simple next steps – nothing is saved or shared.
+    <section class="hero">
+      <div>
+        <div class="hero-label"><span class="dot"></span> PhD researcher · Cyber security & UX lecturer</div>
+        <h1 class="hero-title">
+          Helping people and small businesses feel <span class="hero-highlight">safe, clear, and confident</span> online.
+        </h1>
+        <p class="hero-sub">
+          I’m Aman, a PhD researcher in AI-driven blockchain identity management and a cyber security / UX educator in Australia.
+          I create simple tools and practical audits that improve
+          <strong>online safety, digital identity, and website clarity</strong>—without the jargon.
         </p>
-
-        <form id="quizForm">
-
-            <div class="section-label"><span></span> Core security habits</div>
-
-            <div class="question">
-                <div class="question-title">1. Do you reuse the same password across multiple accounts?</div>
-                <div class="question-note">Think about email, banking, social media, shopping etc.</div>
-                <select name="q1">
-                    <option value="0">Yes, almost everywhere</option>
-                    <option value="5">On some accounts</option>
-                    <option value="10">No, they are all unique</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">2. Do you use two-factor authentication (2FA/MFA)?</div>
-                <div class="question-note">For example SMS codes, authenticator apps, security keys.</div>
-                <select name="q2">
-                    <option value="0">No, I don't use it</option>
-                    <option value="5">Only on a few important accounts</option>
-                    <option value="10">Yes, on most or all important accounts</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">3. Do you use a password manager?</div>
-                <div class="question-note">Any tool or browser that securely stores and generates passwords.</div>
-                <select name="q3">
-                    <option value="0">No, I don't use one</option>
-                    <option value="5">I have one but barely use it</option>
-                    <option value="10">Yes, I use it for most logins</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">4. Do you regularly update your devices (phone, laptop, apps)?</div>
-                <div class="question-note">Security patches and app updates.</div>
-                <select name="q4">
-                    <option value="0">Only when something breaks</option>
-                    <option value="5">Sometimes, when I remember</option>
-                    <option value="10">Yes, I keep things fairly up to date</option>
-                </select>
-            </div>
-
-            <div class="section-label"><span></span> Social media & public sharing</div>
-
-            <div class="question">
-                <div class="question-title">5. How visible are your main social media profiles?</div>
-                <div class="question-note">Instagram, Facebook, TikTok, LinkedIn, etc.</div>
-                <select name="q5">
-                    <option value="0">Mostly public</option>
-                    <option value="5">Mixed – some public, some private</option>
-                    <option value="10">Mostly private or restricted</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">6. How often do you share personal details (location, family, routines) publicly?</div>
-                <div class="question-note">Posts, stories, reels that anyone can view.</div>
-                <select name="q6">
-                    <option value="0">Very often</option>
-                    <option value="5">Sometimes</option>
-                    <option value="10">Rarely or never</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">7. Do you delete or clean up old posts and accounts?</div>
-                <div class="question-note">Old photos, outdated accounts, unused logins.</div>
-                <select name="q7">
-                    <option value="0">Almost never</option>
-                    <option value="5">Occasionally</option>
-                    <option value="10">Yes, I review and clean up regularly</option>
-                </select>
-            </div>
-
-            <div class="section-label"><span></span> Website & online identity</div>
-
-            <div class="question">
-                <div class="question-title">8. Is your website or public profile clear about who you are and what you do?</div>
-                <div class="question-note">Would a stranger instantly understand?</div>
-                <select name="q8">
-                    <option value="0">No, it's confusing or empty</option>
-                    <option value="5">Somewhat clear</option>
-                    <option value="10">Very clear and simple</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">9. Is your website or main profile mobile-friendly?</div>
-                <div class="question-note">Easy to read and use on a phone.</div>
-                <select name="q9">
-                    <option value="0">No, it's quite hard to use</option>
-                    <option value="5">It's okay but not great</option>
-                    <option value="10">Yes, it works smoothly on mobile</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">10. How consistent is your online identity (name, image, branding)?</div>
-                <div class="question-note">Across website, LinkedIn, Instagram, etc.</div>
-                <select name="q10">
-                    <option value="0">Very inconsistent or messy</option>
-                    <option value="5">Somewhat consistent</option>
-                    <option value="10">Very consistent and intentional</option>
-                </select>
-            </div>
-
-            <div class="section-label"><span></span> Scenario-based questions</div>
-
-            <div class="question">
-                <div class="question-title">
-                    11. You receive a DM from a friend’s account saying “URGENT, click this link now!” with a strange URL.
-                </div>
-                <div class="question-note">What are you most likely to do?</div>
-                <select name="q11">
-                    <option value="0">Click it immediately to see what’s happening</option>
-                    <option value="5">Click it, but only after asking them if it’s real</option>
-                    <option value="10">Do not click – verify on another channel or ignore and report</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    12. You’re posting a cute photo of your child at a regular weekly activity, with the location tagged.
-                </div>
-                <div class="question-note">How do you handle this?</div>
-                <select name="q12">
-                    <option value="0">Post publicly with location and time visible</option>
-                    <option value="5">Post but remove location or limit audience a bit</option>
-                    <option value="10">Avoid posting exact routine/location publicly or share only to a close friends list</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    13. You get an email that looks like your bank, saying “Your account is locked – log in now using this link.”
-                </div>
-                <div class="question-note">The message feels urgent.</div>
-                <select name="q13">
-                    <option value="0">Click the link in the email and log in quickly</option>
-                    <option value="5">Check the sender address but still might click the link</option>
-                    <option value="10">Ignore the link and log in only via the official app/website or call the bank</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    14. A new free app asks for access to your contacts, photos, microphone, and location – all at once.
-                </div>
-                <div class="question-note">You just want to test it.</div>
-                <select name="q14">
-                    <option value="0">Allow everything so it works properly</option>
-                    <option value="5">Allow some permissions and hope it's fine</option>
-                    <option value="10">Deny most permissions or uninstall if it asks for too much</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    15. You’re using public Wi-Fi at a café to check emails and log in to multiple accounts.
-                </div>
-                <div class="question-note">How do you usually handle this?</div>
-                <select name="q15">
-                    <option value="0">Use public Wi-Fi for everything, including banking</option>
-                    <option value="5">Avoid banking, but still log in to some accounts</option>
-                    <option value="10">Use a VPN / mobile data for sensitive logins or avoid logging in at all</option>
-                </select>
-            </div>
-
-            <button type="button" class="btn-primary" onclick="calculateScore()">
-                <span>▶</span> Get my score
-            </button>
-        </form>
-
-        <div id="resultBox">
-            <div class="score" id="scoreDisplay"></div>
-            <div class="risk" id="riskLevel"></div>
-
-            <div class="advice" id="adviceText"></div>
-
-            <div class="premium-box">
-                <h3>✨ Want a personalised full report + action plan?</h3>
-                <ul>
-                    <li>Full review of your answers</li>
-                    <li>Social media & search exposure check</li>
-                    <li>Online identity & website clarity feedback</li>
-                    <li>Prioritised action plan for the next 30 days</li>
-                </ul>
-                <strong>Upgrade for $19 (basic) or $49 (complete).</strong><br/>
-                <button class="btn-secondary"
-                    onclick="window.location.href='mailto:amanpeace52@gmail.com?subject=Digital%20Footprint%20Report%20Request'">
-                    ✉ Request premium report
-                </button>
-            </div>
-
-            <div class="footnote">
-                This is a high-level awareness tool. It does not replace professional legal, financial, or technical audits.
-            </div>
+        <div class="hero-actions">
+          <a href="#tools"><button class="btn-primary">Try my free tools →</button></a>
+          <a href="#services"><button class="btn-ghost">Book a digital presence audit</button></a>
         </div>
-    </div>
-</div>
+      </div>
 
-<script>
-function calculateScore() {
-    let form = document.forms["quizForm"];
-    let total = 0;
-    const maxScore = 15 * 10; // 15 questions * 10 points
+      <div class="hero-side">
+        <div class="hero-side-title">What I’m currently working on</div>
+        <p class="hero-side-text">
+          Turning my research and teaching in cyber security, UX design, and digital identity
+          into small, useful products that anyone can use:
+          students, creators, parents, and small food-agri or tech businesses.
+        </p>
+        <div class="hero-tags">
+          <div class="tag">Digital footprint & identity</div>
+          <div class="tag">Cyber hygiene</div>
+          <div class="tag">UX & conversion</div>
+          <div class="tag">SME-friendly audits</div>
+        </div>
+      </div>
+    </section>
 
-    for (let i = 1; i <= 15; i++) {
-        total += parseInt(form["q" + i].value);
-    }
+    <!-- Free tools -->
+    <section class="section" id="tools">
+      <div class="section-header">
+        <div class="section-title">Free tools you can use right now</div>
+        <div class="section-sub">Quick self-checks that highlight where to improve first.</div>
+      </div>
 
-    const percentage = Math.round((total / maxScore) * 100);
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div>
+            <div class="tool-pill">Identity & safety</div>
+            <div class="tool-title">Digital Footprint & Online Presence Checker</div>
+            <div class="tool-text">
+              15 questions to see how exposed, consistent, and safe your online identity is.
+              Ideal for students, professionals, and parents.
+            </div>
+          </div>
+          <div class="tool-footer">
+            <span>3–4 minutes</span>
+            <!-- If you kept this checker at "/", change href to "./" -->
+            <a class="tool-link" href="digital-footprint.html">Open tool →</a>
+          </div>
+        </div>
 
-    const resultBox = document.getElementById("resultBox");
-    const scoreDisplay = document.getElementById("scoreDisplay");
-    const riskLevel = document.getElementById("riskLevel");
-    const adviceText = document.getElementById("adviceText");
+        <div class="tool-card">
+          <div>
+            <div class="tool-pill">UX & clarity</div>
+            <div class="tool-title">Website UX & Conversion Checker</div>
+            <div class="tool-text">
+              15-question self-assessment that helps you see whether your website is clear,
+              trustworthy, and ready to convert visitors into clients.
+            </div>
+          </div>
+          <div class="tool-footer">
+            <span>For websites & landing pages</span>
+            <a class="tool-link" href="ux-checker.html">Check my site →</a>
+          </div>
+        </div>
 
-    resultBox.style.display = "block";
-    scoreDisplay.innerHTML = `Your Score: ${percentage}/100 <small>(${total} / ${maxScore} raw)</small>`;
+        <div class="tool-card">
+          <div>
+            <div class="tool-pill">Semi-automated</div>
+            <div class="tool-title">Smart UX Check (URL + quick questions)</div>
+            <div class="tool-text">
+              Paste your link, let the tool auto-analyse the URL, answer 5 simple questions,
+              and get a smart UX score with next steps.
+            </div>
+          </div>
+          <div class="tool-footer">
+            <span>Link + 5 answers</span>
+            <a class="tool-link" href="smart-ux-checker.html">Run smart check →</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    let risk = "";
-    let advice = "";
-    let riskClass = "";
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="section-header">
+        <div class="section-title">A bit about me</div>
+        <div class="section-sub">Why I care so much about digital identity, safety, and human-friendly tech.</div>
+      </div>
 
-    if (percentage <= 40) {
-        risk = "⚠ HIGH RISK — Your digital exposure is quite unsafe.";
-        advice = "<strong>Start here:</strong><br>• Turn on 2FA for email and banking<br>• Change any reused passwords<br>• Make key social profiles private or limited<br>• Avoid clicking urgent links from email/DMs<br>• Be careful with posting routines and locations";
-        riskClass = "high";
-    } else if (percentage <= 70) {
-        risk = "⚠ MODERATE RISK — You have some good habits, but important gaps remain.";
-        advice = "<strong>Next steps:</strong><br>• Move towards a password manager<br>• Review old public posts and clean up<br>• Limit permissions for new apps<br>• Improve clarity & consistency across profiles<br>• Avoid sensitive logins on public Wi-Fi";
-        riskClass = "medium";
-    } else {
-        risk = "✅ LOW RISK — You maintain a relatively strong and mindful digital presence.";
-        advice = "<strong>Keep going:</strong><br>• Maintain 2FA and strong passwords<br>• Regularly review what’s public about you<br>• Strengthen personal or business branding<br>• Schedule a quarterly check of settings and search results";
-        riskClass = "low";
-    }
+      <div class="about-grid">
+        <div class="about-text">
+          I’m <strong>Amanpreet Kaur (Aman)</strong>, a
+          <span class="about-highlight">PhD researcher in AI-driven blockchain identity management</span> and
+          an IT lecturer teaching cyber security, UX & design thinking, and data/technology subjects.
+          <br /><br />
+          Every week I see the same pattern:
+          brilliant people and small businesses who are
+          <em>good at what they do</em> but feel lost when it comes to:
+          <ul class="about-list">
+            <li>protecting their identity and data online,</li>
+            <li>understanding their digital footprint, and</li>
+            <li>making their website actually speak to humans.</li>
+          </ul>
+          My goal is to take research-grade ideas and turn them into
+          <span class="about-highlight">simple, actionable tools and audits</span> that anyone can use
+          — with or without a tech background.
+        </div>
 
-    riskLevel.className = "risk " + riskClass;
-    riskLevel.innerHTML = risk;
-    adviceText.innerHTML = advice;
-}
-</script>
+        <div>
+          <div class="service-card">
+            <div class="service-title">Some hats I wear</div>
+            <div class="service-text">
+              • PhD researcher in AI + blockchain identity management for supply chains<br />
+              • Cyber Security & UX lecturer and subject coordinator<br />
+              • Tutor, mentor, and guide for students entering tech and security<br />
+              • Mum, builder of practical systems that fit real life
+            </div>
+            <div class="service-tagline">Human-first, research-informed, very real-world.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="section-header">
+        <div class="section-title">Ways I can help beyond the free tools</div>
+        <div class="section-sub">Light, focused services you can grow into over time.</div>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <div class="service-card">
+            <div class="service-title">Website UX & Clarity Audit</div>
+            <div class="service-text">
+              A focused review of your homepage or landing page:
+              clarity of message, trust signals, navigation, and mobile experience.
+              You get a concise PDF with practical changes you can apply immediately.
+            </div>
+            <div class="service-tagline">Perfect for coaches, creators, and small businesses.</div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-title">Digital Footprint & Safety Check</div>
+            <div class="service-text">
+              A deeper look at your online presence (or your teen’s),
+              including social media, identity exposure, and simple cyber hygiene.
+              You get a tailored risk view and “first 10 actions” to feel safer online.
+            </div>
+            <div class="service-tagline">Ideal for families, students, and busy professionals.</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="service-card">
+            <div class="service-title">Ongoing Digital Presence Support</div>
+            <div class="service-text">
+              For people and small teams who want a thinking partner:
+              light monthly support on website tweaks, content clarity,
+              and basic cyber hygiene habits.
+            </div>
+            <div class="service-tagline">Flexible, human, no-jargon partnership.</div>
+          </div>
+          <p class="contact">
+            If any of this resonates, send me a short email with who you are,
+            your website (if you have one), and what you’d like to improve first.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="section-header">
+        <div class="section-title">Get in touch</div>
+        <div class="section-sub">You don’t have to have it all figured out before you reach out.</div>
+      </div>
+
+      <p class="contact">
+        📧 Email:
+        <a href="mailto:amanpeace52@gmail.com">amanpeace52@gmail.com</a><br /><br />
+        You can share a bit about your context (student, small business, parent, team),
+        your main concern (safety, clarity, website, identity), and any links you’re comfortable sharing.
+        I’ll reply with a simple suggestion or, if it makes sense, a proposal for a small paid audit.
+      </p>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
+    </footer>
+  </div>
+
+  <script>
+    // Auto-fill current year in the footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
