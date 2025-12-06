@@ -1,526 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Aman P Kaur • Digital Presence, UX & Online Safety Lab</title>
-  <meta name="description" content="Free digital footprint checker, website UX audits, cyber hygiene tools & personalised digital presence services by Aman P Kaur, PhD researcher & cybersecurity lecturer."/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="UTF-8"/>
+<title>Aman P Kaur • Digital Safety, UX & Cyber Literacy</title>
+<meta name="description" content="Personalised digital safety, UX clarity, cyber literacy coaching & digital footprint audits by Aman P Kaur."/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <style>
-    :root{
-      --bg:#020617;
-      --card:#0b1220;
-      --accent:#22c55e;
-      --blue:#38bdf8;
-      --text:#e5e7eb;
-      --soft:#9ca3af;
-      --border:#1f2937;
-    }
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1220;
+  --accent:#22c55e;
+  --blue:#38bdf8;
+  --text:#e5e7eb;
+  --soft:#9ca3af;
+  --border:#1f2937;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  background:radial-gradient(circle at top left,#22c55e22,#020617),
+             radial-gradient(circle at bottom right,#38bdf822,#020617);
+  color:var(--text);
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1100px;margin:auto;padding:18px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  width:40px;height:40px;border-radius:14px;
+  background:linear-gradient(135deg,var(--accent),var(--blue));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#022c22;
+}
+nav a{margin-left:10px;color:var(--soft);font-size:.9rem}
+nav a:hover{color:white}
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:
-        radial-gradient(circle at top left,#22c55e22,#020617),
-        radial-gradient(circle at bottom right,#38bdf822,#020617);
-      color:var(--text);
-    }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:26px;
+}
 
-    a{color:inherit;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .wrap{max-width:1100px;margin:auto;padding:18px}
-    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+h1{font-size:2rem;margin-bottom:10px}
+h2{font-size:1.4rem;margin-bottom:10px}
+h3{font-size:1.05rem;margin-bottom:6px}
+p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
 
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{
-      width:40px;height:40px;
-      background:linear-gradient(135deg,var(--accent),var(--blue));
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      color:#022c22;
-    }
+.btn{
+  background:linear-gradient(135deg,var(--accent),#16a34a);
+  padding:10px 20px;
+  border-radius:999px;
+  color:#022c22;
+  font-size:.9rem;
+  border:none;
+  display:inline-block;
+  cursor:pointer;
+  margin-top:8px;
+}
+.btn.alt{background:transparent;border:1px solid var(--border);color:var(--text)}
 
-    nav{display:flex;gap:8px;flex-wrap:wrap}
-    nav a{
-      padding:6px 12px;
-      border-radius:999px;
-      font-size:.85rem;
-      color:var(--soft);
-    }
-    nav a:hover{background:#ffffff12;color:white}
+.form input,.form textarea,.form select{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#020617;
+  color:var(--text);
+  margin-bottom:10px;
+}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:20px;
-      padding:20px;
-      margin-bottom:24px;
-      box-shadow:0 24px 40px #020617aa;
-    }
-
-    h1{font-size:2rem;margin:0 0 10px}
-    h2{font-size:1.35rem;margin:0 0 10px}
-    h3{font-size:1.05rem;margin:0 0 8px}
-    p, li{font-size:.9rem;color:var(--soft);line-height:1.6}
-
-    .hero{display:grid;grid-template-columns:1.7fr 1.3fr;gap:24px}
-    @media(max-width:800px){.hero{grid-template-columns:1fr}}
-
-    .btn{
-      display:inline-block;
-      padding:10px 18px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--accent),#16a34a);
-      color:#022c22;
-      font-weight:600;
-      font-size:.85rem;
-      margin-top:10px;
-      border:none;
-      cursor:pointer;
-    }
-
-    .btn.alt{
-      background:transparent;border:1px solid var(--border);color:var(--text);margin-left:10px
-    }
-
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:600px){.grid{grid-template-columns:1fr}}
-
-    .tool,
-    .report-block,
-    .testimonial,
-    .dash-card{
-      background:#020617;
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:16px;
-    }
-
-    .pill{
-      display:inline-block;
-      font-size:.7rem;
-      padding:3px 8px;
-      border-radius:999px;
-      background:#22c55e22;
-      color:#86efac;
-      margin-bottom:6px;
-    }
-
-    .form input,
-    .form textarea,
-    .form select{
-      width:100%;
-      padding:9px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:#020617;
-      color:#text;
-      margin-bottom:10px;
-      font-size:.85rem;
-      color:var(--text);
-    }
-
-    .form textarea{min-height:110px;resize:vertical;}
-
-    small{color:#9ca3af;font-size:.8rem}
-
-    footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:30px}
-
-    /* Lead magnet popup */
-    #leadPopup{
-      position:fixed;
-      inset:0;
-      background:#000000bb;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-    }
-    #leadPopup .box{
-      background:#0b1220;
-      padding:22px;
-      border-radius:18px;
-      max-width:360px;
-      width:90%;
-      border:1px solid var(--border);
-      text-align:center;
-    }
-
-    .two-column{
-      display:grid;
-      grid-template-columns:1.4fr 1.4fr;
-      gap:18px;
-    }
-    @media(max-width:800px){.two-column{grid-template-columns:1fr}}
-  </style>
+.quiz-question{
+  margin-bottom:16px;
+  border-bottom:1px dashed #1f2937;
+  padding-bottom:10px;
+}
+.quiz-question p{margin-bottom:6px}
+.quiz-result{
+  margin-top:12px;
+  font-size:.95rem;
+}
+.quiz-result strong{color:var(--accent)}
+footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
+</style>
 </head>
 
 <body>
-
-<!-- Lead Magnet Popup -->
-<div id="leadPopup">
-  <div class="box">
-    <h3>Free Guide: Digital Hygiene</h3>
-    <p style="font-size:.9rem;">
-      Get a simple checklist: <strong>“10 Digital Hygiene Mistakes Almost Everyone Makes”</strong>  
-      Tick the box in the enquiry form and I’ll send it with your reply.
-    </p>
-    <button class="btn" onclick="closePopupAndScroll()">Get It via Enquiry</button>
-    <p style="margin-top:10px; font-size:.7rem; color:#aaa; cursor:pointer" onclick="closePopup()">No thanks</p>
-  </div>
-</div>
-
 <div class="wrap">
 
-  <header>
-    <div class="brand">
-      <div class="logo">AK</div>
-      <div>
-        <strong>Aman P Kaur</strong><br/>
-        <span style="font-size:.75rem;color:var(--soft)">Digital Presence • Safety • UX</span>
-      </div>
-    </div>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#tools">Tools</a>
-      <a href="#premium">Premium</a>
-      <a href="#fit">Fit</a>
-      <a href="#why">Why Us</a>
-      <a href="#faq">FAQ</a>
-      <a href="#dashboard">Client Dashboard</a>
-      <a href="#enquiry">Enquiry</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="card hero">
+<header>
+  <div class="brand">
+    <div class="logo">AK</div>
     <div>
-      <h1>Helping people feel <span style="color:var(--accent)">safe, clear & confident</span> online</h1>
-      <p>
-        I’m <strong>Aman P Kaur</strong> — PhD researcher & Cyber Security + UX lecturer.
-        This lab translates complex digital risk into calm, practical clarity for individuals,
-        families, students and small businesses.
-      </p>
-      <a class="btn" href="#tools">Try Free Tools</a>
-      <a class="btn alt" href="#enquiry">Request Premium Report</a>
+      <strong>Aman P Kaur</strong><br/>
+      <span style="font-size:.75rem;color:var(--soft)">Digital Safety • UX • Cyber Literacy</span>
     </div>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">My Story</a>
+    <a href="#services">Services</a>
+    <a href="#coaching">Coaching</a>
+    <a href="#quiz">Mini Quiz</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#subscribe">Subscribe</a>
+    <a href="#enquiry">Enquiry</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home" class="card">
+  <h1>Helping You Feel Safer, Clearer & More Confident Online</h1>
+  <p>
+    I help everyday people, students and small business owners understand their digital life
+    without fear, jargon or overwhelm.
+  </p>
+  <a class="btn" href="#enquiry">Start With a Conversation</a>
+</section>
+
+<!-- ABOUT STORY -->
+<section id="about" class="card">
+  <h2>My Story (Why I Do This)</h2>
+  <p>
+    I didn’t start in cyber security because I loved machines.  
+    I started because I kept seeing people — smart, hardworking people — feeling powerless and confused online.
+  </p>
+
+  <p>
+    As a student, as a teacher, and later as a PhD researcher, I watched how easily people’s digital lives
+    could get messy, stressful, and sometimes unsafe — without them even realising it.
+  </p>
+
+  <p>
+    Parents worried about their children.  
+    Business owners unsure who could see their data.  
+    Students overwhelmed by passwords, scams and privacy.
+  </p>
+
+  <p>
+    So I decided to focus on something simple:
+    <strong>making digital safety and clarity human again.</strong>
+    Not scary. Not overly technical. Just real, calm, and practical.
+  </p>
+
+  <p>
+    This space is where I do that — one person, one website, one digital life at a time.
+  </p>
+</section>
+
+<!-- HOW WE HELP -->
+<section class="card">
+  <h2>How I Can Help You</h2>
+  <ul>
+    <li>Understand what’s actually visible about you online</li>
+    <li>Fix confusing websites and unclear messaging</li>
+    <li>Build safer digital habits without becoming “tech-obsessed”</li>
+    <li>Protect your identity, data and peace of mind</li>
+    <li>Learn digital skills in a simple, human way</li>
+  </ul>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="card">
+  <h2>Why People Choose This Space</h2>
+  <ul>
+    <li>✅ I explain things without fear or jargon</li>
+    <li>✅ I don’t sell fear — I teach clarity</li>
+    <li>✅ Your privacy always comes first</li>
+    <li>✅ Real research + real life experience</li>
+    <li>✅ Small, personal, human support — not a big agency</li>
+  </ul>
+</section>
+
+<!-- PREMIUM SERVICES -->
+<section id="services" class="card">
+  <h2>Premium Services (Personalised)</h2>
+
+  <div class="grid">
+
     <div>
-      <p>
-        🔹 Digital identity & footprint<br/>
-        🔹 Cyber hygiene for real life<br/>
-        🔹 Human-first UX & clarity<br/>
-        🔹 Research-backed, not hype-driven
-      </p>
-    </div>
-  </section>
-
-  <!-- FREE TOOLS -->
-  <section id="tools" class="card">
-    <h2>Free Digital Tools</h2>
-    <p>Start with a light, low-pressure self-check.</p>
-
-    <div class="grid">
-      <div class="tool">
-        <div class="pill">Identity</div>
-        <strong>Digital Footprint Checker</strong>
-        <p>Understand how visible and exposed your identity is online.</p>
-        <a class="btn" href="digital-footprint.html">Open Tool</a>
-      </div>
-
-      <div class="tool">
-        <div class="pill">UX</div>
-        <strong>Website UX & Conversion Checker</strong>
-        <p>Assess clarity, trust and usability in a few minutes.</p>
-        <a class="btn" href="ux-checker.html">Run Check</a>
-      </div>
-
-      <div class="tool">
-        <div class="pill">Smart UX</div>
-        <strong>Smart UX Auto Checker</strong>
-        <p>Use structured questions to evaluate your experience.</p>
-        <a class="btn" href="smart-ux-checker.html">Smart Check</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREMIUM REPORTS -->
-  <section id="premium" class="card">
-    <h2>Premium Personalised Reports</h2>
-    <p>
-      These are manually reviewed using UX heuristics, cyber security frameworks and digital identity risk analysis.
-      No automation-only outputs — every report is read and written by a human.
-    </p>
-
-    <div class="report-block">
-      <h3>🔹 Basic UX & Clarity Report — $49</h3>
-      <p><strong>What to expect</strong></p>
+      <h3>Basic UX & Clarity Review — $49</h3>
+      <p>Perfect if your website feels messy, confusing or not converting well.</p>
       <ul>
-        <li>Homepage or key landing page review</li>
-        <li>Message clarity & value proposition check</li>
-        <li>Trust & credibility signals (social proof, framing, tone)</li>
-        <li>Navigation & mobile usability review</li>
-      </ul>
-      <p><strong>Methodology</strong></p>
-      <ul>
-        <li>UX heuristic evaluation (clarity, feedback, friction)</li>
-        <li>Attention & scroll-flow analysis (what people see first)</li>
-        <li>Human-centred design and accessibility lenses</li>
-      </ul>
-      <p><strong>Outcome</strong></p>
-      <ul>
-        <li>1–2 page personalised PDF report</li>
-        <li>Plain-language summary of what’s working & what’s confusing</li>
-        <li>Prioritised action list for “fix first” items</li>
+        <li>Homepage & mobile usability check</li>
+        <li>Trust & clarity review</li>
+        <li>Simple improvement steps you can action</li>
       </ul>
     </div>
 
-    <div class="report-block">
-      <h3>🔹 Complete Digital Footprint & Safety Report — $59</h3>
-      <p><strong>What to expect</strong></p>
-      <ul>
-        <li>Public digital footprint mapping across key platforms</li>
-        <li>Privacy and exposure assessment (what a stranger can see)</li>
-        <li>Identity consistency & impersonation risk check</li>
-        <li>Basic account hygiene guidance (at a non-technical level)</li>
-      </ul>
-      <p><strong>Methodology</strong></p>
-      <ul>
-        <li>Open-source visibility review (publicly available only)</li>
-        <li>Cyber hygiene & threat-modelling principles</li>
-        <li>Privacy-by-design mindset (minimise exposure)</li>
-      </ul>
-      <p><strong>Outcome</strong></p>
-      <ul>
-        <li>Personalised safety report (PDF)</li>
-        <li>Top 10 immediate protection actions</li>
-        <li>Risk priority notes so you know what to do first</li>
-      </ul>
-    </div>
-
-    <div class="report-block">
-      <h3>🔹 Monthly Digital Presence & Safety Support — from $99 / month</h3>
-      <p><strong>What to expect</strong></p>
-      <ul>
-        <li>Monthly 30-minute strategy call (UX + safety)</li>
-        <li>Light ongoing check-ins on changes you make</li>
-        <li>Priority guidance when something feels “off” or overwhelming</li>
-      </ul>
-      <p><strong>Methodology</strong></p>
-      <ul>
-        <li>Continuous digital risk & UX monitoring at a human scale</li>
-        <li>Iterative improvement — small changes over time</li>
-        <li>Habits over hacks: sustainable digital hygiene framework</li>
-      </ul>
-      <p><strong>Outcome</strong></p>
-      <ul>
-        <li>Calmer, more intentional digital presence</li>
-        <li>Reduced anxiety around “what’s out there”</li>
-        <li>Stronger long-term digital identity posture</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- WHO IT'S FOR -->
-  <section id="fit" class="card two-column">
     <div>
-      <h2>Who This Is For</h2>
+      <h3>Digital Footprint & Safety Review — $59</h3>
+      <p>Understand what the internet knows about you.</p>
       <ul>
-        <li>You feel unsure or exposed about your online presence</li>
-        <li>You run a small business, consultancy or practice</li>
-        <li>You’re a student or parent wanting safer digital habits</li>
-        <li>You prefer calm, honest explanations over jargon</li>
+        <li>Public visibility check (what strangers can see)</li>
+        <li>Privacy & identity exposure review</li>
+        <li>Top 10 safety actions in plain language</li>
       </ul>
     </div>
+
     <div>
-      <h2>Who This Is Not For</h2>
+      <h3>Monthly Digital Support — from $99/month</h3>
+      <p>Ongoing calm support for your digital life.</p>
       <ul>
-        <li>You only want “growth hacks” and quick tricks</li>
-        <li>You’re after heavy SEO, ads or performance marketing</li>
-        <li>You’re not willing to change any digital habits</li>
+        <li>Monthly 30-min check-in</li>
+        <li>UX + safety guidance as things change</li>
+        <li>Priority advice when something feels “off”</li>
       </ul>
     </div>
-  </section>
 
-  <!-- WHY CHOOSE US -->
-  <section id="why" class="card">
-    <h2>Why Choose This Lab</h2>
-    <ul>
-      <li><strong>PhD-level research foundation</strong> — work grounded in digital identity, AI and blockchain research.</li>
-      <li><strong>Real-world teaching experience</strong> — cyber security & UX lecturer working with students and professionals.</li>
-      <li><strong>Human-first, not tool-first</strong> — tools support the conversation; they don’t replace it.</li>
-      <li><strong>Privacy, ethics & consent at the core</strong> — only public data is used in assessments.</li>
-      <li><strong>Small, focused practice</strong> — this is not a mass, automated audit factory.</li>
-    </ul>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section id="faq" class="card">
-    <h2>Frequently Asked Questions</h2>
-    <ul>
-      <li>
-        <strong>Is this automated?</strong><br/>
-        Free tools are structured and semi-automated. Premium reports are fully human-reviewed.
-      </li>
-      <li>
-        <strong>Do you access my private accounts?</strong><br/>
-        No. Only publicly visible information and what you choose to share is used.
-      </li>
-      <li>
-        <strong>Is this legal and ethical?</strong><br/>
-        Yes. The approach is OSINT-style and aligns with ethical use of open information.
-      </li>
-      <li>
-        <strong>Does this change my search ranking?</strong><br/>
-        These reports focus on clarity, trust and safety — not SEO or ads.
-      </li>
-      <li>
-        <strong>What if I’m not sure which report I need?</strong><br/>
-        Choose “Not sure – please advise me” in the enquiry form and I’ll recommend a fit.
-      </li>
-    </ul>
-  </section>
+<!-- COACHING PRODUCTS -->
+<section id="coaching" class="card">
+  <h2>Cyber Literacy Coaching (1-on-1)</h2>
+  <p>Personal coaching for students, parents, professionals & small business owners.</p>
 
-  <!-- EXAMPLE OUTCOME -->
-  <section class="card">
-    <h2>Example Outcome (Anonymised)</h2>
-    <p>
-      A small solo consultant unintentionally exposed multiple personal identifiers across public PDFs
-      and had weak trust signals on their website. After a combined UX & safety review:
-    </p>
-    <ul>
-      <li>Outdated sensitive documents were removed from public search.</li>
-      <li>Homepage message was rewritten for clarity and trust.</li>
-      <li>Simple safety and password habits were upgraded.</li>
-    </ul>
-    <p>
-      The result: fewer “strange” cold contacts, more of the right enquiries, and a lot less digital anxiety.
-    </p>
-  </section>
+  <div class="grid">
 
-  <!-- TESTIMONIALS (SIMPLE, LIGHT) -->
-  <section id="dashboard" class="card">
-    <h2>Client Dashboard (Concept)</h2>
-    <p>
-      As this lab grows, clients will have access to a simple, private dashboard (concept stage) where they can:
-    </p>
-    <div class="grid">
-      <div class="dash-card">
-        <h3>Report Library</h3>
-        <p>Download past UX & safety reports in one place.</p>
-      </div>
-      <div class="dash-card">
-        <h3>Action Tracker</h3>
-        <p>Tick off recommended changes and see progress over time.</p>
-      </div>
-      <div class="dash-card">
-        <h3>Next Call & Notes</h3>
-        <p>See upcoming session dates, focus topics and key decisions.</p>
-      </div>
+    <div>
+      <h3>30 min Session — $30</h3>
+      <ul>
+        <li>Cyber basics in simple language</li>
+        <li>Scam and phishing awareness</li>
+        <li>Password & basic account safety</li>
+      </ul>
     </div>
-    <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
-      For now, all of this is handled via email and simple shared documents — the dashboard will grow with real client needs.
-    </p>
-  </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="card">
-    <h2>What People Say (Early Feedback)</h2>
-    <div class="grid">
-      <div class="testimonial">
-        <p>“For the first time, I understood my digital footprint without feeling scared or judged.”</p>
-        <small>— Solo professional (anonymised)</small>
-      </div>
-      <div class="testimonial">
-        <p>“The UX report gave me three simple changes that made my website feel more ‘me’ and less messy.”</p>
-        <small>— Small business owner (anonymised)</small>
-      </div>
-      <div class="testimonial">
-        <p>“As a parent, the safety tips were practical and realistic. Nothing felt extreme or impossible.”</p>
-        <small>— Parent of a teen (anonymised)</small>
-      </div>
+    <div>
+      <h3>45 min Session — $45</h3>
+      <ul>
+        <li>Digital identity & online reputation</li>
+        <li>Social media privacy walk-through</li>
+        <li>Safer everyday online behaviour</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- ENQUIRY (email autoresponder hook) -->
-  <section id="enquiry" class="card">
-    <h2>Request a Premium Report</h2>
-    <p>
-      I’ll review your context first and reply by email with next steps.
-      If it’s a good fit, I’ll send a payment link and a clear timeline.
-    </p>
+    <div>
+      <h3>60 min Session — $60</h3>
+      <ul>
+        <li>Full cyber hygiene setup plan</li>
+        <li>Device & account safety review</li>
+        <li>Personalised action plan you can follow</li>
+      </ul>
+    </div>
 
-    <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
-      <!-- These hidden fields help you route and auto-respond in Formspree/Gmail -->
-      <input type="hidden" name="lead_type" value="Premium Report Enquiry">
-      <input type="hidden" name="_subject" value="New Premium Report Enquiry from Website">
+  </div>
+</section>
 
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="_replyto" placeholder="Your email" required>
+<!-- MINI CYBER QUIZ -->
+<section id="quiz" class="card">
+  <h2>Free Mini Cyber Quiz</h2>
+  <p>
+    A quick, gentle check-in on your digital habits.
+    No scoring shame — this is just awareness.
+  </p>
 
-      <select name="report_type" required>
-        <option value="">Select report type</option>
-        <option>Basic UX & Clarity Report</option>
-        <option>Complete Digital Footprint & Safety Report</option>
-        <option>Monthly Digital Presence Support</option>
-        <option>Not sure – please advise me</option>
-      </select>
+  <div id="quiz-form">
+    <div class="quiz-question">
+      <p><strong>1. Passwords:</strong> Which option sounds most like you?</p>
+      <label><input type="radio" name="q1" value="0"> I reuse the same or similar password everywhere</label><br/>
+      <label><input type="radio" name="q1" value="1"> I reuse some, but I’ve started changing them slowly</label><br/>
+      <label><input type="radio" name="q1" value="2"> I use unique passwords and/or a password manager</label>
+    </div>
 
-      <select name="who">
-        <option>For myself</option>
-        <option>For my business</option>
-        <option>For a student</option>
-        <option>For my child/family</option>
-      </select>
+    <div class="quiz-question">
+      <p><strong>2. Two-Factor Authentication (2FA):</strong></p>
+      <label><input type="radio" name="q2" value="0"> I don’t use it anywhere</label><br/>
+      <label><input type="radio" name="q2" value="1"> I use it on some important accounts</label><br/>
+      <label><input type="radio" name="q2" value="2"> I turn it on wherever possible</label>
+    </div>
 
-      <input type="text" name="website" placeholder="Website or main profile (optional)">
-      <textarea name="message" placeholder="Briefly describe what you’d like help with" required></textarea>
+    <div class="quiz-question">
+      <p><strong>3. Links & Emails:</strong> When you get a strange link…</p>
+      <label><input type="radio" name="q3" value="0"> I usually click if it looks urgent or interesting</label><br/>
+      <label><input type="radio" name="q3" value="1"> I sometimes check, sometimes click</label><br/>
+      <label><input type="radio" name="q3" value="2"> I pause, check the sender, and avoid clicking directly</label>
+    </div>
 
-      <label style="font-size:.8rem;display:flex;align-items:center;gap:6px;margin-bottom:10px;">
-        <input type="checkbox" name="send_free_guide" value="Yes" style="width:auto;height:auto;">
-        Please send me the free “Digital Hygiene Mistakes” checklist as well.
-      </label>
+    <div class="quiz-question">
+      <p><strong>4. Social Media Privacy:</strong></p>
+      <label><input type="radio" name="q4" value="0"> I’ve never checked my privacy settings</label><br/>
+      <label><input type="radio" name="q4" value="1"> I’ve checked at least once</label><br/>
+      <label><input type="radio" name="q4" value="2"> I review privacy settings every now and then</label>
+    </div>
 
-      <small>
-        You’ll receive an email response from me with suggested next steps.
-        If it’s a match, that email will also include your payment link and, if requested, the free guide.
-      </small><br/>
+    <div class="quiz-question">
+      <p><strong>5. Backups:</strong></p>
+      <label><input type="radio" name="q5" value="0"> If I lost my phone, I’d lose almost everything</label><br/>
+      <label><input type="radio" name="q5" value="1"> I think some things are backed up, but I’m not sure</label><br/>
+      <label><input type="radio" name="q5" value="2"> I know where my important stuff is backed up</label>
+    </div>
 
-      <button class="btn" type="submit">Request Review & Approval</button>
-    </form>
-  </section>
+    <button class="btn" type="button" onclick="scoreQuiz()">See My Results</button>
+    <div id="quiz-result" class="quiz-result"></div>
+  </div>
+</section>
 
-  <footer>
-    © <span id="year"></span> Aman P Kaur · Digital Presence & Safety Lab
-  </footer>
+<!-- CHECKLIST DOWNLOAD -->
+<section id="checklist" class="card">
+  <h2>Free Digital Hygiene Checklist</h2>
+  <p>
+    A simple one-page checklist you can print or keep on your phone to slowly
+    improve your digital safety — one small step at a time.
+  </p>
+  <p style="font-size:.85rem;color:#9ca3af;">
+    (You can replace the file link below with your own PDF later, e.g. <em>digital-hygiene-checklist.pdf</em>.)
+  </p>
+
+  <a class="btn" href="digital-hygiene-checklist.pdf" download>
+    Download Checklist
+  </a>
+</section>
+
+<!-- SUBSCRIBE -->
+<section id="subscribe" class="card">
+  <h2>Get Monthly Digital Health Tips</h2>
+  <p>
+    Once a month, I share calm, practical tips on privacy, cyber safety, identity,
+    digital habits and what’s new. No spam. No selling. Just useful guidance.
+  </p>
+
+  <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+    <input type="hidden" name="type" value="Newsletter">
+    <input type="email" name="_replyto" placeholder="Your email address" required>
+    <button class="btn" type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- ENQUIRY -->
+<section id="enquiry" class="card">
+  <h2>Start With a Simple Enquiry</h2>
+  <p>
+    Tell me what you need support with. I’ll personally review and guide you.
+  </p>
+
+  <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+    <input type="hidden" name="_subject" value="New Enquiry">
+
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="_replyto" placeholder="Your email" required>
+
+    <select name="service">
+      <option>UX Review</option>
+      <option>Digital Safety Review</option>
+      <option>Cyber Coaching</option>
+      <option>Monthly Support</option>
+      <option>Not Sure Yet</option>
+    </select>
+
+    <textarea name="message" placeholder="Tell me a little about your situation" required></textarea>
+
+    <button class="btn" type="submit">Send Enquiry</button>
+  </form>
+</section>
+
+<footer>
+  © <span id="year"></span> Aman P Kaur • Digital Safety & Cyber Literacy
+</footer>
 
 </div>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Show lead magnet popup once per visit (simple, non-tracking)
-  setTimeout(function(){
-    if (!sessionStorage.getItem('leadPopupShown')) {
-      document.getElementById("leadPopup").style.display = "flex";
-      sessionStorage.setItem('leadPopupShown','yes');
+function scoreQuiz(){
+  let total = 0;
+  let answered = 0;
+  for(let i=1;i<=5;i++){
+    const selected = document.querySelector('input[name="q'+i+'"]:checked');
+    if(selected){
+      total += parseInt(selected.value);
+      answered++;
     }
-  }, 5000);
-
-  function closePopup(){
-    document.getElementById("leadPopup").style.display = "none";
+  }
+  const resultDiv = document.getElementById('quiz-result');
+  if(answered < 5){
+    resultDiv.innerHTML = "Please answer all questions to see your result.";
+    return;
   }
 
-  function closePopupAndScroll(){
-    closePopup();
-    document.getElementById("enquiry").scrollIntoView({behavior:'smooth'});
+  let message = "";
+  if(total <= 3){
+    message = "You’re at the very beginning of your digital safety journey. That’s completely okay. Even one change, like updating a few passwords, is a powerful start.";
+  } else if(total <= 7){
+    message = "You’re doing some things well, and there’s room to gently improve. You’re not starting from zero — a few focused tweaks will make a big difference.";
+  } else {
+    message = "You already have some strong digital habits. The next step is tightening a few gaps and keeping your knowledge current.";
   }
+
+  resultDiv.innerHTML = "<strong>Your score: " + total + " / 10</strong><br/>" + message;
+}
 </script>
 
 </body>
