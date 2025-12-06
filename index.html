@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-
-  <!-- SEO -->
-  <title>Amanpreet Kaur • Digital Presence, UX & Online Safety Lab</title>
-  <meta name="description" content="Free digital footprint checker, website UX audits, cyber hygiene tools & personalised digital presence services by Amanpreet Kaur, PhD researcher & cybersecurity lecturer."/>
+  <title>Aman P Kaur • Digital Presence, UX & Online Safety Lab</title>
+  <meta name="description" content="Free digital footprint checker, website UX audits, cyber hygiene tools & personalised digital presence services by Aman P Kaur, PhD researcher & cybersecurity lecturer."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <style>
@@ -14,7 +12,6 @@
       --card:#0b1220;
       --accent:#22c55e;
       --blue:#38bdf8;
-      --orange:#f97316;
       --text:#e5e7eb;
       --soft:#9ca3af;
       --border:#1f2937;
@@ -67,8 +64,9 @@
     }
 
     h1{font-size:2rem;margin:0 0 10px}
-    h2{font-size:1.3rem;margin:0 0 10px}
-    p{font-size:.9rem;color:var(--soft);line-height:1.6}
+    h2{font-size:1.35rem;margin:0 0 10px}
+    h3{font-size:1.05rem;margin:0 0 8px}
+    p, li{font-size:.9rem;color:var(--soft);line-height:1.6}
 
     .hero{display:grid;grid-template-columns:1.7fr 1.3fr;gap:24px}
     @media(max-width:800px){.hero{grid-template-columns:1fr}}
@@ -94,14 +92,14 @@
     @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
     @media(max-width:600px){.grid{grid-template-columns:1fr}}
 
-    .tool{
+    .tool,
+    .report-block,
+    .testimonial,
+    .dash-card{
       background:#020617;
       border:1px solid var(--border);
       border-radius:16px;
       padding:16px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
     }
 
     .pill{
@@ -114,65 +112,101 @@
       margin-bottom:6px;
     }
 
-    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media(max-width:900px){.price-grid{grid-template-columns:1fr}}
-    .price{
-      background:#020617;
-      border:2px solid var(--border);
-      border-radius:18px;
-      padding:18px;
-    }
-    .price strong{font-size:1.4rem;color:var(--accent)}
-
-    .price-note{font-size:.8rem;color:var(--soft);margin-top:6px;}
-
-    .form input,.form textarea,.form select{
+    .form input,
+    .form textarea,
+    .form select{
       width:100%;
       padding:9px;
       border-radius:10px;
       border:1px solid var(--border);
       background:#020617;
-      color:var(--text);
+      color:#text;
       margin-bottom:10px;
       font-size:.85rem;
+      color:var(--text);
     }
+
     .form textarea{min-height:110px;resize:vertical;}
 
-    .form small{font-size:.78rem;color:#9ca3af;display:block;margin-top:-4px;margin-bottom:8px;}
+    small{color:#9ca3af;font-size:.8rem}
 
     footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:30px}
+
+    /* Lead magnet popup */
+    #leadPopup{
+      position:fixed;
+      inset:0;
+      background:#000000bb;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+    #leadPopup .box{
+      background:#0b1220;
+      padding:22px;
+      border-radius:18px;
+      max-width:360px;
+      width:90%;
+      border:1px solid var(--border);
+      text-align:center;
+    }
+
+    .two-column{
+      display:grid;
+      grid-template-columns:1.4fr 1.4fr;
+      gap:18px;
+    }
+    @media(max-width:800px){.two-column{grid-template-columns:1fr}}
   </style>
 </head>
 
 <body>
+
+<!-- Lead Magnet Popup -->
+<div id="leadPopup">
+  <div class="box">
+    <h3>Free Guide: Digital Hygiene</h3>
+    <p style="font-size:.9rem;">
+      Get a simple checklist: <strong>“10 Digital Hygiene Mistakes Almost Everyone Makes”</strong>  
+      Tick the box in the enquiry form and I’ll send it with your reply.
+    </p>
+    <button class="btn" onclick="closePopupAndScroll()">Get It via Enquiry</button>
+    <p style="margin-top:10px; font-size:.7rem; color:#aaa; cursor:pointer" onclick="closePopup()">No thanks</p>
+  </div>
+</div>
+
 <div class="wrap">
 
   <header>
     <div class="brand">
       <div class="logo">AK</div>
       <div>
-        <strong>Amanpreet Kaur</strong><br/>
+        <strong>Aman P Kaur</strong><br/>
         <span style="font-size:.75rem;color:var(--soft)">Digital Presence • Safety • UX</span>
       </div>
     </div>
 
     <nav>
       <a href="#home">Home</a>
-      <a href="#about">About</a>
       <a href="#tools">Tools</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#premium">Premium</a>
+      <a href="#fit">Fit</a>
+      <a href="#why">Why Us</a>
+      <a href="#faq">FAQ</a>
+      <a href="#dashboard">Client Dashboard</a>
       <a href="#enquiry">Enquiry</a>
     </nav>
   </header>
 
-  <!-- HOME -->
+  <!-- HERO -->
   <section id="home" class="card hero">
     <div>
       <h1>Helping people feel <span style="color:var(--accent)">safe, clear & confident</span> online</h1>
       <p>
-        I’m Aman — PhD researcher & Cyber Security + UX lecturer.
-        This lab turns deep research into practical tools and calm, personalised audits
-        for students, families and small businesses.
+        I’m <strong>Aman P Kaur</strong> — PhD researcher & Cyber Security + UX lecturer.
+        This lab translates complex digital risk into calm, practical clarity for individuals,
+        families, students and small businesses.
       </p>
       <a class="btn" href="#tools">Try Free Tools</a>
       <a class="btn alt" href="#enquiry">Request Premium Report</a>
@@ -182,120 +216,259 @@
         🔹 Digital identity & footprint<br/>
         🔹 Cyber hygiene for real life<br/>
         🔹 Human-first UX & clarity<br/>
-        🔹 Built for students & SMEs
+        🔹 Research-backed, not hype-driven
       </p>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="card">
-    <h2>About Me</h2>
-    <p>
-      I work at the intersection of <strong>security, identity, UX and education</strong>.
-      My PhD explores <strong>AI-driven blockchain identity management in supply chains</strong>,
-      and I teach Cyber Security & UX Design in higher education.
-    </p>
-    <p>
-      This space is where I quietly turn research and teaching into
-      <strong>tiny, practical tools and audits</strong> that real humans can use
-      without needing a technical background.
-    </p>
-  </section>
-
-  <!-- TOOLS -->
+  <!-- FREE TOOLS -->
   <section id="tools" class="card">
     <h2>Free Digital Tools</h2>
-    <p>Start with any of these small tools to get awareness and first steps.</p>
+    <p>Start with a light, low-pressure self-check.</p>
 
     <div class="grid">
       <div class="tool">
-        <div>
-          <div class="pill">Identity & Safety</div>
-          <strong>Digital Footprint Checker</strong>
-          <p>Check how exposed, consistent & safe your online presence feels.</p>
-        </div>
+        <div class="pill">Identity</div>
+        <strong>Digital Footprint Checker</strong>
+        <p>Understand how visible and exposed your identity is online.</p>
         <a class="btn" href="digital-footprint.html">Open Tool</a>
       </div>
 
       <div class="tool">
-        <div>
-          <div class="pill">UX & Clarity</div>
-          <strong>Website UX & Conversion Checker</strong>
-          <p>See whether your website is clear, trustworthy and human-friendly.</p>
-        </div>
+        <div class="pill">UX</div>
+        <strong>Website UX & Conversion Checker</strong>
+        <p>Assess clarity, trust and usability in a few minutes.</p>
         <a class="btn" href="ux-checker.html">Run Check</a>
       </div>
 
       <div class="tool">
-        <div>
-          <div class="pill">Smart UX</div>
-          <strong>Smart UX Auto Checker</strong>
-          <p>Paste your website link + answer 5 questions for a smart UX score.</p>
-        </div>
+        <div class="pill">Smart UX</div>
+        <strong>Smart UX Auto Checker</strong>
+        <p>Use structured questions to evaluate your experience.</p>
         <a class="btn" href="smart-ux-checker.html">Smart Check</a>
       </div>
     </div>
   </section>
 
-  <!-- PRICING (INFO ONLY, NO DIRECT PAYMENT) -->
-  <section id="pricing" class="card">
-    <h2>Premium Report Options</h2>
+  <!-- PREMIUM REPORTS -->
+  <section id="premium" class="card">
+    <h2>Premium Personalised Reports</h2>
     <p>
-      These prices are a guide. You can request a report through the enquiry form,
-      and I’ll confirm fit, timing and next steps before sending any payment link.
+      These are manually reviewed using UX heuristics, cyber security frameworks and digital identity risk analysis.
+      No automation-only outputs — every report is read and written by a human.
     </p>
 
-    <div class="price-grid">
-      <div class="price">
-        <h3>Basic UX & Clarity Report</h3>
-        <strong>$49</strong>
-        <p>
-          Homepage or landing page review: clarity, trust, navigation, and simple conversion fixes.
-          Delivered as a 1–2 page PDF in plain language.
-        </p>
-        <div class="price-note">Request this via the enquiry form below.</div>
-      </div>
+    <div class="report-block">
+      <h3>🔹 Basic UX & Clarity Report — $49</h3>
+      <p><strong>What to expect</strong></p>
+      <ul>
+        <li>Homepage or key landing page review</li>
+        <li>Message clarity & value proposition check</li>
+        <li>Trust & credibility signals (social proof, framing, tone)</li>
+        <li>Navigation & mobile usability review</li>
+      </ul>
+      <p><strong>Methodology</strong></p>
+      <ul>
+        <li>UX heuristic evaluation (clarity, feedback, friction)</li>
+        <li>Attention & scroll-flow analysis (what people see first)</li>
+        <li>Human-centred design and accessibility lenses</li>
+      </ul>
+      <p><strong>Outcome</strong></p>
+      <ul>
+        <li>1–2 page personalised PDF report</li>
+        <li>Plain-language summary of what’s working & what’s confusing</li>
+        <li>Prioritised action list for “fix first” items</li>
+      </ul>
+    </div>
 
-      <div class="price">
-        <h3>Complete Footprint & Safety Report</h3>
-        <strong>$59</strong>
-        <p>
-          Personalised review of your public digital footprint, privacy exposure and hygiene.
-          Includes a clear list of actions to feel safer online.
-        </p>
-        <div class="price-note">Request this via the enquiry form below.</div>
-      </div>
+    <div class="report-block">
+      <h3>🔹 Complete Digital Footprint & Safety Report — $59</h3>
+      <p><strong>What to expect</strong></p>
+      <ul>
+        <li>Public digital footprint mapping across key platforms</li>
+        <li>Privacy and exposure assessment (what a stranger can see)</li>
+        <li>Identity consistency & impersonation risk check</li>
+        <li>Basic account hygiene guidance (at a non-technical level)</li>
+      </ul>
+      <p><strong>Methodology</strong></p>
+      <ul>
+        <li>Open-source visibility review (publicly available only)</li>
+        <li>Cyber hygiene & threat-modelling principles</li>
+        <li>Privacy-by-design mindset (minimise exposure)</li>
+      </ul>
+      <p><strong>Outcome</strong></p>
+      <ul>
+        <li>Personalised safety report (PDF)</li>
+        <li>Top 10 immediate protection actions</li>
+        <li>Risk priority notes so you know what to do first</li>
+      </ul>
+    </div>
 
-      <div class="price">
-        <h3>Monthly Digital Presence Support</h3>
-        <strong>From $99 / month</strong>
-        <p>
-          Ongoing light support for UX, clarity and cyber hygiene.
-          One monthly call + priority guidance as your digital presence evolves.
-        </p>
-        <div class="price-note">Start with an enquiry to see if this is a fit.</div>
+    <div class="report-block">
+      <h3>🔹 Monthly Digital Presence & Safety Support — from $99 / month</h3>
+      <p><strong>What to expect</strong></p>
+      <ul>
+        <li>Monthly 30-minute strategy call (UX + safety)</li>
+        <li>Light ongoing check-ins on changes you make</li>
+        <li>Priority guidance when something feels “off” or overwhelming</li>
+      </ul>
+      <p><strong>Methodology</strong></p>
+      <ul>
+        <li>Continuous digital risk & UX monitoring at a human scale</li>
+        <li>Iterative improvement — small changes over time</li>
+        <li>Habits over hacks: sustainable digital hygiene framework</li>
+      </ul>
+      <p><strong>Outcome</strong></p>
+      <ul>
+        <li>Calmer, more intentional digital presence</li>
+        <li>Reduced anxiety around “what’s out there”</li>
+        <li>Stronger long-term digital identity posture</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section id="fit" class="card two-column">
+    <div>
+      <h2>Who This Is For</h2>
+      <ul>
+        <li>You feel unsure or exposed about your online presence</li>
+        <li>You run a small business, consultancy or practice</li>
+        <li>You’re a student or parent wanting safer digital habits</li>
+        <li>You prefer calm, honest explanations over jargon</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Who This Is Not For</h2>
+      <ul>
+        <li>You only want “growth hacks” and quick tricks</li>
+        <li>You’re after heavy SEO, ads or performance marketing</li>
+        <li>You’re not willing to change any digital habits</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why" class="card">
+    <h2>Why Choose This Lab</h2>
+    <ul>
+      <li><strong>PhD-level research foundation</strong> — work grounded in digital identity, AI and blockchain research.</li>
+      <li><strong>Real-world teaching experience</strong> — cyber security & UX lecturer working with students and professionals.</li>
+      <li><strong>Human-first, not tool-first</strong> — tools support the conversation; they don’t replace it.</li>
+      <li><strong>Privacy, ethics & consent at the core</strong> — only public data is used in assessments.</li>
+      <li><strong>Small, focused practice</strong> — this is not a mass, automated audit factory.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="card">
+    <h2>Frequently Asked Questions</h2>
+    <ul>
+      <li>
+        <strong>Is this automated?</strong><br/>
+        Free tools are structured and semi-automated. Premium reports are fully human-reviewed.
+      </li>
+      <li>
+        <strong>Do you access my private accounts?</strong><br/>
+        No. Only publicly visible information and what you choose to share is used.
+      </li>
+      <li>
+        <strong>Is this legal and ethical?</strong><br/>
+        Yes. The approach is OSINT-style and aligns with ethical use of open information.
+      </li>
+      <li>
+        <strong>Does this change my search ranking?</strong><br/>
+        These reports focus on clarity, trust and safety — not SEO or ads.
+      </li>
+      <li>
+        <strong>What if I’m not sure which report I need?</strong><br/>
+        Choose “Not sure – please advise me” in the enquiry form and I’ll recommend a fit.
+      </li>
+    </ul>
+  </section>
+
+  <!-- EXAMPLE OUTCOME -->
+  <section class="card">
+    <h2>Example Outcome (Anonymised)</h2>
+    <p>
+      A small solo consultant unintentionally exposed multiple personal identifiers across public PDFs
+      and had weak trust signals on their website. After a combined UX & safety review:
+    </p>
+    <ul>
+      <li>Outdated sensitive documents were removed from public search.</li>
+      <li>Homepage message was rewritten for clarity and trust.</li>
+      <li>Simple safety and password habits were upgraded.</li>
+    </ul>
+    <p>
+      The result: fewer “strange” cold contacts, more of the right enquiries, and a lot less digital anxiety.
+    </p>
+  </section>
+
+  <!-- TESTIMONIALS (SIMPLE, LIGHT) -->
+  <section id="dashboard" class="card">
+    <h2>Client Dashboard (Concept)</h2>
+    <p>
+      As this lab grows, clients will have access to a simple, private dashboard (concept stage) where they can:
+    </p>
+    <div class="grid">
+      <div class="dash-card">
+        <h3>Report Library</h3>
+        <p>Download past UX & safety reports in one place.</p>
+      </div>
+      <div class="dash-card">
+        <h3>Action Tracker</h3>
+        <p>Tick off recommended changes and see progress over time.</p>
+      </div>
+      <div class="dash-card">
+        <h3>Next Call & Notes</h3>
+        <p>See upcoming session dates, focus topics and key decisions.</p>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
+      For now, all of this is handled via email and simple shared documents — the dashboard will grow with real client needs.
+    </p>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="card">
+    <h2>What People Say (Early Feedback)</h2>
+    <div class="grid">
+      <div class="testimonial">
+        <p>“For the first time, I understood my digital footprint without feeling scared or judged.”</p>
+        <small>— Solo professional (anonymised)</small>
+      </div>
+      <div class="testimonial">
+        <p>“The UX report gave me three simple changes that made my website feel more ‘me’ and less messy.”</p>
+        <small>— Small business owner (anonymised)</small>
+      </div>
+      <div class="testimonial">
+        <p>“As a parent, the safety tips were practical and realistic. Nothing felt extreme or impossible.”</p>
+        <small>— Parent of a teen (anonymised)</small>
       </div>
     </div>
   </section>
 
-  <!-- ENQUIRY (APPROVAL FIRST, THEN YOU SEND PAYMENT LINK) -->
+  <!-- ENQUIRY (email autoresponder hook) -->
   <section id="enquiry" class="card">
     <h2>Request a Premium Report</h2>
     <p>
-      Share a little about your context and the type of support you’re interested in.
-      I’ll review your request first and then send you a payment link if it’s a good fit.
+      I’ll review your context first and reply by email with next steps.
+      If it’s a good fit, I’ll send a payment link and a clear timeline.
     </p>
 
     <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
-      <input type="text" name="name" placeholder="Your name" required>
+      <!-- These hidden fields help you route and auto-respond in Formspree/Gmail -->
+      <input type="hidden" name="lead_type" value="Premium Report Enquiry">
+      <input type="hidden" name="_subject" value="New Premium Report Enquiry from Website">
 
+      <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="_replyto" placeholder="Your email" required>
 
       <select name="report_type" required>
         <option value="">Select report type</option>
-        <option>Basic UX & Clarity Report ($49)</option>
-        <option>Complete Footprint & Safety Report ($59)</option>
-        <option>Monthly Digital Presence Support (from $99/month)</option>
+        <option>Basic UX & Clarity Report</option>
+        <option>Complete Digital Footprint & Safety Report</option>
+        <option>Monthly Digital Presence Support</option>
         <option>Not sure – please advise me</option>
       </select>
 
@@ -307,26 +480,47 @@
       </select>
 
       <input type="text" name="website" placeholder="Website or main profile (optional)">
-
       <textarea name="message" placeholder="Briefly describe what you’d like help with" required></textarea>
 
+      <label style="font-size:.8rem;display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+        <input type="checkbox" name="send_free_guide" value="Yes" style="width:auto;height:auto;">
+        Please send me the free “Digital Hygiene Mistakes” checklist as well.
+      </label>
+
       <small>
-        After you submit this form, I’ll review your request and reply by email.
-        If it’s a good fit, I’ll send you a secure payment link and a clear timeline.
-      </small>
+        You’ll receive an email response from me with suggested next steps.
+        If it’s a match, that email will also include your payment link and, if requested, the free guide.
+      </small><br/>
 
       <button class="btn" type="submit">Request Review & Approval</button>
     </form>
   </section>
 
   <footer>
-    © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
+    © <span id="year"></span> Aman P Kaur · Digital Presence & Safety Lab
   </footer>
 
 </div>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Show lead magnet popup once per visit (simple, non-tracking)
+  setTimeout(function(){
+    if (!sessionStorage.getItem('leadPopupShown')) {
+      document.getElementById("leadPopup").style.display = "flex";
+      sessionStorage.setItem('leadPopupShown','yes');
+    }
+  }, 5000);
+
+  function closePopup(){
+    document.getElementById("leadPopup").style.display = "none";
+  }
+
+  function closePopupAndScroll(){
+    closePopup();
+    document.getElementById("enquiry").scrollIntoView({behavior:'smooth'});
+  }
 </script>
 
 </body>
