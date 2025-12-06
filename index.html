@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
 
-  <!-- ✅ SEO -->
+  <!-- SEO -->
   <title>Amanpreet Kaur • Digital Presence, UX & Online Safety Lab</title>
   <meta name="description" content="Free digital footprint checker, website UX audits, cyber hygiene tools & personalised digital presence services by Amanpreet Kaur, PhD researcher & cybersecurity lecturer."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -82,6 +82,8 @@
       font-weight:600;
       font-size:.85rem;
       margin-top:10px;
+      border:none;
+      cursor:pointer;
     }
 
     .btn.alt{
@@ -122,6 +124,8 @@
     }
     .price strong{font-size:1.4rem;color:var(--accent)}
 
+    .price-note{font-size:.8rem;color:var(--soft);margin-top:6px;}
+
     .form input,.form textarea,.form select{
       width:100%;
       padding:9px;
@@ -132,6 +136,9 @@
       margin-bottom:10px;
       font-size:.85rem;
     }
+    .form textarea{min-height:110px;resize:vertical;}
+
+    .form small{font-size:.78rem;color:#9ca3af;display:block;margin-top:-4px;margin-bottom:8px;}
 
     footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:30px}
   </style>
@@ -168,7 +175,7 @@
         for students, families and small businesses.
       </p>
       <a class="btn" href="#tools">Try Free Tools</a>
-      <a class="btn alt" href="#pricing">See Pricing</a>
+      <a class="btn alt" href="#enquiry">Request Premium Report</a>
     </div>
     <div>
       <p>
@@ -230,52 +237,67 @@
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- PRICING (INFO ONLY, NO DIRECT PAYMENT) -->
   <section id="pricing" class="card">
-    <h2>Simple Pricing</h2>
-    <p>Light, focused offers you can grow into over time.</p>
+    <h2>Premium Report Options</h2>
+    <p>
+      These prices are a guide. You can request a report through the enquiry form,
+      and I’ll confirm fit, timing and next steps before sending any payment link.
+    </p>
 
     <div class="price-grid">
       <div class="price">
-        <h3>Website UX & Clarity Audit</h3>
+        <h3>Basic UX & Clarity Report</h3>
         <strong>$49</strong>
         <p>
           Homepage or landing page review: clarity, trust, navigation, and simple conversion fixes.
           Delivered as a 1–2 page PDF in plain language.
         </p>
-        <a class="btn" href="https://peacefulaman1.gumroad.com/l/ngctz" target="_blank">Pay & Start</a>
+        <div class="price-note">Request this via the enquiry form below.</div>
       </div>
 
       <div class="price">
-        <h3>Digital Footprint & Safety Check</h3>
+        <h3>Complete Footprint & Safety Report</h3>
         <strong>$59</strong>
         <p>
           Personalised review of your public digital footprint, privacy exposure and hygiene.
-          Includes top 10 actions to feel safer online.
+          Includes a clear list of actions to feel safer online.
         </p>
-        <a class="btn" href="https://peacefulaman1.gumroad.com/l/tendde" target="_blank">Pay & Start</a>
+        <div class="price-note">Request this via the enquiry form below.</div>
       </div>
 
       <div class="price">
         <h3>Monthly Digital Presence Support</h3>
-        <strong>$99 / month</strong>
+        <strong>From $99 / month</strong>
         <p>
           Ongoing light support for UX, clarity and cyber hygiene.
           One monthly call + priority guidance as your digital presence evolves.
         </p>
-        <a class="btn" href="https://peacefulaman1.gumroad.com/l/jtlsf" target="_blank">Subscribe</a>
+        <div class="price-note">Start with an enquiry to see if this is a fit.</div>
       </div>
     </div>
   </section>
 
-  <!-- ENQUIRY -->
+  <!-- ENQUIRY (APPROVAL FIRST, THEN YOU SEND PAYMENT LINK) -->
   <section id="enquiry" class="card">
-    <h2>Send an Enquiry</h2>
-    <p>If you’re unsure where to start, send a short message and I’ll suggest a next step.</p>
+    <h2>Request a Premium Report</h2>
+    <p>
+      Share a little about your context and the type of support you’re interested in.
+      I’ll review your request first and then send you a payment link if it’s a good fit.
+    </p>
 
     <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
+
       <input type="email" name="_replyto" placeholder="Your email" required>
+
+      <select name="report_type" required>
+        <option value="">Select report type</option>
+        <option>Basic UX & Clarity Report ($49)</option>
+        <option>Complete Footprint & Safety Report ($59)</option>
+        <option>Monthly Digital Presence Support (from $99/month)</option>
+        <option>Not sure – please advise me</option>
+      </select>
 
       <select name="who">
         <option>For myself</option>
@@ -284,10 +306,16 @@
         <option>For my child/family</option>
       </select>
 
-      <input type="text" name="website" placeholder="Website (optional)">
-      <textarea name="message" placeholder="What would you like help with?" required></textarea>
+      <input type="text" name="website" placeholder="Website or main profile (optional)">
 
-      <button class="btn" type="submit">Send Enquiry</button>
+      <textarea name="message" placeholder="Briefly describe what you’d like help with" required></textarea>
+
+      <small>
+        After you submit this form, I’ll review your request and reply by email.
+        If it’s a good fit, I’ll send you a secure payment link and a clear timeline.
+      </small>
+
+      <button class="btn" type="submit">Request Review & Approval</button>
     </form>
   </section>
 
