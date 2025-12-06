@@ -1,622 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
   <title>Amanpreet Kaur • Digital Presence & Safety Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <style>
-    :root {
-      --bg: #020617;
-      --bg-soft: #0b1220;
-      --card: #020617;
-      --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.08);
-      --accent-2: #38bdf8;
-      --text-main: #e5e7eb;
-      --text-soft: #9ca3af;
-      --border-subtle: #1f2937;
+    :root{
+      --bg:#020617;
+      --card:#0b1220;
+      --accent:#22c55e;
+      --blue:#38bdf8;
+      --orange:#f97316;
+      --text:#e5e7eb;
+      --soft:#9ca3af;
+      --border:#1f2937;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
       background:
-        radial-gradient(circle at top left, #0f172a, #020617),
-        radial-gradient(circle at bottom right, #022c22, #020617);
-      color: var(--text-main);
+        radial-gradient(circle at top left,#22c55e22,#020617),
+        radial-gradient(circle at bottom right,#38bdf822,#020617);
+      color:var(--text);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{color:inherit;text-decoration:none}
+
+    .wrap{
+      max-width:1100px;
+      margin:auto;
+      padding:18px;
     }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:22px;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 10px 4px 20px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .logo{
+      width:40px;height:40px;
+      background:linear-gradient(135deg,var(--accent),var(--blue));
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#022c22;
     }
 
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: radial-gradient(circle at top left, #22c55e, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
+    nav{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
     }
 
-    .brand-text-title {
-      font-weight: 600;
-      font-size: 0.95rem;
+    nav a{
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:.85rem;
+      color:var(--soft);
     }
 
-    .brand-text-sub {
-      font-size: 0.78rem;
-      color: var(--text-soft);
+    nav a:hover{background:#ffffff12;color:white}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:20px;
+      margin-bottom:24px;
+      box-shadow:0 24px 40px #020617aa;
     }
 
-    nav {
-      display: flex;
-      gap: 10px;
-      font-size: 0.85rem;
+    h1{font-size:2rem;margin:0 0 10px}
+    h2{font-size:1.3rem;margin:0 0 10px}
+    p{font-size:.9rem;color:var(--soft);line-height:1.6}
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.7fr 1.3fr;
+      gap:24px;
     }
 
-    nav a {
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: var(--text-soft);
+    @media(max-width:800px){
+      .hero{grid-template-columns:1fr}
     }
 
-    nav a:hover {
-      background: rgba(148, 163, 184, 0.16);
-      color: #e5e7eb;
+    .btn{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),#16a34a);
+      color:#022c22;
+      font-weight:600;
+      font-size:.85rem;
+      margin-top:10px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
-      gap: 26px;
-      align-items: center;
-      padding: 16px 4px 26px;
+    .btn.alt{
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+      margin-left:10px;
     }
 
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
     }
 
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 0.75rem;
-      color: var(--text-soft);
-      margin-bottom: 10px;
+    @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+    .tool{
+      background:#020617;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .hero-label span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
+    .pill{
+      display:inline-block;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#22c55e22;
+      color:#86efac;
+      margin-bottom:6px;
     }
 
-    .hero-title {
-      font-size: 1.9rem;
-      line-height: 1.2;
-      margin: 0 0 12px;
+    .form input,.form textarea,.form select{
+      width:100%;
+      padding:9px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#020617;
+      color:var(--text);
+      margin-bottom:10px;
+      font-size:.85rem;
     }
 
-    .hero-highlight {
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      max-width: 32rem;
-      margin-bottom: 18px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn-primary {
-      border: none;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #022c22;
-      padding: 9px 16px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
-    }
-
-    .btn-primary:hover {
-      background: #16a34a;
-    }
-
-    .btn-ghost {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 8px 14px;
-      font-size: 0.86rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      background: transparent;
-      color: var(--text-soft);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15, 23, 42, 0.7);
-      color: #e5e7eb;
-    }
-
-    .hero-side {
-      background: radial-gradient(circle at top, #22c55e22, #020617);
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 16px 16px 18px;
-      box-shadow:
-        0 20px 40px rgba(15, 23, 42, 0.8),
-        0 0 0 1px rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-side-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .hero-side-text {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-
-    .tag {
-      font-size: 0.75rem;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-soft);
-    }
-
-    .section {
-      margin-top: 30px;
-      padding: 18px 14px 8px;
-      border-radius: 16px;
-      background: radial-gradient(circle at top left, #020617, #020617);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .section-sub {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    @media (max-width: 950px) {
-      .tools-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .tools-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .tool-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 12px 12px 14px;
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .tool-pill {
-      font-size: 0.7rem;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.12);
-      color: var(--text-soft);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 6px;
-    }
-
-    .tool-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .tool-text {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-bottom: 8px;
-    }
-
-    .tool-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      margin-top: 4px;
-    }
-
-    .tool-link {
-      font-size: 0.8rem;
-      color: var(--accent-2);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .tool-link:hover {
-      text-decoration: underline;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 800px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .about-text {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
-
-    .about-highlight {
-      color: var(--accent-2);
-      font-weight: 500;
-    }
-
-    .about-list {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      font-size: 0.85rem;
-    }
-
-    .service-card {
-      background: #020617;
-      border-radius: 14px;
-      padding: 12px 12px 14px;
-      border: 1px solid var(--border-subtle);
-      margin-bottom: 10px;
-    }
-
-    .service-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .service-text {
-      font-size: 0.83rem;
-      color: var(--text-soft);
-      margin-bottom: 6px;
-    }
-
-    .service-tagline {
-      font-size: 0.8rem;
-      color: var(--accent);
-    }
-
-    .contact {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-    }
-
-    .contact a {
-      color: var(--accent-2);
-    }
-
-    footer {
-      margin-top: 18px;
-      padding: 10px 4px 0;
-      font-size: 0.75rem;
-      color: #6b7280;
-      text-align: center;
+    footer{
+      text-align:center;
+      font-size:.75rem;
+      color:#6b7280;
+      margin-top:30px;
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <div class="brand-logo">AK</div>
-        <div>
-          <div class="brand-text-title">Amanpreet Kaur</div>
-          <div class="brand-text-sub">Digital Presence • Safety • UX</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+<div class="wrap">
 
-    <section class="hero">
-      <div>
-        <div class="hero-label"><span class="dot"></span> PhD researcher · Cyber security & UX lecturer</div>
-        <h1 class="hero-title">
-          Helping people and small businesses feel <span class="hero-highlight">safe, clear, and confident</span> online.
-        </h1>
-        <p class="hero-sub">
-          I’m Aman, a PhD researcher in AI-driven blockchain identity management and a cyber security / UX educator in Australia.
-          I create simple tools and practical audits that improve
-          <strong>online safety, digital identity, and website clarity</strong>—without the jargon.
-        </p>
-        <div class="hero-actions">
-          <a href="#tools"><button class="btn-primary">Try my free tools →</button></a>
-          <a href="#services"><button class="btn-ghost">Book a digital presence audit</button></a>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <div class="hero-side-title">What I’m currently working on</div>
-        <p class="hero-side-text">
-          Turning my research and teaching in cyber security, UX design, and digital identity
-          into small, useful products that anyone can use:
-          students, creators, parents, and small food-agri or tech businesses.
-        </p>
-        <div class="hero-tags">
-          <div class="tag">Digital footprint & identity</div>
-          <div class="tag">Cyber hygiene</div>
-          <div class="tag">UX & conversion</div>
-          <div class="tag">SME-friendly audits</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Free tools -->
-    <section class="section" id="tools">
-      <div class="section-header">
-        <div class="section-title">Free tools you can use right now</div>
-        <div class="section-sub">Quick self-checks that highlight where to improve first.</div>
-      </div>
-
-      <div class="tools-grid">
-        <div class="tool-card">
-          <div>
-            <div class="tool-pill">Identity & safety</div>
-            <div class="tool-title">Digital Footprint & Online Presence Checker</div>
-            <div class="tool-text">
-              15 questions to see how exposed, consistent, and safe your online identity is.
-              Ideal for students, professionals, and parents.
-            </div>
-          </div>
-          <div class="tool-footer">
-            <span>3–4 minutes</span>
-            <!-- If you kept this checker at "/", change href to "./" -->
-            <a class="tool-link" href="digital-footprint.html">Open tool →</a>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <div class="tool-pill">UX & clarity</div>
-            <div class="tool-title">Website UX & Conversion Checker</div>
-            <div class="tool-text">
-              15-question self-assessment that helps you see whether your website is clear,
-              trustworthy, and ready to convert visitors into clients.
-            </div>
-          </div>
-          <div class="tool-footer">
-            <span>For websites & landing pages</span>
-            <a class="tool-link" href="ux-checker.html">Check my site →</a>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <div class="tool-pill">Semi-automated</div>
-            <div class="tool-title">Smart UX Check (URL + quick questions)</div>
-            <div class="tool-text">
-              Paste your link, let the tool auto-analyse the URL, answer 5 simple questions,
-              and get a smart UX score with next steps.
-            </div>
-          </div>
-          <div class="tool-footer">
-            <span>Link + 5 answers</span>
-            <a class="tool-link" href="smart-ux-checker.html">Run smart check →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="section-header">
-        <div class="section-title">A bit about me</div>
-        <div class="section-sub">Why I care so much about digital identity, safety, and human-friendly tech.</div>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-text">
-          I’m <strong>Amanpreet Kaur (Aman)</strong>, a
-          <span class="about-highlight">PhD researcher in AI-driven blockchain identity management</span> and
-          an IT lecturer teaching cyber security, UX & design thinking, and data/technology subjects.
-          <br /><br />
-          Every week I see the same pattern:
-          brilliant people and small businesses who are
-          <em>good at what they do</em> but feel lost when it comes to:
-          <ul class="about-list">
-            <li>protecting their identity and data online,</li>
-            <li>understanding their digital footprint, and</li>
-            <li>making their website actually speak to humans.</li>
-          </ul>
-          My goal is to take research-grade ideas and turn them into
-          <span class="about-highlight">simple, actionable tools and audits</span> that anyone can use
-          — with or without a tech background.
-        </div>
-
-        <div>
-          <div class="service-card">
-            <div class="service-title">Some hats I wear</div>
-            <div class="service-text">
-              • PhD researcher in AI + blockchain identity management for supply chains<br />
-              • Cyber Security & UX lecturer and subject coordinator<br />
-              • Tutor, mentor, and guide for students entering tech and security<br />
-              • Mum, builder of practical systems that fit real life
-            </div>
-            <div class="service-tagline">Human-first, research-informed, very real-world.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section" id="services">
-      <div class="section-header">
-        <div class="section-title">Ways I can help beyond the free tools</div>
-        <div class="section-sub">Light, focused services you can grow into over time.</div>
-      </div>
-
-      <div class="about-grid">
-        <div>
-          <div class="service-card">
-            <div class="service-title">Website UX & Clarity Audit</div>
-            <div class="service-text">
-              A focused review of your homepage or landing page:
-              clarity of message, trust signals, navigation, and mobile experience.
-              You get a concise PDF with practical changes you can apply immediately.
-            </div>
-            <div class="service-tagline">Perfect for coaches, creators, and small businesses.</div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-title">Digital Footprint & Safety Check</div>
-            <div class="service-text">
-              A deeper look at your online presence (or your teen’s),
-              including social media, identity exposure, and simple cyber hygiene.
-              You get a tailored risk view and “first 10 actions” to feel safer online.
-            </div>
-            <div class="service-tagline">Ideal for families, students, and busy professionals.</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="service-card">
-            <div class="service-title">Ongoing Digital Presence Support</div>
-            <div class="service-text">
-              For people and small teams who want a thinking partner:
-              light monthly support on website tweaks, content clarity,
-              and basic cyber hygiene habits.
-            </div>
-            <div class="service-tagline">Flexible, human, no-jargon partnership.</div>
-          </div>
-          <p class="contact">
-            If any of this resonates, send me a short email with who you are,
-            your website (if you have one), and what you’d like to improve first.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <div class="section-header">
-        <div class="section-title">Get in touch</div>
-        <div class="section-sub">You don’t have to have it all figured out before you reach out.</div>
-      </div>
-
-      <p class="contact">
-        📧 Email:
-        <a href="mailto:amanpeace52@gmail.com">amanpeace52@gmail.com</a><br /><br />
-        You can share a bit about your context (student, small business, parent, team),
-        your main concern (safety, clarity, website, identity), and any links you’re comfortable sharing.
-        I’ll reply with a simple suggestion or, if it makes sense, a proposal for a small paid audit.
-      </p>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
-    </footer>
+<header>
+  <div class="brand">
+    <div class="logo">AK</div>
+    <div>
+      <strong>Amanpreet Kaur</strong><br/>
+      <span style="font-size:.75rem;color:var(--soft)">Digital Presence • Safety • UX</span>
+    </div>
   </div>
 
-  <script>
-    // Auto-fill current year in the footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#services">Services</a>
+    <a href="#enquiry">Enquiry</a>
+  </nav>
+</header>
+
+
+<!-- HOME -->
+<section id="home" class="card hero">
+  <div>
+    <h1>Helping people feel <span style="color:var(--accent)">safe, clear & confident</span> online</h1>
+    <p>
+      I’m Aman — PhD researcher in AI-driven blockchain identity management and a Cyber Security & UX lecturer.
+      This lab turns deep research into simple tools and real-world audits for students, families & SMEs.
+    </p>
+    <a class="btn" href="#tools">Try Free Tools</a>
+    <a class="btn alt" href="#services">View Services</a>
+  </div>
+
+  <div>
+    <p>
+      🔹 Digital identity & footprint awareness  
+      🔹 Cyber hygiene for real life  
+      🔹 Human-first website UX  
+      🔹 Small business & student focused
+    </p>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="card">
+  <h2>About Me</h2>
+  <p>
+    I work at the intersection of **security, identity, UX and education**.
+    My PhD explores **AI-driven blockchain identity management in supply chains**.
+  </p>
+  <p>
+    Alongside research, I teach Cyber Security and UX Design and guide students through
+    real-world digital risk, clarity and trust challenges.
+  </p>
+  <p>
+    This platform is where I quietly turn my research and teaching into **tiny, practical tools**
+    anyone can use without technical overwhelm.
+  </p>
+</section>
+
+
+<!-- TOOLS -->
+<section id="tools" class="card">
+  <h2>Free Digital Tools</h2>
+
+  <div class="grid">
+
+    <div class="tool">
+      <div>
+        <div class="pill">Identity & Safety</div>
+        <strong>Digital Footprint Checker</strong>
+        <p>Check how exposed, consistent & safe your online presence is.</p>
+      </div>
+      <a class="btn" href="digital-footprint.html">Open Tool</a>
+    </div>
+
+    <div class="tool">
+      <div>
+        <div class="pill">UX & Clarity</div>
+        <strong>Website UX & Conversion Checker</strong>
+        <p>See whether your website is clear, trustworthy and human-friendly.</p>
+      </div>
+      <a class="btn" href="ux-checker.html">Check My Site</a>
+    </div>
+
+    <div class="tool">
+      <div>
+        <div class="pill">Smart UX</div>
+        <strong>Smart UX Auto Checker</strong>
+        <p>Paste your website link + answer 5 questions for a smart UX score.</p>
+      </div>
+      <a class="btn" href="smart-ux-checker.html">Run Smart Check</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services" class="card">
+  <h2>Services</h2>
+
+  <p><strong>Website UX & Clarity Audit</strong><br/>
+  Plain-English review of your homepage or landing page with clear improvement steps.</p>
+
+  <p><strong>Digital Footprint & Safety Check</strong><br/>
+  Privacy exposure, identity risk & hygiene habits review.</p>
+
+  <p><strong>Ongoing Digital Presence Support</strong><br/>
+  Light monthly UX + cyber guidance for individuals and SMEs.</p>
+</section>
+
+
+<!-- ENQUIRY -->
+<section id="enquiry" class="card">
+  <h2>Send an Enquiry</h2>
+  <p>Tell me a little about you and what you’d like help with.</p>
+
+  <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="_replyto" placeholder="Your email" required>
+
+    <select name="who">
+      <option>For myself</option>
+      <option>For my business</option>
+      <option>For a student</option>
+      <option>For my child/family</option>
+    </select>
+
+    <input type="text" name="website" placeholder="Website (optional)">
+    <textarea name="message" placeholder="What would you like help with?" required></textarea>
+
+    <button class="btn" type="submit">Send Enquiry</button>
+  </form>
+</section>
+
+
+<footer>
+  © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
+</footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
