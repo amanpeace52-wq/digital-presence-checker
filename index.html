@@ -1,459 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<title>Aman P Kaur • Digital Safety, UX & Cyber Literacy</title>
-<meta name="description" content="Digital safety, cyber literacy coaching, AI awareness & UX clarity by Aman P Kaur."/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8"/>
+  <title>Aman P Kaur • Digital Safety, AI & Cyber Literacy Lab</title>
+  <meta name="description" content="Digital safety, AI-aware cyber literacy coaching, UX clarity and online risk tools by Aman P Kaur."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<style>
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --accent:#22c55e;
-  --blue:#38bdf8;
-  --text:#e5e7eb;
-  --soft:#9ca3af;
-  --border:#1f2937;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-  background:radial-gradient(circle at top left,#22c55e22,#020617),
-             radial-gradient(circle at bottom right,#38bdf822,#020617);
-  color:var(--text);
-}
-a{text-decoration:none;color:inherit}
-.wrap{max-width:1100px;margin:auto;padding:18px}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{
-  width:40px;height:40px;border-radius:14px;
-  background:linear-gradient(135deg,var(--accent),var(--blue));
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;color:#022c22;
-}
-nav a{margin-left:12px;color:var(--soft);font-size:.9rem}
-nav a:hover{color:white}
+  <style>
+    :root{
+      --bg:#020617;
+      --card:#0b1220;
+      --accent:#22c55e;
+      --blue:#38bdf8;
+      --text:#e5e7eb;
+      --soft:#9ca3af;
+      --border:#1f2937;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:radial-gradient(circle at top left,#22c55e22,#020617),
+                 radial-gradient(circle at bottom right,#38bdf822,#020617);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--blue));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#022c22;
+    }
+    nav a{margin-left:12px;color:var(--soft);font-size:.9rem}
+    nav a:hover{color:white}
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:26px;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      margin-bottom:26px;
+    }
 
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-h1{font-size:2rem;margin-bottom:10px}
-h2{font-size:1.4rem;margin-bottom:10px}
-h3{font-size:1.05rem;margin-bottom:6px}
-p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
+    h1{font-size:2rem;margin-bottom:10px}
+    h2{font-size:1.4rem;margin-bottom:10px}
+    h3{font-size:1.05rem;margin-bottom:6px}
+    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
 
-.btn{
-  background:linear-gradient(135deg,var(--accent),#16a34a);
-  padding:10px 20px;
-  border-radius:999px;
-  color:#022c22;
-  font-size:.9rem;
-  border:none;
-  display:inline-block;
-  cursor:pointer;
-  margin-top:10px;
-}
-.btn.alt{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn{
+      background:linear-gradient(135deg,var(--accent),#16a34a);
+      padding:10px 20px;
+      border-radius:999px;
+      color:#022c22;
+      font-size:.9rem;
+      border:none;
+      display:inline-block;
+      cursor:pointer;
+      margin-top:10px;
+    }
+    .btn.alt{background:transparent;border:1px solid var(--border);color:var(--text)}
 
-.form input,.form textarea,.form select{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:#020617;
-  color:var(--text);
-  margin-bottom:10px;
-}
+    .pill{
+      display:inline-block;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#22c55e22;
+      color:#86efac;
+      margin-bottom:6px;
+    }
 
-.timer{
-  font-size:.9rem;
-  color:var(--accent);
-  font-weight:bold;
-  margin-bottom:10px;
-}
+    .form input,.form textarea,.form select{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#020617;
+      color:var(--text);
+      margin-bottom:10px;
+    }
 
-.checklist-group{
-  margin-bottom:16px;
-  border-bottom:1px dashed #1f2937;
-  padding-bottom:10px;
-}
-.checklist-group h3{
-  margin-bottom:4px;
-}
-.checklist-item{
-  display:flex;
-  align-items:flex-start;
-  gap:6px;
-  margin:4px 0;
-}
-.checklist-item label{
-  font-size:.9rem;
-}
-.checklist-notes{
-  width:100%;
-  margin-top:6px;
-  font-size:.85rem;
-}
-
-footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
-</style>
+    footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
+  </style>
 </head>
 
 <body>
 <div class="wrap">
 
-<header>
-  <div class="brand">
-    <div class="logo">AK</div>
-    <div>
-      <strong>Aman P Kaur</strong><br/>
-      <span style="font-size:.75rem;color:var(--soft)">Digital Safety • UX • AI & Cyber Literacy</span>
-    </div>
-  </div>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">My Story</a>
-    <a href="#ai">AI & Risk</a>
-    <a href="#quiz">Cyber Quiz</a>
-    <a href="#checklist">Checklist</a>
-    <a href="#services">Services</a>
-    <a href="#coaching">Coaching</a>
-    <a href="#enquiry">Contact</a>
-  </nav>
-</header>
-
-<!-- HOME -->
-<section id="home" class="card">
-  <h1>The Internet Is Changing Fast. Your Safety Should Too.</h1>
-  <p>
-    AI, automation and online exposure are reshaping how we live, work and raise families.
-    I help people stay <strong>safe, confident and in control</strong> — without fear or complexity.
-  </p>
-  <a class="btn" href="#quiz">Take the 2-Minute Cyber Check</a>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="card">
-  <h2>My Story</h2>
-  <p>
-    I didn’t begin in cyber security because I loved technology.
-    I began because I watched normal people — parents, students, small business owners —
-    get quietly overwhelmed by a digital world that keeps changing faster than they can keep up.
-  </p>
-  <p>
-    Through teaching, research and real conversations, I saw the same worry again and again:
-    <em>“I feel exposed, but I don’t even know where to start.”</em>
-  </p>
-  <p>
-    That question became my work.  
-    This space is my way of turning complex cyber concepts into calm, human language
-    so you can make better choices without needing to become “techy”.
-  </p>
-</section>
-
-<!-- AI IMPACT & STATS -->
-<section id="ai" class="card">
-  <h2>AI Is Powerful — And It’s Changing Digital Risk</h2>
-  <p>Some simple numbers to sit with:</p>
-  <ul>
-    <li>⚠️ A large majority of breaches now involve <strong>human error</strong> — not just “hackers”.</li>
-    <li>⚠️ AI tools make it easier to create <strong>fake emails, fake voices and deepfake videos</strong>.</li>
-    <li>⚠️ The average person has data spread across <strong>dozens of apps and platforms</strong>.</li>
-    <li>⚠️ Many people reuse the same password or slight variations across everything.</li>
-  </ul>
-  <p>
-    AI itself is not “good” or “bad”.
-    But it does <strong>amplify whatever is already weak</strong> in our digital habits —
-    and that’s why simple digital hygiene, cyber literacy and clear online identity
-    matter more than ever.
-  </p>
-</section>
-
-<!-- TIMED MINI CYBER QUIZ -->
-<section id="quiz" class="card">
-  <h2>Free 2-Minute Cyber Safety Quiz</h2>
-  <div class="timer" id="timer">Time left: 02:00</div>
-
-  <p>Answer honestly — this is for awareness, not judgment.</p>
-
-  <div id="quizQuestions">
-    <p><strong>1. Passwords:</strong> Do you reuse the same or very similar password across important accounts?</p>
-    <button class="btn alt" type="button" onclick="answer(0)">Yes, mostly</button>
-    <button class="btn alt" type="button" onclick="answer(2)">No, I keep them different</button>
-
-    <p><strong>2. 2FA:</strong> Do you use two-factor authentication on your main email?</p>
-    <button class="btn alt" type="button" onclick="answer(0)">No / Not sure</button>
-    <button class="btn alt" type="button" onclick="answer(2)">Yes</button>
-
-    <p><strong>3. Links:</strong> When you get an urgent strange link by email or message…</p>
-    <button class="btn alt" type="button" onclick="answer(0)">I often click, then think</button>
-    <button class="btn alt" type="button" onclick="answer(2)">I pause, check, and usually avoid</button>
-  </div>
-
-  <p id="quizScore" style="margin-top:12px;"></p>
-</section>
-
-<!-- INTERACTIVE CHECKLIST -->
-<section id="checklist" class="card">
-  <h2>Interactive Digital Hygiene Checklist</h2>
-  <p>
-    Use this checklist as a gentle, practical way to see where you’re already doing well
-    and where you might want support. Tick what applies, add notes if you like, then
-    download a copy of your snapshot.
-  </p>
-
-  <div id="checklistContainer">
-
-    <div class="checklist-group">
-      <h3>1. Passwords</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use different passwords for important accounts.">
-        <label>I use different passwords for important accounts.</label>
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong>Aman P Kaur</strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Safety • UX • AI & Cyber Literacy</span>
       </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My main email password is strong and not easily guessed.">
-        <label>My main email password is strong and not easily guessed.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="Password notes" placeholder="Any notes about your passwords (optional)"></textarea>
     </div>
 
-    <div class="checklist-group">
-      <h3>2. Two-Factor Authentication (2FA)</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use 2FA on my main email account.">
-        <label>I use 2FA on my main email account.</label>
-      </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use 2FA on banking or payment apps.">
-        <label>I use 2FA on banking or payment apps.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="2FA notes" placeholder="Any notes about 2FA (optional)"></textarea>
+    <!-- NAV: feels like multiple pages -->
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">My Story</a>
+      <a href="#ai">AI & Risk</a>
+      <a href="#tools">Tools</a>
+      <a href="#services">Services</a>
+      <a href="#coaching">Coaching</a>
+      <a href="#enquiry">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="card">
+    <h1>The Internet, AI & You — Made Safer and Clearer.</h1>
+    <p>
+      AI, automation and always-online life are reshaping how we work, learn and parent.
+      I help people understand their digital risks and habits in simple, human language —
+      so you can feel safer, clearer and more in control.
+    </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;">
+      <a class="btn" href="quiz.html">Take 2-Minute Cyber Quiz</a>
+      <a class="btn alt" href="checklist.html">Use Digital Hygiene Checklist</a>
     </div>
+  </section>
 
-    <div class="checklist-group">
-      <h3>3. Devices & Updates</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My devices have automatic updates turned on.">
-        <label>My devices have automatic updates turned on.</label>
+  <!-- ABOUT -->
+  <section id="about" class="card">
+    <h2>My Story</h2>
+    <p>
+      I didn’t get into cyber security because I love machines.
+      I got into it because I saw how easily normal people — parents, students,
+      small business owners — were being left behind by a digital world that
+      keeps changing faster than their confidence.
+    </p>
+    <p>
+      In my work as a lecturer and PhD researcher, I kept hearing the same thing:
+      <em>“I feel exposed, but I don’t even know what I should be worried about.”</em>
+    </p>
+    <p>
+      This lab is my answer to that: a calm space where we translate digital risk,
+      AI, UX and safety into everyday language — and practical actions you
+      can actually take.
+    </p>
+  </section>
+
+  <!-- AI IMPACT & DIGITAL RISK -->
+  <section id="ai" class="card">
+    <h2>AI Is Not Just a Buzzword — It Changes the Risk Map</h2>
+    <p>
+      AI can write emails, mimic voices, generate fake images and scan huge amounts
+      of data in seconds. That’s exciting — but also uncomfortable when our digital
+      lives are already messy.
+    </p>
+    <ul>
+      <li>AI makes phishing emails look more realistic and personalised.</li>
+      <li>Deepfakes can copy faces and voices to trick people into sending money or data.</li>
+      <li>Large language models can analyse public information about you in seconds.</li>
+      <li>Most people’s data is scattered across dozens of apps, forms and platforms.</li>
+    </ul>
+    <p>
+      The answer is not to fear AI, but to strengthen the human side:
+      <strong>digital hygiene, identity awareness, good UX and clear boundaries.</strong>
+    </p>
+  </section>
+
+  <!-- TOOL HUB (all tools incl. new Risk Score Generator) -->
+  <section id="tools" class="card">
+    <h2>Tools You Can Use Right Now</h2>
+    <p>These are simple, focused tools designed to give you a snapshot, not overwhelm you.</p>
+
+    <div class="grid">
+      <div>
+        <div class="pill">Identity & Privacy</div>
+        <h3><a href="digital-footprint.html">Digital Footprint Checker</a></h3>
+        <p>
+          See what’s publicly visible about you and your identity.
+          Helpful if you feel “too searchable” or unsure what others can see.
+        </p>
       </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I have some basic protection enabled (e.g. built-in security).">
-        <label>I have some basic protection enabled (e.g. built-in security).</label>
+
+      <div>
+        <div class="pill">UX & Clarity</div>
+        <h3><a href="ux-checker.html">Website UX & Clarity Checker</a></h3>
+        <p>
+          A structured way to look at your website through your visitor’s eyes —
+          clarity, trust, navigation and first impressions.
+        </p>
       </div>
-      <textarea class="checklist-notes" data-label="Device notes" placeholder="Any notes about your devices (optional)"></textarea>
-    </div>
 
-    <div class="checklist-group">
-      <h3>4. Social Media & Privacy</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I have checked my privacy settings in the last 12 months.">
-        <label>I have checked my privacy settings in the last 12 months.</label>
+      <div>
+        <div class="pill">Smart UX</div>
+        <h3><a href="smart-ux-checker.html">Smart UX Auto Checker</a></h3>
+        <p>
+          A more guided UX review with question-based prompts to help you
+          think through your user journey and friction points.
+        </p>
       </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I'm comfortable with what a stranger can see on my profile.">
-        <label>I'm comfortable with what a stranger can see on my profile.</label>
+
+      <div>
+        <div class="pill">Awareness</div>
+        <h3><a href="quiz.html">2-Minute Cyber Safety Quiz</a></h3>
+        <p>
+          Short, timed quiz to quickly sense where your cyber habits sit.
+          You get a simple awareness score and friendly next-step suggestions.
+        </p>
       </div>
-      <textarea class="checklist-notes" data-label="Social media notes" placeholder="Any notes about socials (optional)"></textarea>
-    </div>
 
-    <div class="checklist-group">
-      <h3>5. Backups & Important Files</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My important photos/documents are backed up somewhere.">
-        <label>My important photos/documents are backed up somewhere.</label>
+      <div>
+        <div class="pill">Habits</div>
+        <h3><a href="checklist.html">Interactive Digital Hygiene Checklist</a></h3>
+        <p>
+          Tick through key areas like passwords, updates, backups and privacy.
+          Add notes and download a snapshot you can keep or bring to a session.
+        </p>
       </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="If I lost my phone, I know how to recover key data.">
-        <label>If I lost my phone, I know how to recover key data.</label>
+
+      <div>
+        <div class="pill">Risk Profile</div>
+        <h3><a href="risk-score.html">Online Risk Score Generator</a></h3>
+        <p>
+          Answer a few short questions and get a simple risk band
+          (Low / Medium / High) with tailored suggestions and a call to action.
+        </p>
       </div>
-      <textarea class="checklist-notes" data-label="Backup notes" placeholder="Any notes about backups (optional)"></textarea>
     </div>
+  </section>
 
-  </div>
+  <!-- SERVICES -->
+  <section id="services" class="card">
+    <h2>Personalised Services</h2>
+    <p>For when you want a real human to look at your specific situation.</p>
 
-  <button class="btn" type="button" onclick="downloadChecklistSnapshot()">
-    Download my checklist snapshot
-  </button>
-  <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
-    This creates a simple text file on your device with your current ticks and notes.
-    If you decide to work with me, you can attach or paste parts of it in your enquiry
-    so we start from where you already are.
-  </p>
-</section>
+    <div class="grid">
+      <div>
+        <h3>UX & Website Clarity Review — $49</h3>
+        <p>Perfect if your site feels messy, unclear or low-trust.</p>
+        <ul>
+          <li>Homepage + key page review</li>
+          <li>Trust, messaging and first-impression check</li>
+          <li>Plain-language list of fixes</li>
+        </ul>
+      </div>
 
-<!-- SERVICES -->
-<section id="services" class="card">
-  <h2>Personalised Digital Services</h2>
-  <div class="grid">
-    <div>
-      <h3>UX & Website Clarity — $49</h3>
-      <p>Fix confusion, trust and messaging on your main page.</p>
+      <div>
+        <h3>Digital Footprint & Safety Review — $59</h3>
+        <p>Understand your exposure across the web.</p>
+        <ul>
+          <li>Public identity & visibility check</li>
+          <li>Privacy and impersonation risk notes</li>
+          <li>Top 10 actions, prioritised</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Monthly Digital Support — from $99/month</h3>
+        <p>For ongoing guidance as your digital life and AI tools evolve.</p>
+        <ul>
+          <li>Monthly 30-min check-in</li>
+          <li>Support on new tools, apps and changes</li>
+          <li>Gentle accountability on your digital habits</li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h3>Digital Footprint & Safety — $59</h3>
-      <p>See what’s exposed about you online and why it matters.</p>
-    </div>
-    <div>
-      <h3>Monthly Digital Support — from $99</h3>
-      <p>Long-term, calm guidance as your digital life changes.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- COACHING -->
-<section id="coaching" class="card">
-  <h2>Cyber Literacy Coaching</h2>
-  <p>Gentle, practical sessions for students, parents & professionals.</p>
-  <ul>
-    <li>30 minutes — $30 (basics, scams, passwords)</li>
-    <li>45 minutes — $45 (identity, privacy, safer behaviour)</li>
-    <li>60 minutes — $60 (full hygiene plan & next steps)</li>
-  </ul>
-</section>
+  <!-- COACHING -->
+  <section id="coaching" class="card">
+    <h2>Cyber Literacy Coaching (1-to-1)</h2>
+    <p>
+      Private, practical sessions for students, parents, professionals and small business owners.
+      Especially helpful if you feel “behind” with AI and modern tech.
+    </p>
+    <ul>
+      <li>30 minutes — $30 (basics, scams, passwords, phone safety)</li>
+      <li>45 minutes — $45 (identity, privacy, social media & AI risks)</li>
+      <li>60 minutes — $60 (full hygiene plan, tools, next-step roadmap)</li>
+    </ul>
+  </section>
 
-<!-- CONTACT -->
-<section id="enquiry" class="card">
-  <h2>Talk to Me</h2>
-  <p>
-    Share what’s worrying you or what you’d like to improve.  
-    If you’ve used the checklist above, you can mention anything that stood out
-    or paste a few lines from your snapshot file to give me context.
-  </p>
-  <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
-    <input type="hidden" name="_subject" value="New Website Enquiry">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="_replyto" placeholder="Email" required>
-    <select name="service">
-      <option value="">What do you think you need?</option>
-      <option>UX Review</option>
-      <option>Digital Safety Review</option>
-      <option>Cyber Coaching</option>
-      <option>Monthly Support</option>
-      <option>Not sure yet</option>
-    </select>
-    <textarea name="message" placeholder="Tell me a little about your situation (you can refer to your checklist snapshot if you like)" required></textarea>
-    <button class="btn" type="submit">Send</button>
-  </form>
-</section>
+  <!-- CONTACT -->
+  <section id="enquiry" class="card">
+    <h2>Start With a Simple Enquiry</h2>
+    <p>
+      You don’t have to know the right “name” for what you need.
+      Tell me your situation in normal words and I’ll suggest a path.
+      If you’ve used any of the tools (quiz, checklist, risk score), you can mention your results.
+    </p>
+    <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+      <input type="hidden" name="_subject" value="New Website Enquiry">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="_replyto" placeholder="Email" required>
+      <select name="service">
+        <option value="">What do you think you need?</option>
+        <option>UX Review</option>
+        <option>Digital Safety Review</option>
+        <option>Cyber Coaching</option>
+        <option>Monthly Support</option>
+        <option>Not sure yet</option>
+      </select>
+      <textarea name="message" placeholder="Tell me a little about your situation (you can mention your quiz/checklist/risk score results if you like)" required></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </section>
 
-<footer>
-  © <span id="year"></span> Aman P Kaur
-</footer>
+  <footer>
+    © <span id="year"></span> Aman P Kaur · Digital Safety & AI-Aware Cyber Literacy
+  </footer>
 
 </div>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// TIMED QUIZ
-let score = 0;
-let timeLeft = 120; // seconds
-let quizLocked = false;
-
-function updateTimerDisplay() {
-  const mins = Math.floor(timeLeft / 60);
-  const secs = timeLeft % 60;
-  const formatted =
-    String(mins).padStart(2,'0') + ":" + String(secs).padStart(2,'0');
-  document.getElementById("timer").innerText = "Time left: " + formatted;
-}
-
-updateTimerDisplay();
-
-const timerInterval = setInterval(() => {
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    quizLocked = true;
-    showFinalQuizScore(true);
-    return;
-  }
-  timeLeft--;
-  updateTimerDisplay();
-}, 1000);
-
-function answer(points){
-  if (quizLocked) return;
-  score += points;
-  document.getElementById("quizScore").innerHTML =
-    "Current awareness score: <strong>" + score + " / 6</strong>";
-}
-
-function showFinalQuizScore(fromTimeout){
-  let message = "";
-  if (score <= 2){
-    message = "You’re at the very beginning of your digital safety journey. Even one change, like updating a few passwords, is a powerful start.";
-  } else if (score <= 4){
-    message = "You’re doing some things well, and there’s room to gently improve. A few focused tweaks will make a big difference.";
-  } else {
-    message = "You already have some strong habits. The next step is tightening a few gaps and keeping your knowledge current.";
-  }
-  document.getElementById("quizScore").innerHTML =
-    (fromTimeout ? "Time’s up. " : "") +
-    "Your final awareness score: <strong>" + score + " / 6</strong><br/>" +
-    message;
-}
-
-// INTERACTIVE CHECKLIST DOWNLOAD
-function downloadChecklistSnapshot(){
-  const checkboxes = document.querySelectorAll('.chk-item');
-  const notes = document.querySelectorAll('.checklist-notes');
-  let content = "";
-
-  content += "Digital Hygiene Snapshot\n";
-  content += "Generated on: " + new Date().toLocaleString() + "\n\n";
-
-  content += "Ticked items:\n";
-  let anyTicked = false;
-  checkboxes.forEach(cb => {
-    const label = cb.getAttribute('data-label');
-    if (cb.checked){
-      anyTicked = true;
-      content += "  [x] " + label + "\n";
-    }
-  });
-  if (!anyTicked){
-    content += "  (No items ticked yet)\n";
-  }
-
-  content += "\nNotes:\n";
-  let anyNotes = false;
-  notes.forEach(t => {
-    const label = t.getAttribute('data-label');
-    const value = t.value.trim();
-    if (value){
-      anyNotes = true;
-      content += "  " + label + ":\n    " + value.split("\n").join("\n    ") + "\n";
-    }
-  });
-  if (!anyNotes){
-    content += "  (No notes added yet)\n";
-  }
-
-  content += "\nIf you’d like help making sense of this, you can share it (or parts of it) with Aman in a session.";
-
-  const blob = new Blob([content], {type: 'text/plain'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = "digital-hygiene-snapshot.txt";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
