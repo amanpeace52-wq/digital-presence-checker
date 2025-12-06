@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>Amanpreet Kaur • Digital Presence & Safety Lab</title>
+
+  <!-- ✅ SEO -->
+  <title>Amanpreet Kaur • Digital Presence, UX & Online Safety Lab</title>
+  <meta name="description" content="Free digital footprint checker, website UX audits, cyber hygiene tools & personalised digital presence services by Amanpreet Kaur, PhD researcher & cybersecurity lecturer."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <style>
@@ -30,26 +33,10 @@
 
     a{color:inherit;text-decoration:none}
 
-    .wrap{
-      max-width:1100px;
-      margin:auto;
-      padding:18px;
-    }
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:22px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
+    .brand{display:flex;align-items:center;gap:10px}
     .logo{
       width:40px;height:40px;
       background:linear-gradient(135deg,var(--accent),var(--blue));
@@ -61,19 +48,13 @@
       color:#022c22;
     }
 
-    nav{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
+    nav{display:flex;gap:8px;flex-wrap:wrap}
     nav a{
       padding:6px 12px;
       border-radius:999px;
       font-size:.85rem;
       color:var(--soft);
     }
-
     nav a:hover{background:#ffffff12;color:white}
 
     .card{
@@ -89,15 +70,8 @@
     h2{font-size:1.3rem;margin:0 0 10px}
     p{font-size:.9rem;color:var(--soft);line-height:1.6}
 
-    .hero{
-      display:grid;
-      grid-template-columns:1.7fr 1.3fr;
-      gap:24px;
-    }
-
-    @media(max-width:800px){
-      .hero{grid-template-columns:1fr}
-    }
+    .hero{display:grid;grid-template-columns:1.7fr 1.3fr;gap:24px}
+    @media(max-width:800px){.hero{grid-template-columns:1fr}}
 
     .btn{
       display:inline-block;
@@ -111,18 +85,10 @@
     }
 
     .btn.alt{
-      background:transparent;
-      border:1px solid var(--border);
-      color:var(--text);
-      margin-left:10px;
+      background:transparent;border:1px solid var(--border);color:var(--text);margin-left:10px
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-    }
-
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
     @media(max-width:600px){.grid{grid-template-columns:1fr}}
 
@@ -146,6 +112,16 @@
       margin-bottom:6px;
     }
 
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.price-grid{grid-template-columns:1fr}}
+    .price{
+      background:#020617;
+      border:2px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+    }
+    .price strong{font-size:1.4rem;color:var(--accent)}
+
     .form input,.form textarea,.form select{
       width:100%;
       padding:9px;
@@ -157,162 +133,173 @@
       font-size:.85rem;
     }
 
-    footer{
-      text-align:center;
-      font-size:.75rem;
-      color:#6b7280;
-      margin-top:30px;
-    }
+    footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:30px}
   </style>
 </head>
 
 <body>
 <div class="wrap">
 
-<header>
-  <div class="brand">
-    <div class="logo">AK</div>
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong>Amanpreet Kaur</strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Presence • Safety • UX</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#enquiry">Enquiry</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="card hero">
     <div>
-      <strong>Amanpreet Kaur</strong><br/>
-      <span style="font-size:.75rem;color:var(--soft)">Digital Presence • Safety • UX</span>
+      <h1>Helping people feel <span style="color:var(--accent)">safe, clear & confident</span> online</h1>
+      <p>
+        I’m Aman — PhD researcher & Cyber Security + UX lecturer.
+        This lab turns deep research into practical tools and calm, personalised audits
+        for students, families and small businesses.
+      </p>
+      <a class="btn" href="#tools">Try Free Tools</a>
+      <a class="btn alt" href="#pricing">See Pricing</a>
     </div>
-  </div>
+    <div>
+      <p>
+        🔹 Digital identity & footprint<br/>
+        🔹 Cyber hygiene for real life<br/>
+        🔹 Human-first UX & clarity<br/>
+        🔹 Built for students & SMEs
+      </p>
+    </div>
+  </section>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#services">Services</a>
-    <a href="#enquiry">Enquiry</a>
-  </nav>
-</header>
-
-
-<!-- HOME -->
-<section id="home" class="card hero">
-  <div>
-    <h1>Helping people feel <span style="color:var(--accent)">safe, clear & confident</span> online</h1>
+  <!-- ABOUT -->
+  <section id="about" class="card">
+    <h2>About Me</h2>
     <p>
-      I’m Aman — PhD researcher in AI-driven blockchain identity management and a Cyber Security & UX lecturer.
-      This lab turns deep research into simple tools and real-world audits for students, families & SMEs.
+      I work at the intersection of <strong>security, identity, UX and education</strong>.
+      My PhD explores <strong>AI-driven blockchain identity management in supply chains</strong>,
+      and I teach Cyber Security & UX Design in higher education.
     </p>
-    <a class="btn" href="#tools">Try Free Tools</a>
-    <a class="btn alt" href="#services">View Services</a>
-  </div>
-
-  <div>
     <p>
-      🔹 Digital identity & footprint awareness  
-      🔹 Cyber hygiene for real life  
-      🔹 Human-first website UX  
-      🔹 Small business & student focused
+      This space is where I quietly turn research and teaching into
+      <strong>tiny, practical tools and audits</strong> that real humans can use
+      without needing a technical background.
     </p>
-  </div>
-</section>
+  </section>
 
+  <!-- TOOLS -->
+  <section id="tools" class="card">
+    <h2>Free Digital Tools</h2>
+    <p>Start with any of these small tools to get awareness and first steps.</p>
 
-<!-- ABOUT -->
-<section id="about" class="card">
-  <h2>About Me</h2>
-  <p>
-    I work at the intersection of **security, identity, UX and education**.
-    My PhD explores **AI-driven blockchain identity management in supply chains**.
-  </p>
-  <p>
-    Alongside research, I teach Cyber Security and UX Design and guide students through
-    real-world digital risk, clarity and trust challenges.
-  </p>
-  <p>
-    This platform is where I quietly turn my research and teaching into **tiny, practical tools**
-    anyone can use without technical overwhelm.
-  </p>
-</section>
-
-
-<!-- TOOLS -->
-<section id="tools" class="card">
-  <h2>Free Digital Tools</h2>
-
-  <div class="grid">
-
-    <div class="tool">
-      <div>
-        <div class="pill">Identity & Safety</div>
-        <strong>Digital Footprint Checker</strong>
-        <p>Check how exposed, consistent & safe your online presence is.</p>
+    <div class="grid">
+      <div class="tool">
+        <div>
+          <div class="pill">Identity & Safety</div>
+          <strong>Digital Footprint Checker</strong>
+          <p>Check how exposed, consistent & safe your online presence feels.</p>
+        </div>
+        <a class="btn" href="digital-footprint.html">Open Tool</a>
       </div>
-      <a class="btn" href="digital-footprint.html">Open Tool</a>
-    </div>
 
-    <div class="tool">
-      <div>
-        <div class="pill">UX & Clarity</div>
-        <strong>Website UX & Conversion Checker</strong>
-        <p>See whether your website is clear, trustworthy and human-friendly.</p>
+      <div class="tool">
+        <div>
+          <div class="pill">UX & Clarity</div>
+          <strong>Website UX & Conversion Checker</strong>
+          <p>See whether your website is clear, trustworthy and human-friendly.</p>
+        </div>
+        <a class="btn" href="ux-checker.html">Run Check</a>
       </div>
-      <a class="btn" href="ux-checker.html">Check My Site</a>
-    </div>
 
-    <div class="tool">
-      <div>
-        <div class="pill">Smart UX</div>
-        <strong>Smart UX Auto Checker</strong>
-        <p>Paste your website link + answer 5 questions for a smart UX score.</p>
+      <div class="tool">
+        <div>
+          <div class="pill">Smart UX</div>
+          <strong>Smart UX Auto Checker</strong>
+          <p>Paste your website link + answer 5 questions for a smart UX score.</p>
+        </div>
+        <a class="btn" href="smart-ux-checker.html">Smart Check</a>
       </div>
-      <a class="btn" href="smart-ux-checker.html">Run Smart Check</a>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- PRICING -->
+  <section id="pricing" class="card">
+    <h2>Simple Pricing</h2>
+    <p>Light, focused offers you can grow into over time.</p>
 
+    <div class="price-grid">
+      <div class="price">
+        <h3>Website UX & Clarity Audit</h3>
+        <strong>$49</strong>
+        <p>
+          Homepage or landing page review: clarity, trust, navigation, and simple conversion fixes.
+          Delivered as a 1–2 page PDF in plain language.
+        </p>
+        <a class="btn" href="https://peacefulaman1.gumroad.com/l/ngctz" target="_blank">Pay & Start</a>
+      </div>
 
-<!-- SERVICES -->
-<section id="services" class="card">
-  <h2>Services</h2>
+      <div class="price">
+        <h3>Digital Footprint & Safety Check</h3>
+        <strong>$59</strong>
+        <p>
+          Personalised review of your public digital footprint, privacy exposure and hygiene.
+          Includes top 10 actions to feel safer online.
+        </p>
+        <a class="btn" href="https://peacefulaman1.gumroad.com/l/tendde" target="_blank">Pay & Start</a>
+      </div>
 
-  <p><strong>Website UX & Clarity Audit</strong><br/>
-  Plain-English review of your homepage or landing page with clear improvement steps.</p>
+      <div class="price">
+        <h3>Monthly Digital Presence Support</h3>
+        <strong>$99 / month</strong>
+        <p>
+          Ongoing light support for UX, clarity and cyber hygiene.
+          One monthly call + priority guidance as your digital presence evolves.
+        </p>
+        <a class="btn" href="https://peacefulaman1.gumroad.com/l/jtlsf" target="_blank">Subscribe</a>
+      </div>
+    </div>
+  </section>
 
-  <p><strong>Digital Footprint & Safety Check</strong><br/>
-  Privacy exposure, identity risk & hygiene habits review.</p>
+  <!-- ENQUIRY -->
+  <section id="enquiry" class="card">
+    <h2>Send an Enquiry</h2>
+    <p>If you’re unsure where to start, send a short message and I’ll suggest a next step.</p>
 
-  <p><strong>Ongoing Digital Presence Support</strong><br/>
-  Light monthly UX + cyber guidance for individuals and SMEs.</p>
-</section>
+    <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="_replyto" placeholder="Your email" required>
 
+      <select name="who">
+        <option>For myself</option>
+        <option>For my business</option>
+        <option>For a student</option>
+        <option>For my child/family</option>
+      </select>
 
-<!-- ENQUIRY -->
-<section id="enquiry" class="card">
-  <h2>Send an Enquiry</h2>
-  <p>Tell me a little about you and what you’d like help with.</p>
+      <input type="text" name="website" placeholder="Website (optional)">
+      <textarea name="message" placeholder="What would you like help with?" required></textarea>
 
-  <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="_replyto" placeholder="Your email" required>
+      <button class="btn" type="submit">Send Enquiry</button>
+    </form>
+  </section>
 
-    <select name="who">
-      <option>For myself</option>
-      <option>For my business</option>
-      <option>For a student</option>
-      <option>For my child/family</option>
-    </select>
-
-    <input type="text" name="website" placeholder="Website (optional)">
-    <textarea name="message" placeholder="What would you like help with?" required></textarea>
-
-    <button class="btn" type="submit">Send Enquiry</button>
-  </form>
-</section>
-
-
-<footer>
-  © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
-</footer>
+  <footer>
+    © <span id="year"></span> Amanpreet Kaur · Digital Presence & Safety Lab
+  </footer>
 
 </div>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
