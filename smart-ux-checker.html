@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart Website UX Check (Semi-Automated)</title>
+<style>
+    :root {
+        --primary: #22c55e;
+        --primary-dark: #15803d;
+        --accent: #a855f7;
+        --bg1: #020617;
+        --bg2: #022c22;
+        --card-bg: #ffffff;
+        --text-main: #020617;
+        --muted: #6b7280;
+        --border-subtle: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top left, #022c22, #020617);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .outer {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .header {
+        text-align: center;
+        color: #e5e7eb;
+        margin-bottom: 16px;
+    }
+
+    .header h1 {
+        margin: 0 0 10px;
+        font-size: 1.9rem;
+    }
+
+    .header p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #9ca3af;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+    }
+
+    .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--primary);
+    }
+
+    .container {
+        background: radial-gradient(circle at top right, #dcfce7, #f9fafb);
+        border-radius: 16px;
+        padding: 22px 22px 26px;
+        box-shadow:
+            0 18px 40px rgba(15, 23, 42, 0.55),
+            0 0 0 1px rgba(148, 163, 184, 0.4);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+    }
+
+    .subtext {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 16px;
+    }
+
+    .steps {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 0.78rem;
+    }
+
+    .step-pill {
+        flex: 1;
+        border-radius: 999px;
+        padding: 4px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        background: rgba(15, 118, 110, 0.08);
+        color: #047857;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        opacity: 0.6;
+    }
+
+    .step-pill.active {
+        background: rgba(34, 197, 94, 0.18);
+        border-color: rgba(34, 197, 94, 0.9);
+        font-weight: 600;
+        opacity: 1;
+    }
+
+    .step-pill span {
+        font-size: 0.75rem;
+    }
+
+    .field-group {
+        margin-bottom: 18px;
+    }
+
+    .label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .note {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid #bbf7d0;
+        font-size: 0.9rem;
+        outline: none;
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.35);
+    }
+
+    .question {
+        margin-bottom: 16px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-subtle);
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .question-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+        color: var(--text-main);
+    }
+
+    .question-note {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    select {
+        width: 100%;
+        padding: 7px 9px;
+        border-radius: 8px;
+        border: 1px solid #bbf7d0;
+        font-size: 0.9rem;
+        outline: none;
+    }
+
+    select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .btn-primary, .btn-ghost {
+        padding: 9px 16px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: #f9fafb;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: #064e3b;
+        border: 1px solid #a7f3d0;
+    }
+
+    .btn-ghost:hover {
+        background: #dcfce7;
+    }
+
+    .btn-primary span,
+    .btn-ghost span {
+        font-size: 1rem;
+    }
+
+    #step-questions {
+        display: none;
+    }
+
+    #resultBox {
+        margin-top: 22px;
+        padding: 18px 16px 20px;
+        background: #ecfdf5;
+        border-radius: 14px;
+        display: none;
+        border: 1px solid rgba(34, 197, 94, 0.7);
+    }
+
+    .score {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .score small {
+        font-weight: 500;
+        color: var(--muted);
+        font-size: 0.8rem;
+    }
+
+    .risk {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 8px;
+    }
+
+    .risk.low { color: #047857; }
+    .risk.medium { color: #b45309; }
+    .risk.high { color: #b91c1c; }
+
+    .advice {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: var(--text-main);
+    }
+
+    .url-summary {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: #064e3b;
+    }
+
+    .url-summary ul {
+        margin: 6px 0 4px;
+        padding-left: 20px;
+    }
+
+    .url-summary li {
+        margin-bottom: 3px;
+    }
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #dcfce7;
+        font-size: 0.75rem;
+        border: 1px solid #bbf7d0;
+    }
+
+    .chip.bad {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #991b1b;
+    }
+
+    .premium-box {
+        margin-top: 16px;
+        background: #fef3c7;
+        padding: 12px 12px 14px;
+        border-left: 4px solid var(--accent);
+        border-radius: 10px;
+        font-size: 0.88rem;
+    }
+
+    .premium-box h3 {
+        margin: 0 0 6px;
+        font-size: 0.95rem;
+        color: #92400e;
+    }
+
+    .premium-box ul {
+        padding-left: 20px;
+        margin: 4px 0 6px;
+    }
+
+    .premium-box li {
+        margin-bottom: 2px;
+    }
+
+    .btn-secondary {
+        margin-top: 6px;
+        padding: 8px 13px;
+        border-radius: 999px;
+        border: 1px solid #fed7aa;
+        background: #fff7ed;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #9a3412;
+    }
+
+    .btn-secondary:hover {
+        background: #fed7aa;
+    }
+
+    .footnote {
+        margin-top: 10px;
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+
+    .status {
+        font-size: 0.8rem;
+        margin-top: 6px;
+        color: #065f46;
+    }
+
+    .status.error {
+        color: #b91c1c;
+    }
+</style>
+</head>
+<body>
+
+<div class="outer">
+    <div class="header">
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Semi-automated · URL heuristics + 5 quick questions
+        </div>
+        <h1>Smart Website UX Check</h1>
+        <p>Paste your site, we auto-analyse the link, ask a few questions, and give you a UX score with next steps.</p>
+    </div>
+
+    <div class="container">
+        <div class="steps">
+            <div class="step-pill active" id="pill1"><span>1</span> Website link</div>
+            <div class="step-pill" id="pill2"><span>2</span> Quick questions</div>
+            <div class="step-pill" id="pill3"><span>3</span> Result</div>
+        </div>
+
+        <!-- STEP 1: URL INPUT -->
+        <div id="step-url">
+            <h2>Step 1 · Paste your main website or landing page</h2>
+            <p class="subtext">We’ll run a light automatic check on the link itself (security, structure, professionalism).</p>
+
+            <div class="field-group">
+                <div class="label">Website URL</div>
+                <div class="note">Example: https://yourbrand.com or https://yourname.me</div>
+                <input type="text" id="websiteUrl" placeholder="https://example.com" />
+                <div class="status" id="urlStatus"></div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn-ghost" type="button" onclick="previewSite()">
+                    <span>🔍</span> Open in new tab
+                </button>
+                <button class="btn-primary" type="button" onclick="analyzeUrlAndContinue()">
+                    <span>⏭</span> Next: auto-analysis + questions
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2: QUESTIONS -->
+        <div id="step-questions">
+            <h2>Step 2 · 5 quick questions about your site</h2>
+            <p class="subtext">Answer based on what your ideal visitor would experience on your main page.</p>
+
+            <form id="quizForm">
+                <div class="question">
+                    <div class="question-title">1. Would a stranger understand what you do in 5 seconds?</div>
+                    <div class="question-note">Imagine someone who has never heard of you before.</div>
+                    <select name="q1">
+                        <option value="0">No — they’d probably be confused</option>
+                        <option value="5">Maybe — they’d need to read a bit</option>
+                        <option value="10">Yes — it’s clear in one short sentence</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">2. Do you have one clear main call-to-action (CTA)?</div>
+                    <div class="question-note">For example: “Book a call”, “Shop now”, “Get a quote”.</div>
+                    <select name="q2">
+                        <option value="0">No — many buttons or none stand out</option>
+                        <option value="5">Sort of — there is one, but it blends in</option>
+                        <option value="10">Yes — one CTA really stands out visually</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">3. How easy is it to use your site on a phone?</div>
+                    <div class="question-note">Think of fonts, spacing, buttons.</div>
+                    <select name="q3">
+                        <option value="0">Hard — text tiny or layout broken</option>
+                        <option value="5">Okay — usable but not smooth</option>
+                        <option value="10">Easy — feels made for mobile</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">4. Do you show any real social proof?</div>
+                    <div class="question-note">Testimonials, reviews, client logos, before/after, results.</div>
+                    <select name="q4">
+                        <option value="0">No — almost none</option>
+                        <option value="5">Some — but not very visible</option>
+                        <option value="10">Yes — clear, real and visible</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">5. How confident are you that your homepage reflects your real value?</div>
+                    <div class="question-note">Gut feeling is enough.</div>
+                    <select name="q5">
+                        <option value="0">Not confident at all</option>
+                        <option value="5">Somewhat confident</option>
+                        <option value="10">Very confident</option>
+                    </select>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn-ghost" type="button" onclick="backToUrl()">
+                        <span>⏮</span> Back to link
+                    </button>
+                    <button class="btn-primary" type="button" onclick="calculateSmartScore()">
+                        <span>✅</span> Get my UX score
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- STEP 3: RESULT -->
+        <div id="resultBox">
+            <div class="score" id="scoreDisplay"></div>
+            <div class="risk" id="riskLevel"></div>
+
+            <div class="url-summary" id="urlSummary"></div>
+
+            <div class="advice" id="adviceText"></div>
+
+            <div class="premium-box">
+                <h3>✨ Want a personalised UX refresh for this exact site?</h3>
+                <ul>
+                    <li>Deep-dive review of your homepage or landing page</li>
+                    <li>Clarity, trust, and flow recommendations</li>
+                    <li>Suggested new layout & wording tailored to your goal</li>
+                    <li>Optional implementation support (edits & improvements)</li>
+                </ul>
+                <strong>From $49 for a focused homepage UX audit.</strong><br/>
+                <button class="btn-secondary" onclick="requestAudit()">
+                    ✉ Request a UX audit for this URL
+                </button>
+            </div>
+
+            <div class="footnote">
+                This is a semi-automated awareness tool using URL heuristics + your answers.
+                It doesn’t replace full analytics, user testing, or technical SEO/performance audits.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let lastUrl = "";
+let autoScore = 0;
+const AUTO_MAX = 50;  // 0–50 from URL
+const MANUAL_MAX = 50; // 0–50 from questions
+
+function setStep(step) {
+    const stepUrl = document.getElementById("step-url");
+    const stepQuestions = document.getElementById("step-questions");
+    const resultBox = document.getElementById("resultBox");
+
+    const pill1 = document.getElementById("pill1");
+    const pill2 = document.getElementById("pill2");
+    const pill3 = document.getElementById("pill3");
+
+    if (step === 1) {
+        stepUrl.style.display = "block";
+        stepQuestions.style.display = "none";
+        resultBox.style.display = "none";
+
+        pill1.classList.add("active");
+        pill2.classList.remove("active");
+        pill3.classList.remove("active");
+    } else if (step === 2) {
+        stepUrl.style.display = "none";
+        stepQuestions.style.display = "block";
+        resultBox.style.display = "none";
+
+        pill1.classList.add("active");
+        pill2.classList.add("active");
+        pill3.classList.remove("active");
+    } else {
+        stepUrl.style.display = "none";
+        stepQuestions.style.display = "none";
+        resultBox.style.display = "block";
+
+        pill1.classList.add("active");
+        pill2.classList.add("active");
+        pill3.classList.add("active");
+    }
+}
+
+function normaliseUrl(raw) {
+    let url = raw.trim();
+    if (!url) return "";
+    if (!/^https?:\/\//i.test(url)) {
+        url = "https://" + url;
+    }
+    return url;
+}
+
+function previewSite() {
+    const raw = document.getElementById("websiteUrl").value;
+    const url = normaliseUrl(raw);
+    const statusEl = document.getElementById("urlStatus");
+
+    if (!url) {
+        statusEl.textContent = "Please enter a website link first.";
+        statusEl.className = "status error";
+        return;
+    }
+    statusEl.textContent = "";
+    window.open(url, "_blank");
+}
+
+function analyzeUrlAndContinue() {
+    const raw = document.getElementById("websiteUrl").value;
+    const url = normaliseUrl(raw);
+    const statusEl = document.getElementById("urlStatus");
+
+    if (!url) {
+        statusEl.textContent = "Please enter a valid website URL to continue.";
+        statusEl.className = "status error";
+        return;
+    }
+
+    lastUrl = url;
+    statusEl.textContent = "We’ve analysed your link. Now answer 5 quick questions.";
+    statusEl.className = "status";
+
+    autoScore = computeAutoScore(url);
+
+    setStep(2);
+}
+
+function computeAutoScore(urlString) {
+    let score = 0;
+    let findings = [];
+
+    try {
+        const url = new URL(urlString);
+        const host = url.hostname.toLowerCase();
+        const path = url.pathname || "/";
+        const query = url.search || "";
+
+        // 1. HTTPS vs HTTP
+        if (url.protocol === "https:") {
+            score += 20;
+            findings.push('<li><span class="chip">🔒 Uses HTTPS — good for trust and security.</span></li>');
+        } else {
+            findings.push('<li><span class="chip bad">⚠ Uses HTTP — consider moving to HTTPS for trust.</span></li>');
+        }
+
+        // 2. Custom domain vs free host
+        const freeHosts = ["wordpress.com", "wixsite.com", "blogspot.com", "square.site"];
+        const isFreeHost = freeHosts.some(f => host.includes(f));
+
+        if (isFreeHost) {
+            score += 5;
+            findings.push('<li><span class="chip bad">⚠ Hosted on a free platform — can feel less professional.</span></li>');
+        } else {
+            score += 15;
+            findings.push('<li><span class="chip">🌐 Custom domain detected — more professional impression.</span></li>');
+        }
+
+        // 3. Path depth
+        const segments = path.split("/").filter(Boolean).length;
+        if (segments === 0) {
+            score += 10;
+            findings.push('<li><span class="chip">🏠 Simple root URL — good as a main landing page.</span></li>');
+        } else if (segments <= 2) {
+            score += 7;
+            findings.push('<li><span class="chip">🧭 Short, focused path — okay for a main page.</span></li>');
+        } else {
+            score += 3;
+            findings.push('<li><span class="chip bad">⚠ Long, nested path — may not be ideal as your main starting point.</span></li>');
+        }
+
+        // 4. Query parameters (clean vs messy)
+        if (!query) {
+            score += 5;
+            findings.push('<li><span class="chip">✨ Clean URL without tracking parameters.</span></li>');
+        } else if (query.length < 30) {
+            score += 3;
+            findings.push('<li><span class="chip">ℹ Has some parameters — still fairly clean.</span></li>');
+        } else {
+            findings.push('<li><span class="chip bad">⚠ Long tracking parameters — consider a cleaner link for first impressions.</span></li>');
+        }
+
+        // 5. Basic brand feel from hostname length
+        if (host.length <= 18) {
+            score += 5;
+            findings.push('<li><span class="chip">🏷 Short, readable domain — easier to remember.</span></li>');
+        } else {
+            findings.push('<li><span class="chip">ℹ Domain is a bit long — not a big issue, but shorter is easier to share.</span></li>');
+        }
+
+        // Cap at AUTO_MAX
+        if (score > AUTO_MAX) score = AUTO_MAX;
+
+        const urlSummary = document.getElementById("urlSummary");
+        urlSummary.innerHTML = `
+            <strong>Our quick look at your link:</strong><br/>
+            <strong>${urlString}</strong>
+            <ul>
+                ${findings.join("")}
+            </ul>
+        `;
+
+    } catch (e) {
+        // If URL parsing fails, keep score low and generic finding
+        const urlSummary = document.getElementById("urlSummary");
+        urlSummary.innerHTML = `
+            <strong>Our quick look at your link:</strong><br/>
+            <span class="chip bad">⚠ We couldn’t fully read this URL — please check the format.</span>
+        `;
+        score = 10; // small base score
+    }
+
+    return score;
+}
+
+function backToUrl() {
+    setStep(1);
+}
+
+function calculateSmartScore() {
+    const form = document.forms["quizForm"];
+    let manualTotal = 0;
+
+    for (let i = 1; i <= 5; i++) {
+        manualTotal += parseInt(form["q" + i].value);
+    }
+
+    // Scale manual (0–50)
+    const manualScore = (manualTotal / (5 * 10)) * MANUAL_MAX;
+
+    // Combine auto + manual (both already on 0–50 scale)
+    const combined = Math.round(autoScore + manualScore);
+    const percentage = Math.max(0, Math.min(100, combined)); // clamp 0–100
+
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    const riskLevel = document.getElementById("riskLevel");
+    const adviceText = document.getElementById("adviceText");
+
+    let risk = "";
+    let advice = "";
+    let riskClass = "";
+
+    if (percentage <= 40) {
+        risk = "🚨 Needs rescue — your site and link are likely confusing or weakening trust.";
+        advice = "<strong>Start here:</strong><br>• Use a clean HTTPS link as your main share link<br>• Make your home heading explain what you do in one line<br>• Choose ONE clear action (book / buy / contact) and highlight it<br>• Add at least 1–2 real testimonials or proof points<br>• Check your homepage on your phone and fix the obvious pain points";
+        riskClass = "high";
+    } else if (percentage <= 70) {
+        risk = "⚖ Decent, but leaving conversions and confidence on the table.";
+        advice = "<strong>Next steps:</strong><br>• Simplify your navigation and remove non-essential items<br>• Make your main CTA more prominent and benefit-focused<br>• Improve mobile spacing, font sizes and button tap areas<br>• Add more specific proof around your main offer<br>• Consider a focused UX audit to tighten flow and clarity";
+        riskClass = "medium";
+    } else {
+        risk = "✅ Strong foundation — your link and UX are already doing a lot right.";
+        advice = "<strong>Level up:</strong><br>• Refine microcopy (buttons, headings, form labels)<br>• Test different hero headlines or visuals for your main page<br>• Strengthen your proof with clearer before/after or results<br>• Map a simple journey: first visit → trust → action → follow-up<br>• A detailed UX review could unlock the last 10–20% of performance";
+        riskClass = "low";
+    }
+
+    scoreDisplay.innerHTML = `Smart UX Score: ${percentage}/100 <small>(link heuristics + your answers)</small>`;
+    riskLevel.className = "risk " + riskClass;
+    riskLevel.innerHTML = risk;
+    adviceText.innerHTML = advice;
+
+    setStep(3);
+}
+
+function requestAudit() {
+    const targetUrl = lastUrl || "";
+    const subject = encodeURIComponent("Website UX Audit Request");
+    const body = encodeURIComponent(
+        "Hi,\n\nI just used the Smart Website UX Check" +
+        (targetUrl ? " for this site:\n" + targetUrl : "") +
+        "\n\nI’d like to request a personalised UX audit and recommendations.\n\nThanks!"
+    );
+    // TODO: replace with your real email
+    window.location.href = `mailto:amanpeace52@gmail.com?subject=${subject}&body=${body}`;
+}
+
+// initialise
+setStep(1);
+</script>
+
+</body>
+</html>
