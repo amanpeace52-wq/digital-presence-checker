@@ -10,23 +10,33 @@
     :root{
       --bg:#020617;
       --card:#0b1220;
+      --card-soft:#020617;
       --accent:#22c55e;
+      --accent-soft:#22c55e22;
       --blue:#38bdf8;
       --text:#e5e7eb;
       --soft:#9ca3af;
       --border:#1f2937;
+      --danger:#f97316;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:radial-gradient(circle at top left,#22c55e22,#020617),
-                 radial-gradient(circle at bottom right,#38bdf822,#020617);
+      background:
+        radial-gradient(circle at top left,#22c55e22,#020617),
+        radial-gradient(circle at bottom right,#38bdf822,#020617);
       color:var(--text);
     }
     a{text-decoration:none;color:inherit}
     .wrap{max-width:1100px;margin:auto;padding:18px}
-    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:20px;
+    }
     .brand{display:flex;align-items:center;gap:10px}
     .logo{
       width:40px;height:40px;border-radius:14px;
@@ -34,8 +44,14 @@
       display:flex;align-items:center;justify-content:center;
       font-weight:700;color:#022c22;
     }
-    nav a{margin-left:12px;color:var(--soft);font-size:.9rem}
-    nav a:hover{color:white}
+    nav a{
+      margin-left:12px;
+      color:var(--soft);
+      font-size:.9rem;
+      padding:4px 8px;
+      border-radius:999px;
+    }
+    nav a:hover{color:white;background:#ffffff12}
 
     .card{
       background:var(--card);
@@ -47,6 +63,9 @@
 
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    @media(max-width:700px){
+      header{flex-direction:column;align-items:flex-start}
+    }
 
     h1{font-size:2rem;margin-bottom:10px}
     h2{font-size:1.4rem;margin-bottom:10px}
@@ -62,18 +81,90 @@
       border:none;
       display:inline-block;
       cursor:pointer;
-      margin-top:10px;
+      margin-top:8px;
     }
-    .btn.alt{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn.alt{
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .btn.small{
+      padding:6px 14px;
+      font-size:.8rem;
+      margin-top:6px;
+    }
 
     .pill{
       display:inline-block;
       font-size:.7rem;
       padding:3px 8px;
       border-radius:999px;
-      background:#22c55e22;
-      color:#86efac;
+      background:var(--accent-soft);
+      color:#bbf7d0;
       margin-bottom:6px;
+    }
+
+    .subpill{
+      display:inline-block;
+      font-size:.7rem;
+      padding:2px 6px;
+      border-radius:999px;
+      background:#38bdf822;
+      color:#bae6fd;
+      margin-left:6px;
+    }
+
+    .tool-card{
+      background:var(--card-soft);
+      border-radius:16px;
+      border:1px solid var(--border);
+      padding:14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .tool-footer{
+      margin-top:8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      font-size:.75rem;
+      color:var(--soft);
+    }
+
+    .services-wrapper{
+      border-radius:22px;
+      padding:18px;
+      background:radial-gradient(circle at top left,#22c55e15,transparent),
+                 radial-gradient(circle at bottom right,#38bdf815,transparent);
+      border:1px solid #1f2937;
+    }
+    .service-card{
+      background:#020617;
+      border-radius:18px;
+      border:1px solid #1f2937;
+      padding:14px 14px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .service-badge{
+      position:absolute;
+      top:10px;right:10px;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#22c55e33;
+      color:#bbf7d0;
+    }
+
+    .highlight-strip{
+      background:#0f172a;
+      border-radius:14px;
+      padding:10px 14px;
+      font-size:.85rem;
+      border:1px dashed #1f2937;
+      margin-top:8px;
     }
 
     .form input,.form textarea,.form select{
@@ -84,6 +175,7 @@
       background:#020617;
       color:var(--text);
       margin-bottom:10px;
+      font-size:.9rem;
     }
 
     footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
@@ -102,7 +194,7 @@
       </div>
     </div>
 
-    <!-- NAV: feels like multiple pages -->
+    <!-- NAV -->
     <nav>
       <a href="#home">Home</a>
       <a href="#about">My Story</a>
@@ -119,13 +211,26 @@
     <h1>The Internet, AI & You — Made Safer and Clearer.</h1>
     <p>
       AI, automation and always-online life are reshaping how we work, learn and parent.
-      I help people understand their digital risks and habits in simple, human language —
-      so you can feel safer, clearer and more in control.
+      The tools around us are getting smarter — but most people’s habits, passwords and
+      privacy settings haven’t caught up yet.
     </p>
+    <p>
+      I help you understand your digital risks and daily habits in simple, human language.
+      No panic. No judgment. Just calm, clear insight so you can feel:
+    </p>
+    <ul>
+      <li>safer when you click and share,</li>
+      <li>clearer about what’s visible about you online, and</li>
+      <li>more in control of how AI and technology fit into your life or business.</li>
+    </ul>
 
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;">
-      <a class="btn" href="quiz.html">Take 2-Minute Cyber Quiz</a>
-      <a class="btn alt" href="checklist.html">Use Digital Hygiene Checklist</a>
+      <a class="btn" href="quiz.html">Start 2-Minute Cyber Quiz</a>
+      <a class="btn alt" href="checklist.html">Open Digital Hygiene Checklist</a>
+    </div>
+    <div class="highlight-strip">
+      Not sure where to start? Try the quiz or checklist first.  
+      Then, if it feels right, you can book a review or coaching session.
     </div>
   </section>
 
@@ -133,19 +238,17 @@
   <section id="about" class="card">
     <h2>My Story</h2>
     <p>
-      I didn’t get into cyber security because I love machines.
-      I got into it because I saw how easily normal people — parents, students,
-      small business owners — were being left behind by a digital world that
-      keeps changing faster than their confidence.
+      I didn’t get into cyber security because I love machines. I got into it because I saw how
+      easily normal people — parents, students, small business owners — were being left behind
+      by a digital world that keeps changing faster than their confidence.
     </p>
     <p>
       In my work as a lecturer and PhD researcher, I kept hearing the same thing:
       <em>“I feel exposed, but I don’t even know what I should be worried about.”</em>
     </p>
     <p>
-      This lab is my answer to that: a calm space where we translate digital risk,
-      AI, UX and safety into everyday language — and practical actions you
-      can actually take.
+      This lab is my answer to that: a calm space where we translate digital risk, AI, UX and safety
+      into everyday language — and practical actions you can actually take.
     </p>
   </section>
 
@@ -153,9 +256,8 @@
   <section id="ai" class="card">
     <h2>AI Is Not Just a Buzzword — It Changes the Risk Map</h2>
     <p>
-      AI can write emails, mimic voices, generate fake images and scan huge amounts
-      of data in seconds. That’s exciting — but also uncomfortable when our digital
-      lives are already messy.
+      AI can write emails, mimic voices, generate fake images and scan huge amounts of data in seconds.
+      That’s powerful — and it works for everyone, including scammers and attackers.
     </p>
     <ul>
       <li>AI makes phishing emails look more realistic and personalised.</li>
@@ -164,100 +266,152 @@
       <li>Most people’s data is scattered across dozens of apps, forms and platforms.</li>
     </ul>
     <p>
-      The answer is not to fear AI, but to strengthen the human side:
+      The solution isn’t to avoid AI; it’s to strengthen the human side:
       <strong>digital hygiene, identity awareness, good UX and clear boundaries.</strong>
     </p>
+    <div class="highlight-strip">
+      Think of this as your digital health check space — where AI is acknowledged,
+      but you stay in charge.
+    </div>
   </section>
 
-  <!-- TOOL HUB (all tools incl. new Risk Score Generator) -->
+  <!-- TOOL HUB -->
   <section id="tools" class="card">
     <h2>Tools You Can Use Right Now</h2>
-    <p>These are simple, focused tools designed to give you a snapshot, not overwhelm you.</p>
+    <p>Short, focused tools designed to give you a snapshot — not overwhelm you.</p>
 
     <div class="grid">
-      <div>
-        <div class="pill">Identity & Privacy</div>
-        <h3><a href="digital-footprint.html">Digital Footprint Checker</a></h3>
-        <p>
-          See what’s publicly visible about you and your identity.
-          Helpful if you feel “too searchable” or unsure what others can see.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Identity & Privacy</div>
+          <h3>Digital Footprint Checker</h3>
+          <p>
+            See what’s publicly visible about you and your identity.
+            Helpful if you feel “too searchable” or unsure what others can see.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: 3–5 minutes</span>
+          <a class="btn small" href="digital-footprint.html">Start</a>
+        </div>
       </div>
 
-      <div>
-        <div class="pill">UX & Clarity</div>
-        <h3><a href="ux-checker.html">Website UX & Clarity Checker</a></h3>
-        <p>
-          A structured way to look at your website through your visitor’s eyes —
-          clarity, trust, navigation and first impressions.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">UX & Clarity</div>
+          <h3>Website UX & Clarity Checker</h3>
+          <p>
+            Look at your website through your visitor’s eyes — clarity, trust, navigation
+            and first impressions — without needing design jargon.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: 5–10 minutes</span>
+          <a class="btn small" href="ux-checker.html">Start</a>
+        </div>
       </div>
 
-      <div>
-        <div class="pill">Smart UX</div>
-        <h3><a href="smart-ux-checker.html">Smart UX Auto Checker</a></h3>
-        <p>
-          A more guided UX review with question-based prompts to help you
-          think through your user journey and friction points.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Smart UX</div>
+          <h3>Smart UX Auto Checker</h3>
+          <p>
+            A more guided UX review with question-based prompts to help you think through your
+            user journey and friction points step-by-step.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: ~10 minutes</span>
+          <a class="btn small" href="smart-ux-checker.html">Start</a>
+        </div>
       </div>
 
-      <div>
-        <div class="pill">Awareness</div>
-        <h3><a href="quiz.html">2-Minute Cyber Safety Quiz</a></h3>
-        <p>
-          Short, timed quiz to quickly sense where your cyber habits sit.
-          You get a simple awareness score and friendly next-step suggestions.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Awareness</div>
+          <h3>2-Minute Cyber Safety Quiz</h3>
+          <p>
+            Timed quiz to quickly sense where your cyber habits sit.
+            You get a simple awareness score and friendly next-step suggestions.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: 2 minutes</span>
+          <a class="btn small" href="quiz.html">Start</a>
+        </div>
       </div>
 
-      <div>
-        <div class="pill">Habits</div>
-        <h3><a href="checklist.html">Interactive Digital Hygiene Checklist</a></h3>
-        <p>
-          Tick through key areas like passwords, updates, backups and privacy.
-          Add notes and download a snapshot you can keep or bring to a session.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Habits</div>
+          <h3>Interactive Digital Hygiene Checklist</h3>
+          <p>
+            Tick through key areas like passwords, updates, backups and privacy.
+            Add notes and download a snapshot you can keep or bring to a session.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: 5–8 minutes</span>
+          <a class="btn small" href="checklist.html">Start</a>
+        </div>
       </div>
 
-      <div>
-        <div class="pill">Risk Profile</div>
-        <h3><a href="risk-score.html">Online Risk Score Generator</a></h3>
-        <p>
-          Answer a few short questions and get a simple risk band
-          (Low / Medium / High) with tailored suggestions and a call to action.
-        </p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Risk Profile</div>
+          <h3>Online Risk Score Generator</h3>
+          <p>
+            Answer a few short questions and get a simple risk band
+            (Low / Medium / High) with tailored suggestions and a gentle call to action.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>Est. time: 3 minutes</span>
+          <a class="btn small" href="risk-score.html">Start</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="card">
-    <h2>Personalised Services</h2>
-    <p>For when you want a real human to look at your specific situation.</p>
+  <!-- SERVICES (more standout) -->
+  <section id="services" class="card services-wrapper">
+    <h2>Personalised Services (Human Review, Not Just Tools)</h2>
+    <p>
+      These are for when you want a real person — not just a form — to look at your situation.
+      Every report and session is done by me, not outsourced.
+    </p>
 
     <div class="grid">
-      <div>
+      <div class="service-card">
+        <div class="service-badge">Great starter</div>
         <h3>UX & Website Clarity Review — $49</h3>
         <p>Perfect if your site feels messy, unclear or low-trust.</p>
         <ul>
           <li>Homepage + key page review</li>
           <li>Trust, messaging and first-impression check</li>
-          <li>Plain-language list of fixes</li>
+          <li>Plain-language list of “fix first” items</li>
         </ul>
+        <div class="highlight-strip">
+          Best for: solo professionals, small businesses, coaches, consultants.
+        </div>
       </div>
 
-      <div>
+      <div class="service-card">
+        <div class="service-badge">Deeper safety</div>
         <h3>Digital Footprint & Safety Review — $59</h3>
-        <p>Understand your exposure across the web.</p>
+        <p>Understand your exposure across the web in an AI-driven world.</p>
         <ul>
           <li>Public identity & visibility check</li>
           <li>Privacy and impersonation risk notes</li>
-          <li>Top 10 actions, prioritised</li>
+          <li>Top 10 actions, prioritised by urgency</li>
         </ul>
+        <div class="highlight-strip">
+          Best for: individuals who feel “too searchable”, parents, and people in public-facing roles.
+        </div>
       </div>
 
-      <div>
+      <div class="service-card">
+        <div class="service-badge">Ongoing support</div>
         <h3>Monthly Digital Support — from $99/month</h3>
         <p>For ongoing guidance as your digital life and AI tools evolve.</p>
         <ul>
@@ -265,6 +419,9 @@
           <li>Support on new tools, apps and changes</li>
           <li>Gentle accountability on your digital habits</li>
         </ul>
+        <div class="highlight-strip">
+          Best for: busy professionals, small business owners and families wanting a “trusted tech friend”.
+        </div>
       </div>
     </div>
   </section>
@@ -274,12 +431,20 @@
     <h2>Cyber Literacy Coaching (1-to-1)</h2>
     <p>
       Private, practical sessions for students, parents, professionals and small business owners.
-      Especially helpful if you feel “behind” with AI and modern tech.
+      Especially helpful if you feel “behind” with AI, apps and modern online life.
     </p>
     <ul>
       <li>30 minutes — $30 (basics, scams, passwords, phone safety)</li>
       <li>45 minutes — $45 (identity, privacy, social media & AI risks)</li>
       <li>60 minutes — $60 (full hygiene plan, tools, next-step roadmap)</li>
+    </ul>
+
+    <h3 style="margin-top:14px;">How coaching helps you</h3>
+    <ul>
+      <li>Turn vague anxiety (“I should be doing more…”) into a clear, simple plan.</li>
+      <li>Ask all the “silly” questions you’ve been holding back — in a safe space.</li>
+      <li>Understand how AI and new tools actually affect <em>your</em> life, not just in theory.</li>
+      <li>Leave with 2–3 concrete actions you can take immediately, not a huge to-do list.</li>
     </ul>
   </section>
 
