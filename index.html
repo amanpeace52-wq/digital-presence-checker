@@ -1,469 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<title>Aman P Kaur • A Safe Place to Understand Your Digital Life</title>
-<meta name="description" content="A calm, judgment-free space to understand your digital life, AI risks, cyber safety and online habits with Aman P Kaur."/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8"/>
+  <title>Aman P Kaur • A Safe Place to Understand Your Digital Life</title>
+  <meta name="description" content="A calm, judgment-free space to understand your digital life, AI risks, cyber safety and online habits with Aman P Kaur."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<style>
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --accent:#22c55e;
-  --accent-soft:#22c55e22;
-  --blue:#38bdf8;
-  --text:#e5e7eb;
-  --soft:#9ca3af;
-  --border:#1f2937;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-  background:
-    radial-gradient(circle at top left,#22c55e22,#020617),
-    radial-gradient(circle at bottom right,#38bdf822,#020617);
-  color:var(--text);
-}
-a{text-decoration:none;color:inherit}
-.wrap{max-width:1100px;margin:auto;padding:18px}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:20px
-}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{
-  width:40px;height:40px;border-radius:14px;
-  background:linear-gradient(135deg,var(--accent),var(--blue));
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;color:#022c22;
-}
+  <style>
+    :root{
+      --bg:#020617;
+      --card:#0b1220;
+      --card-soft:#020617;
+      --accent:#22c55e;
+      --accent-soft:#22c55e22;
+      --blue:#38bdf8;
+      --text:#e5e7eb;
+      --soft:#9ca3af;
+      --border:#1f2937;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:
+        radial-gradient(circle at top left,#22c55e22,#020617),
+        radial-gradient(circle at bottom right,#38bdf822,#020617);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:20px;
+    }
+    @media(max-width:768px){
+      header{flex-direction:column;align-items:flex-start}
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--blue));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#022c22;
+    }
+    nav a{
+      margin-left:10px;
+      color:var(--soft);
+      font-size:.9rem;
+      padding:4px 8px;
+      border-radius:999px;
+    }
+    nav a:hover{color:white;background:#ffffff12}
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:26px;
-  animation:fadeIn .8s ease both;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      margin-bottom:26px;
+      animation:fadeIn .8s ease both;
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
-}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){
+      .grid-2,.grid-3{grid-template-columns:1fr}
+    }
 
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+    h1{font-size:2rem;margin-bottom:10px}
+    h2{font-size:1.4rem;margin-bottom:10px}
+    h3{font-size:1.05rem;margin-bottom:6px}
+    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
 
-h1{font-size:2rem;margin-bottom:10px}
-h2{font-size:1.4rem;margin-bottom:10px}
-h3{font-size:1.05rem;margin-bottom:6px}
-p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
+    .btn{
+      background:linear-gradient(135deg,var(--accent),#16a34a);
+      padding:10px 20px;
+      border-radius:999px;
+      color:#022c22;
+      font-size:.9rem;
+      border:none;
+      cursor:pointer;
+      margin-top:8px;
+      display:inline-block;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px);opacity:.95}
+    .btn.small{padding:6px 14px;font-size:.8rem;margin-top:4px;}
 
-.btn{
-  background:linear-gradient(135deg,var(--accent),#16a34a);
-  padding:10px 20px;
-  border-radius:999px;
-  color:#022c22;
-  font-size:.9rem;
-  border:none;
-  cursor:pointer;
-  margin-top:8px;
-  transition:.2s ease;
-}
-.btn:hover{transform:translateY(-1px);opacity:.95}
+    .pill{
+      display:inline-block;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:#bbf7d0;
+      margin-bottom:6px;
+    }
 
-.step-tab{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#020617;
-  border:1px solid #1f2937;
-  border-radius:16px;
-  padding:16px;
-  transition:.25s ease;
-}
-.step-tab:hover{border-color:#22c55e55}
+    .reassure{
+      background:#22c55e11;
+      border:1px dashed #22c55e55;
+      border-radius:14px;
+      padding:12px;
+      font-size:.85rem;
+      color:#bbf7d0;
+      margin-top:12px;
+    }
 
-.step-badge{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#022c22;
-  font-weight:600;
-  border-radius:999px;
-  padding:4px 12px;
-  font-size:.75rem;
-}
+    .tool-card{
+      background:var(--card-soft);
+      border-radius:16px;
+      border:1px solid var(--border);
+      padding:14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .tool-footer{
+      margin-top:8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      font-size:.75rem;
+      color:var(--soft);
+    }
 
-.progress-strip{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-.progress-step{
-  flex:1;
-  height:6px;
-  background:#1f2937;
-  border-radius:999px;
-  overflow:hidden;
-}
-.progress-fill{
-  height:100%;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  width:0%;
-}
+    .services-wrapper{
+      border-radius:22px;
+      padding:18px;
+      background:radial-gradient(circle at top left,#22c55e15,transparent),
+                 radial-gradient(circle at bottom right,#38bdf815,transparent);
+      border:1px solid #1f2937;
+    }
+    .service-card{
+      background:#020617;
+      border-radius:18px;
+      border:1px solid #1f2937;
+      padding:14px 14px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .service-badge{
+      position:absolute;
+      top:10px;right:10px;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#22c55e33;
+      color:#bbf7d0;
+    }
+    .highlight-strip{
+      background:#0f172a;
+      border-radius:14px;
+      padding:10px 14px;
+      font-size:.85rem;
+      border:1px dashed #1f2937;
+      margin-top:8px;
+      color:#9ca3af;
+    }
 
-.reflect-box select,.reflect-box textarea{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  background:#020617;
-  border:1px solid #1f2937;
-  border-radius:10px;
-  color:#e5e7eb;
-}
+    .form input,.form textarea,.form select{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#020617;
+      color:var(--text);
+      margin-bottom:10px;
+      font-size:.9rem;
+    }
 
-.feedback{
-  margin-top:12px;
-  font-size:.9rem;
-  color:#86efac;
-}
+    /* Quick checks mini-section */
+    .step-tab{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:#020617;
+      border:1px solid #1f2937;
+      border-radius:16px;
+      padding:12px;
+      gap:8px;
+    }
+    .step-badge{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#022c22;
+      font-weight:600;
+      border-radius:999px;
+      padding:3px 10px;
+      font-size:.75rem;
+    }
 
-.reassure{
-  background:#22c55e11;
-  border:1px dashed #22c55e55;
-  border-radius:14px;
-  padding:12px;
-  font-size:.85rem;
-  color:#bbf7d0;
-  margin-top:12px;
-}
+    .thermo-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:8px;
+    }
+    .thermo-bar{
+      width:100%;
+    }
+    .thermo-labels{
+      display:flex;
+      justify-content:space-between;
+      font-size:.75rem;
+      color:#9ca3af;
+    }
+    .breathe-display{
+      font-size:.9rem;
+      margin-top:8px;
+      color:#e5e7eb;
+    }
+    .breathe-timer{
+      font-size:1.4rem;
+      margin-top:4px;
+    }
+    .breathe-note{
+      font-size:.8rem;
+      color:#9ca3af;
+      margin-top:4px;
+    }
+    .feedback{
+      margin-top:8px;
+      font-size:.9rem;
+      color:#86efac;
+    }
 
-/* Digital Stress Thermometer */
-.thermo-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:8px;
-}
-.thermo-labels{
-  display:flex;
-  justify-content:space-between;
-  font-size:.75rem;
-  color:#9ca3af;
-}
-.thermo-bar{
-  width:100%;
-}
-
-/* Breathing section */
-.breathe-display{
-  font-size:1.1rem;
-  margin-top:10px;
-  color:#e5e7eb;
-}
-.breathe-timer{
-  font-size:1.8rem;
-  margin-top:6px;
-  font-weight:600;
-}
-.breathe-note{
-  font-size:.85rem;
-  color:#9ca3af;
-  margin-top:6px;
-}
-
-footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
-</style>
+    footer{text-align:center;font-size:.75rem;color:#6b7280;margin-top:40px}
+  </style>
 </head>
 
 <body>
 <div class="wrap">
 
-<header>
-  <div class="brand">
-    <div class="logo">AK</div>
-    <div>
-      <strong>Aman P Kaur</strong><br/>
-      <span style="font-size:.75rem;color:var(--soft)">Digital Safety • AI • Cyber Literacy</span>
-    </div>
-  </div>
-</header>
-
-<!-- 🌿 HUMAN HERO -->
-<section class="card">
-  <h1>You’re in the Right Place</h1>
-  <p>
-    If the internet ever feels overwhelming…  
-    If AI feels powerful but slightly uncomfortable…  
-    If you’ve ever thought, <em>“I should probably be doing more to stay safe online”</em> —
-    this space was built for you.
-  </p>
-
-  <p>
-    This is a calm, judgment-free space to understand your digital life,
-    at your pace, in simple language, with real support when you’re ready.
-  </p>
-
-  <div class="reassure">
-    You don’t need to be technical. You don’t need to know the right words.
-    You just need to start where you are.
-  </div>
-</section>
-
-<!-- 🤖 AI & YOU (gentle, emoji-based) -->
-<section class="card">
-  <h2>AI & You — In Simple Terms</h2>
-  <p>AI is now part of everyday life, even if you never asked for it:</p>
-  <ul>
-    <li>🤖 Some emails, chats and posts you see may be written by AI.</li>
-    <li>🧠 AI tools can quickly join dots between bits of information about you.</li>
-    <li>🔍 Scammers can use AI to make fake messages look more believable.</li>
-    <li>🕊️ But AI can also help you stay safer, more organised and less overwhelmed — if used well.</li>
-  </ul>
-  <p>
-    My work sits in that middle space:  
-    using AI wisely, understanding its risks, and keeping <strong>you</strong> in control.
-  </p>
-</section>
-
-<!-- 🌡️ DIGITAL STRESS THERMOMETER -->
-<section class="card">
-  <h2>Quick Check: Your Digital Stress Thermometer</h2>
-  <p>
-    Without overthinking it — where would you place yourself <strong>right now</strong>
-    with your digital life and AI?
-  </p>
-
-  <div class="thermo-row">
-    <span>🙂</span>
-    <input type="range" min="1" max="5" value="3" id="thermo" class="thermo-bar" oninput="updateThermo()">
-    <span>😵‍💫</span>
-  </div>
-  <div class="thermo-labels">
-    <span>Calm</span>
-    <span>Stretched</span>
-    <span>Overloaded</span>
-  </div>
-  <p id="thermoText" style="margin-top:8px;font-size:.9rem;color:#e5e7eb;">
-    You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.
-  </p>
-</section>
-
-<!-- 🟢 STEP JOURNEY -->
-<section class="card">
-  <h2>Your Gentle Starting Path</h2>
-  <p>Two simple steps. No pressure. Just awareness.</p>
-
-  <div class="grid">
-    <div class="step-tab">
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
       <div>
-        <div class="step-badge">Step 1</div>
-        <h3>2-Minute Cyber Awareness Quiz</h3>
-        <p>Quick check of your everyday digital habits.</p>
+        <strong>Aman P Kaur</strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Safety • UX • AI & Cyber Literacy</span>
       </div>
-      <a class="btn" href="quiz.html">Start</a>
     </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">My Story</a>
+      <a href="#ai">AI & You</a>
+      <a href="#quick">Quick Checks</a>
+      <a href="#tools">Tools</a>
+      <a href="#services">Services</a>
+      <a href="#coaching">Coaching</a>
+      <a href="#enquiry">Contact</a>
+    </nav>
+  </header>
 
-    <div class="step-tab">
+  <!-- HERO -->
+  <section id="home" class="card">
+    <h1>You’re in the Right Place</h1>
+    <p>
+      If the internet ever feels overwhelming…  
+      If AI feels powerful but slightly uncomfortable…  
+      If you’ve ever thought, <em>“I should probably be doing more to stay safe online”</em> —
+      this space was built for you.
+    </p>
+    <p>
+      This is a calm, judgment-free space to understand your digital life,
+      at your pace, in simple language, with real support when you’re ready.
+    </p>
+    <div class="reassure">
+      You don’t need to be technical. You don’t need to know the right words.
+      You just need to start where you are.
+    </div>
+  </section>
+
+  <!-- MY STORY -->
+  <section id="about" class="card">
+    <h2>My Story</h2>
+    <p>
+      I didn’t get into cyber security because I love machines. I got into it because I saw how easily
+      normal people — parents, students, small business owners — were being left behind by a digital world
+      that keeps changing faster than their confidence.
+    </p>
+    <p>
+      In my work as a lecturer and PhD researcher, I kept hearing the same thing:
+      <em>“I feel exposed, but I don’t even know what I should be worried about.”</em>
+    </p>
+    <p>
+      This lab is my answer to that: a calm space where we translate digital risk, AI, UX and safety
+      into everyday language — and practical actions you can actually take.
+    </p>
+  </section>
+
+  <!-- AI & YOU -->
+  <section id="ai" class="card">
+    <h2>AI & You — In Simple Terms</h2>
+    <p>AI is now part of everyday life, even if you never asked for it:</p>
+    <ul>
+      <li>🤖 Some emails, chats and posts you see may be written by AI.</li>
+      <li>🧠 AI tools can quickly join dots between bits of information about you.</li>
+      <li>🔍 Scammers can use AI to make fake messages look more believable.</li>
+      <li>🕊️ But AI can also help you stay safer, more organised and less overwhelmed — if used well.</li>
+    </ul>
+    <p>
+      My work sits in that middle space: using AI wisely, understanding its risks,
+      and keeping <strong>you</strong> in control.
+    </p>
+  </section>
+
+  <!-- QUICK CHECKS (small combined section) -->
+  <section id="quick" class="card">
+    <h2>Quick Self-Checks (Small but Powerful)</h2>
+    <p>
+      If you only have a few minutes, this corner is enough to get a meaningful snapshot and a little more calm.
+    </p>
+
+    <!-- Row 1: Thermometer + Steps -->
+    <div class="grid-2" style="margin-top:8px;">
       <div>
-        <div class="step-badge">Step 2</div>
-        <h3>Digital Hygiene Checklist</h3>
-        <p>Slow, practical review of your real-world digital life.</p>
+        <h3>1. Digital Stress Thermometer</h3>
+        <p style="font-size:.9rem;">
+          Without overthinking it — where would you place yourself <strong>right now</strong> with your digital life and AI?
+        </p>
+        <div class="thermo-row">
+          <span>🙂</span>
+          <input type="range" min="1" max="5" value="3" id="thermo" class="thermo-bar" oninput="updateThermo()">
+          <span>😵‍💫</span>
+        </div>
+        <div class="thermo-labels">
+          <span>Calm</span><span>Stretched</span><span>Overloaded</span>
+        </div>
+        <p id="thermoText" style="margin-top:6px;font-size:.9rem;color:#e5e7eb;">
+          You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.
+        </p>
       </div>
-      <a class="btn" href="checklist.html">Open</a>
+
+      <div>
+        <h3>2. Two-Step Awareness Path</h3>
+        <div class="step-tab" style="margin-bottom:8px;">
+          <div>
+            <div class="step-badge">Step 1</div>
+            <p style="margin:4px 0;font-size:.9rem;">Smart Cyber Awareness Quiz</p>
+          </div>
+          <a class="btn small" href="quiz.html">Start</a>
+        </div>
+        <div class="step-tab">
+          <div>
+            <div class="step-badge">Step 2</div>
+            <p style="margin:4px 0;font-size:.9rem;">Digital Hygiene Checklist</p>
+          </div>
+          <a class="btn small" href="checklist.html">Open</a>
+        </div>
+        <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
+          Do them in order when you have a spare moment. They pair well together.
+        </p>
+      </div>
     </div>
-  </div>
 
-  <!-- Progress Indicator -->
-  <div class="progress-strip">
-    <div class="progress-step"><div class="progress-fill" id="bar1" style="width:33%"></div></div>
-    <div class="progress-step"><div class="progress-fill" id="bar2" style="width:0%"></div></div>
-    <div class="progress-step"><div class="progress-fill" id="bar3" style="width:0%"></div></div>
-  </div>
+    <!-- Row 2: Breathing + Reflection -->
+    <div class="grid-2" style="margin-top:16px;">
+      <div>
+        <h3>3. 30-Second Digital Pause</h3>
+        <p style="font-size:.9rem;">
+          Before you rush into decisions, give your nervous system a tiny reset.
+        </p>
+        <button class="btn small" type="button" onclick="startBreathing()">Start 30s reset</button>
+        <div class="breathe-display" id="breatheText">Press start when you’re ready.</div>
+        <div class="breathe-timer" id="breatheTimer"></div>
+        <div class="breathe-note">
+          You can close your eyes if it feels safe, or simply soften your gaze.
+        </div>
+      </div>
 
-  <p style="margin-top:6px;font-size:.85rem;color:#9ca3af;">
-    Step 1 → Step 2 → Self-Reflection → Optional Support
-  </p>
-</section>
+      <div>
+        <h3>4. Reflection & Gentle Feedback</h3>
+        <p style="font-size:.9rem;">
+          After the quiz and checklist, how do you feel about your digital life right now?
+        </p>
+        <select id="reflection" style="width:100%;padding:8px;border-radius:10px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;">
+          <option value="">Choose what feels closest</option>
+          <option value="overwhelmed">A bit overwhelmed</option>
+          <option value="aware">More aware than before</option>
+          <option value="motivated">Motivated to improve</option>
+          <option value="confident">Mostly confident already</option>
+        </select>
+        <textarea id="concern" placeholder="One small worry or thought (optional)" style="width:100%;margin-top:6px;padding:8px;border-radius:10px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;"></textarea>
+        <button class="btn small" type="button" onclick="generateFeedback()">Get reflection feedback</button>
+        <div id="feedback" class="feedback"></div>
+        <p style="font-size:.8rem;color:#9ca3af;margin-top:4px;">
+          Your reflection will be copied into the contact form if you decide to reach out.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<!-- 🌬️ CALMING BREATHING / PAUSE -->
-<section class="card">
-  <h2>30-Second Digital Pause</h2>
-  <p>
-    Before you rush into decisions, give your nervous system a moment.
-    This tiny breathing exercise can make everything feel a little lighter.
-  </p>
+  <!-- TOOLS HUB -->
+  <section id="tools" class="card">
+    <h2>Tools You Can Use Right Now</h2>
+    <p>Short, focused tools designed to give you a snapshot — not overwhelm you.</p>
 
-  <button class="btn" type="button" onclick="startBreathing()">Start 30-second reset</button>
-  <div class="breathe-display" id="breatheText">Press start when you’re ready.</div>
-  <div class="breathe-timer" id="breatheTimer"></div>
-  <div class="breathe-note">
-    You can close your eyes if it feels safe, or simply soften your gaze.
-  </div>
-</section>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="tool-card">
+        <div>
+          <div class="pill">Identity & Privacy</div>
+          <h3>Digital Footprint Checker</h3>
+          <p>
+            See what’s publicly visible about you and your identity.
+            Helpful if you feel “too searchable” or unsure what others can see.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>3–5 minutes</span>
+          <a class="btn small" href="digital-footprint.html">Start</a>
+        </div>
+      </div>
 
-<!-- 🧠 SELF REFLECTION -->
-<section class="card">
-  <h2>Pause & Reflect</h2>
-  <p>How did the quiz and checklist make you feel?</p>
+      <div class="tool-card">
+        <div>
+          <div class="pill">UX & Clarity</div>
+          <h3>Website UX & Clarity Checker</h3>
+          <p>
+            Look at your website through your visitor’s eyes — clarity, trust,
+            navigation and first impressions — without needing design jargon.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>5–10 minutes</span>
+          <a class="btn small" href="ux-checker.html">Start</a>
+        </div>
+      </div>
 
-  <div class="reflect-box">
-    <select id="reflection">
-      <option value="">Choose what feels closest</option>
-      <option value="overwhelmed">A bit overwhelmed</option>
-      <option value="aware">More aware than before</option>
-      <option value="motivated">Motivated to improve</option>
-      <option value="confident">Mostly confident already</option>
-    </select>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Smart UX</div>
+          <h3>Smart UX Auto Checker</h3>
+          <p>
+            A more guided UX review with question-based prompts to help you think
+            through your user journey and friction points step-by-step.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>~10 minutes</span>
+          <a class="btn small" href="smart-ux-checker.html">Start</a>
+        </div>
+      </div>
 
-    <textarea id="concern" placeholder="You can share one small worry or thought (optional)"></textarea>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Awareness</div>
+          <h3>Smart Cyber Awareness Quiz</h3>
+          <p>
+            Scenario-based quiz covering passwords, messages, devices, social media,
+            AI content, money and family.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>3–5 minutes</span>
+          <a class="btn small" href="quiz.html">Start</a>
+        </div>
+      </div>
 
-    <button class="btn" onclick="generateFeedback()">Get My Reflection Feedback</button>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Habits</div>
+          <h3>Digital Hygiene Checklist</h3>
+          <p>
+            Tick through key areas like passwords, updates, backups and privacy.
+            Add notes and download a snapshot you can keep or bring to a session.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>5–8 minutes</span>
+          <a class="btn small" href="checklist.html">Start</a>
+        </div>
+      </div>
 
-    <div id="feedback" class="feedback"></div>
-  </div>
-</section>
+      <div class="tool-card">
+        <div>
+          <div class="pill">Risk Profile</div>
+          <h3>Online Risk Score Generator</h3>
+          <p>
+            Answer a few short questions and get a simple risk band
+            (Low / Medium / High) with tailored suggestions and a gentle call to action.
+          </p>
+        </div>
+        <div class="tool-footer">
+          <span>3 minutes</span>
+          <a class="btn small" href="risk-score.html">Start</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- 💬 CONTACT -->
-<section class="card">
-  <h2>Want a Real Human to Walk This With You?</h2>
-  <p>
-    If something from the quiz, checklist, thermometer or reflection stood out — you can share it here.
-    Your reflection will already be attached for me to understand you better.
-  </p>
+  <!-- SERVICES -->
+  <section id="services" class="card services-wrapper">
+    <h2>Personalised Services (Human Review, Not Just Tools)</h2>
+    <p>
+      These are for when you want a real person — not just a form — to look at your situation.
+      Every report and session is done by me, not outsourced.
+    </p>
 
-  <form action="https://formspree.io/f/mvgeqljk" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="_replyto" placeholder="Your email" required>
-    <textarea id="finalMessage" name="message" placeholder="Your message..."></textarea>
-    <button class="btn">Send</button>
-  </form>
-</section>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="service-card">
+        <div class="service-badge">Great starter</div>
+        <h3>UX & Website Clarity Review — $49</h3>
+        <p>Perfect if your site feels messy, unclear or low-trust.</p>
+        <ul>
+          <li>Homepage + key page review</li>
+          <li>Trust, messaging and first-impression check</li>
+          <li>Plain-language list of “fix first” items</li>
+        </ul>
+        <div class="highlight-strip">
+          Best for: solo professionals, small businesses, coaches, consultants.
+        </div>
+      </div>
 
-<footer>
-  © <span id="year"></span> Aman P Kaur • Digital Safety & AI Awareness
-</footer>
+      <div class="service-card">
+        <div class="service-badge">Deeper safety</div>
+        <h3>Digital Footprint & Safety Review — $59</h3>
+        <p>Understand your exposure across the web in an AI-driven world.</p>
+        <ul>
+          <li>Public identity & visibility check</li>
+          <li>Privacy and impersonation risk notes</li>
+          <li>Top 10 actions, prioritised by urgency</li>
+        </ul>
+        <div class="highlight-strip">
+          Best for: individuals who feel “too searchable”, parents, and people in public-facing roles.
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">Ongoing support</div>
+        <h3>Monthly Digital Support — from $99/month</h3>
+        <p>For ongoing guidance as your digital life and AI tools evolve.</p>
+        <ul>
+          <li>Monthly 30-min check-in</li>
+          <li>Support on new tools, apps and changes</li>
+          <li>Gentle accountability on your digital habits</li>
+        </ul>
+        <div class="highlight-strip">
+          Best for: busy professionals, small business owners and families wanting a “trusted tech friend”. 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHING -->
+  <section id="coaching" class="card">
+    <h2>Cyber Literacy Coaching (1-to-1)</h2>
+    <p>
+      Private, practical sessions for students, parents, professionals and small business owners.
+      Especially helpful if you feel “behind” with AI, apps and modern online life.
+    </p>
+    <ul>
+      <li>30 minutes — $30 (basics, scams, passwords, phone safety)</li>
+      <li>45 minutes — $45 (identity, privacy, social media & AI risks)</li>
+      <li>60 minutes — $60 (full hygiene plan, tools, next-step roadmap)</li>
+    </ul>
+
+    <h3 style="margin-top:14px;">How coaching helps you</h3>
+    <ul>
+      <li>Turn vague anxiety (“I should be doing more…”) into a clear, simple plan.</li>
+      <li>Ask all the “silly” questions you’ve been holding back — in a safe space.</li>
+      <li>Understand how AI and new tools actually affect <em>your</em> life, not just in theory.</li>
+      <li>Leave with 2–3 concrete actions you can take immediately, not a huge to-do list.</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="enquiry" class="card">
+    <h2>Want a Real Human to Walk This With You?</h2>
+    <p>
+      If something from the quiz, checklist, thermometer or reflection stood out — you can share it here.
+      Your reflection will already be added if you’ve used the feedback button above.
+    </p>
+    <form class="form" action="https://formspree.io/f/mvgeqljk" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="_replyto" placeholder="Your email" required>
+      <textarea id="finalMessage" name="message" placeholder="Your message..."></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Aman P Kaur · Digital Safety & AI-Aware Cyber Literacy
+  </footer>
 
 </div>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-/* 🌡️ Digital Stress Thermometer Logic */
-function updateThermo(){
-  const val = parseInt(document.getElementById("thermo").value, 10);
-  const text = document.getElementById("thermoText");
-  let msg = "";
-
-  if(val === 1){
-    msg = "You’re feeling quite calm around your digital life. That’s a lovely place to be — stay gently curious and keep checking in with yourself.";
-  } else if(val === 2){
-    msg = "You’re mostly okay, with a few small worries. A couple of simple changes can give you even more peace of mind.";
-  } else if(val === 3){
-    msg = "You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.";
-  } else if(val === 4){
-    msg = "You’re feeling stretched. This is your sign to slow down, tidy a few basics, and not try to fix everything in one day.";
-  } else {
-    msg = "You’re feeling overloaded. You don’t have to fix it all alone — even one supportive conversation can make a big difference.";
-  }
-  text.textContent = msg;
-}
-
-/* 🌬️ Breathing Exercise Logic */
-let breatheInterval = null;
-function startBreathing(){
-  const text = document.getElementById("breatheText");
-  const timerEl = document.getElementById("breatheTimer");
-  let timeLeft = 30;
-  let phase = 0; // 0=in, 1=hold, 2=out
-
-  if(breatheInterval){
-    clearInterval(breatheInterval);
-  }
-
-  function setPhaseMessage(){
-    if(phase === 0){
-      text.textContent = "Breathe in gently through your nose...";
-    } else if(phase === 1){
-      text.textContent = "Hold softly...";
+  // Thermometer
+  function updateThermo(){
+    const val = parseInt(document.getElementById("thermo").value, 10);
+    const text = document.getElementById("thermoText");
+    let msg = "";
+    if(val === 1){
+      msg = "You’re feeling quite calm around your digital life. That’s a lovely place to be — stay gently curious and keep checking in with yourself.";
+    } else if(val === 2){
+      msg = "You’re mostly okay, with a few small worries. A couple of simple changes can give you even more peace of mind.";
+    } else if(val === 3){
+      msg = "You’re somewhere in the middle — aware, but not fully at ease yet. That’s a very normal place to be.";
+    } else if(val === 4){
+      msg = "You’re feeling stretched. This is your sign to slow down, tidy a few basics, and not try to fix everything in one day.";
     } else {
-      text.textContent = "Breathe out slowly through your mouth...";
+      msg = "You’re feeling overloaded. You don’t have to fix it all alone — even one supportive conversation can make a big difference.";
     }
+    text.textContent = msg;
   }
 
-  setPhaseMessage();
-  timerEl.textContent = timeLeft + "s";
+  // Breathing exercise
+  let breatheInterval = null;
+  function startBreathing(){
+    const text = document.getElementById("breatheText");
+    const timerEl = document.getElementById("breatheTimer");
+    let timeLeft = 30;
+    let phase = 0; // 0=in, 1=hold, 2=out
 
-  breatheInterval = setInterval(()=>{
-    timeLeft--;
+    if(breatheInterval){
+      clearInterval(breatheInterval);
+    }
+
+    function setPhaseMessage(){
+      if(phase === 0){
+        text.textContent = "Breathe in gently through your nose...";
+      } else if(phase === 1){
+        text.textContent = "Hold softly...";
+      } else {
+        text.textContent = "Breathe out slowly through your mouth...";
+      }
+    }
+
+    setPhaseMessage();
     timerEl.textContent = timeLeft + "s";
 
-    // Change phase every 4 seconds: in (4s) → hold (4s) → out (4s)…
-    const cyclePos = (30 - timeLeft) % 12;
-    if(cyclePos === 0){
-      phase = 0;
-      setPhaseMessage();
-    }else if(cyclePos === 4){
-      phase = 1;
-      setPhaseMessage();
-    }else if(cyclePos === 8){
-      phase = 2;
-      setPhaseMessage();
+    breatheInterval = setInterval(()=>{
+      timeLeft--;
+      timerEl.textContent = timeLeft + "s";
+
+      const cyclePos = (30 - timeLeft) % 12;
+      if(cyclePos === 0){
+        phase = 0; setPhaseMessage();
+      } else if(cyclePos === 4){
+        phase = 1; setPhaseMessage();
+      } else if(cyclePos === 8){
+        phase = 2; setPhaseMessage();
+      }
+
+      if(timeLeft <= 0){
+        clearInterval(breatheInterval);
+        breatheInterval = null;
+        text.textContent = "Notice how your body feels now. You can repeat this any time you need a reset.";
+        timerEl.textContent = "";
+      }
+    },1000);
+  }
+
+  // Reflection + auto-fill
+  function generateFeedback(){
+    const feeling = document.getElementById("reflection").value;
+    const concern = document.getElementById("concern").value.trim();
+    const output = document.getElementById("feedback");
+    const finalBox = document.getElementById("finalMessage");
+
+    if(!feeling){
+      output.innerHTML = "Take your time — choose the option that feels closest to you.";
+      return;
     }
 
-    if(timeLeft <= 0){
-      clearInterval(breatheInterval);
-      breatheInterval = null;
-      text.textContent = "Notice how your body feels now. You can repeat this any time you need a reset.";
-      timerEl.textContent = "";
+    let msg = "";
+    if(feeling === "overwhelmed"){
+      msg = "Feeling overwhelmed is completely human. The fact that you showed up already means you’re moving in the right direction.";
+    }else if(feeling === "aware"){
+      msg = "Awareness is the first real shift. You now see what you couldn’t see before — and that’s powerful.";
+    }else if(feeling === "motivated"){
+      msg = "That motivation you feel is exactly what creates lasting change. Start small — momentum will follow.";
+    }else if(feeling === "confident"){
+      msg = "Confidence with curiosity is the healthiest place to be. Keep checking in as tools and AI evolve.";
     }
-  },1000);
-}
 
-/* 🧠 Reflection + auto-fill enquiry message */
-function generateFeedback(){
-  const feeling = document.getElementById("reflection").value;
-  const concern = document.getElementById("concern").value.trim();
-  const output = document.getElementById("feedback");
-  const finalBox = document.getElementById("finalMessage");
+    output.innerHTML = msg;
 
-  if(!feeling){
-    output.innerHTML = "Take your time — choose the option that feels closest to you.";
-    return;
+    let message = "My reflection after trying the tools:\n";
+    message += "Feeling: " + feeling + "\n";
+    if(concern){
+      message += "Note: " + concern + "\n";
+    }
+    const thermoVal = parseInt(document.getElementById("thermo").value, 10);
+    if(thermoVal){
+      message += "Digital stress level (1–5): " + thermoVal + "\n";
+    }
+
+    finalBox.value = message;
   }
-
-  let msg = "";
-  if(feeling === "overwhelmed"){
-    msg = "Feeling overwhelmed is completely human. The fact that you showed up already means you’re moving in the right direction.";
-  }else if(feeling === "aware"){
-    msg = "Awareness is the first real shift. You now see what you couldn’t see before — and that’s powerful.";
-  }else if(feeling === "motivated"){
-    msg = "That motivation you feel is exactly what creates lasting change. Start small — momentum will follow.";
-  }else if(feeling === "confident"){
-    msg = "Confidence with curiosity is the healthiest place to be. Keep checking in as tools and AI evolve.";
-  }
-
-  output.innerHTML = msg;
-
-  let message = "My reflection after trying the tools:\n";
-  message += "Feeling: " + feeling + "\n";
-  if(concern){
-    message += "Note: " + concern + "\n";
-  }
-
-  // If thermometer was used, include that too
-  const thermoVal = parseInt(document.getElementById("thermo").value, 10);
-  if(thermoVal){
-    message += "Digital stress level (1–5): " + thermoVal + "\n";
-  }
-
-  finalBox.value = message;
-}
 </script>
 
 </body>
