@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>Digital Footprint Checker • Free & Smart Premium Snapshot</title>
+  <title>Digital Footprint Checker • Free Check + Smart Snapshot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <style>
     :root{
       --bg:#020617;
       --card:#050816;
-      --card-soft:#020617;
       --accent:#22c55e;
       --accent-soft:#22c55e22;
       --blue:#38bdf8;
@@ -28,7 +27,7 @@
       color:var(--text);
     }
     a{text-decoration:none;color:#38bdf8}
-    .wrap{max-width:1000px;margin:auto;padding:20px 18px 40px}
+    .wrap{max-width:980px;margin:auto;padding:20px 18px 40px}
     .card{
       background:var(--card);
       border-radius:22px;
@@ -51,6 +50,13 @@
       color:#bbf7d0;
       margin-bottom:6px;
     }
+    .section-label{
+      font-size:.8rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:#9ca3af;
+      margin-bottom:4px;
+    }
     .muted{font-size:.8rem;color:#9ca3af}
 
     .grid-2{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}
@@ -71,13 +77,15 @@
     }
     .btn:hover{transform:translateY(-2px) scale(1.02);opacity:.96}
     .btn.small{padding:6px 14px;font-size:.8rem;margin-top:4px;}
-
-    .section-label{
-      font-size:.8rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      color:#9ca3af;
-      margin-bottom:4px;
+    .btn.outline{
+      background:transparent;
+      color:#e5e7eb;
+      border:1px solid #64748b;
+      box-shadow:none;
+    }
+    .btn.outline:hover{
+      border-color:#22c55e;
+      color:#bbf7d0;
     }
 
     input[type="text"],
@@ -129,10 +137,6 @@
       font-size:.9rem;
     }
 
-    .premium-tag{
-      color:#fde68a;
-      font-weight:600;
-    }
     .premium-pill{
       display:inline-block;
       font-size:.75rem;
@@ -155,6 +159,21 @@
       padding-left:16px;
     }
     .url-list li{margin-bottom:2px}
+
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:4px;
+      font-size:.75rem;
+    }
+    .chip{
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      color:#e5e7eb;
+      background:#020617aa;
+    }
   </style>
 </head>
 
@@ -174,32 +193,39 @@
           that connect back to your name, face and identity online.
         </p>
         <p>
-          This page has two parts:
+          On this page you can:
         </p>
         <ul>
-          <li><strong>Free Quick Check</strong> to give you a fast snapshot.</li>
-          <li><strong>Premium Smart Checker</strong> to organise links you already know about into a clear, instant report (priced at <strong>$15</strong>).</li>
+          <li><strong>Try a free quick check</strong> to understand your exposure level.</li>
+          <li><strong>Upgrade to a smart snapshot</strong> for an instant, structured view of your links for <strong>$15</strong>.</li>
         </ul>
         <p class="muted">
-          Start with the free check below. If you like how it feels and want a deeper snapshot,
-          you can try the smart version section next.
+          A good way to use this page is to start with the free check, then move to the smart snapshot
+          once you are ready to organise what you already know is out there.
         </p>
       </div>
       <div class="premium-panel">
-        <span class="premium-pill">Premium option</span>
-        <h3 style="margin-top:4px;">Smart footprint snapshot · $15</h3>
+        <span class="premium-pill">Premium option · $15</span>
+        <h3 style="margin-top:4px;">Smart digital footprint snapshot</h3>
         <p style="font-size:.9rem;">
-          For when you want a structured, instant view of where you show up
-          and what might need attention first.
+          A faster way to make sense of where you show up online. You paste your key links,
+          and the smart checker sorts them into a simple, readable risk picture.
         </p>
-        <ul style="font-size:.85rem;color:#9ca3af;">
-          <li>Classifies your links (social, professional, content and more).</li>
-          <li>Highlights possible risk hot spots.</li>
-          <li>Suggests what to clean, lock down or watch.</li>
-        </ul>
-        <p class="muted">
-          The smart engine below is currently open so you can experience the flow.
-          You can later choose to lock it behind payment if you wish.
+        <div class="chip-row">
+          <span class="chip">Instant summary</span>
+          <span class="chip">Risk bands</span>
+          <span class="chip">Priority hints</span>
+        </div>
+        <p class="muted" style="margin-top:6px;">
+          Payment is securely handled via Stripe. After checkout, you can return here
+          anytime to run your snapshot and save or copy the results.
+        </p>
+        <a class="btn" href="https://buy.stripe.com/cNi3cx0rEbZc6mz2WTcfK00" target="_blank">
+          Unlock Smart Snapshot – $15
+        </a>
+        <p class="muted" style="margin-top:6px;">
+          If you prefer a deeper human written report, you can also request the
+          “Digital Footprint and Safety Review” from the main page services section.
         </p>
       </div>
     </div>
@@ -211,7 +237,7 @@
     <h2>Free footprint snapshot</h2>
     <p>
       This is a guided version of what a safety aware friend would ask you to check.
-      It gives you a fast sense of how visible and exposed you might be.
+      It gives you a quick sense of how visible and exposed you might be.
     </p>
 
     <!-- Step 1 -->
@@ -274,16 +300,16 @@
   <!-- PREMIUM SMART VERSION -->
   <section class="card" id="premium">
     <div class="section-label">Part 2 · Premium smart checker</div>
-    <h2>Smart footprint checker (instant snapshot)</h2>
+    <h2>Smart digital footprint snapshot</h2>
     <p>
-      This is the premium style engine. In a paid version, you would purchase access
-      and then drop in the links you already know about. The tool would help you make sense of them,
-      instead of you staring at a long list of tabs.
+      This is the premium style engine. After you have paid via Stripe, you can use this section
+      to organise your key links and see an instant summary of where your online presence is strongest
+      and where your risk might be higher.
     </p>
 
     <p class="muted">
-      Suggested price: <span class="premium-tag">$15</span> per smart report.
-      For now, you can experience how the instant snapshot would feel.
+      Suggested price: <strong>$15</strong> via secure Stripe checkout.
+      You can pay using the button at the top of this page, then return here to run or re run your snapshot.
     </p>
 
     <h3 style="margin-top:10px;">Step 1 – Paste up to 10 links that point to you</h3>
@@ -294,11 +320,16 @@
     <textarea id="linksInput" placeholder="Example:
 https://www.linkedin.com/in/yourname
 https://www.instagram.com/yourhandle
-https://twitter.com/yourhandle
+https://x.com/yourhandle
 https://yourname.github.io
 "></textarea>
 
-    <button class="btn" type="button" onclick="runSmartReport()">Generate instant smart snapshot</button>
+    <div style="margin-top:6px;">
+      <button class="btn" type="button" onclick="runSmartReport()">Generate instant smart snapshot</button>
+      <a class="btn small outline" href="https://buy.stripe.com/cNi3cx0rEbZc6mz2WTcfK00" target="_blank">
+        Pay $15 via Stripe
+      </a>
+    </div>
 
     <div id="smartResult" class="result-box" style="display:none;"></div>
   </section>
@@ -375,7 +406,7 @@ https://yourname.github.io
         <li>${parts[2]}</li>
       </ul>
       <p class="muted" style="margin-top:8px;">
-        This free check is only based on what you ticked. The premium style snapshot below
+        This free check is only based on what you ticked. The smart snapshot below
         helps you make sense of specific links you already know about.
       </p>
     `;
@@ -400,7 +431,7 @@ https://yourname.github.io
       case 'Professional / career':
         return 'Good for visibility, but check that contact details and job history say what you want them to say today.';
       case 'Visual social profile':
-        return 'Great for expression but often high risk for facial recognition, location and family photos. Privacy settings matter a lot here.';
+        return 'Great for expression but often higher risk for facial recognition, location and family photos. Privacy settings matter a lot here.';
       case 'Social and personal':
         return 'Often a mix of life updates and personal history. Review old posts, tagged photos and “about” sections.';
       case 'Public broadcast / opinions':
@@ -408,13 +439,13 @@ https://yourname.github.io
       case 'Video / creator presence':
         return 'Video reveals voice, face and environment. Be mindful of backgrounds and information you say out loud.';
       case 'Technical / code portfolio':
-        return 'Generally positive, but check for exposed keys, config files or personal information inside repos.';
+        return 'Generally positive, but check for exposed keys, config files or personal information inside repositories.';
       case 'Writing and thought pieces':
         return 'Helpful for reputation, but older writing might not reflect how you think today.';
       case 'Community and forums':
         return 'Forums can contain emotional posts, late night comments or traces of older usernames.';
       default:
-        return 'Useful to know this exists. Ask: does this page represent how you want to be seen now?';
+        return 'Useful to know this exists. Ask whether this page represents how you want to be seen now.';
     }
   }
 
@@ -442,13 +473,11 @@ https://yourname.github.io
       category: classifyUrl(url)
     }));
 
-    // Count by category
     const counts = {};
     classified.forEach(item => {
       counts[item.category] = (counts[item.category] || 0) + 1;
     });
 
-    // Build category summary
     let catHtml = '';
     Object.keys(counts).forEach(cat => {
       catHtml += `
@@ -459,7 +488,6 @@ https://yourname.github.io
       `;
     });
 
-    // Rough risk band based on mix
     const total = lines.length;
     const socialLike = (counts['Visual social profile'] || 0) + (counts['Social and personal'] || 0);
     const publicOpinions = (counts['Public broadcast / opinions'] || 0);
@@ -505,8 +533,8 @@ https://yourname.github.io
       </ul>
 
       <p class="muted" style="margin-top:8px;">
-        In a paid version, this instant snapshot would be combined with a short written report and a priority list:
-        what to lock down, what to reword, what to delete or untag, and what to strengthen for your professional story.
+        In your $15 smart snapshot, you can copy or save this summary and use it as a base
+        for a deeper review or a future human written report.
       </p>
     `;
   }
