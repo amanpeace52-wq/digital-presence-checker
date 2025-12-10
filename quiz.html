@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cyber Habits Quiz</title>
+  <title>2-Minute Cyber Habits Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -19,12 +19,14 @@
     .quiz-question h3 {
       font-size: 0.9rem;
       margin-bottom: 0.35rem;
+      color: #111827;
     }
     .quiz-question label {
       display: block;
       font-size: 0.83rem;
       color: #374151;
       margin-bottom: 0.15rem;
+      cursor: pointer;
     }
     .quiz-question input {
       margin-right: 0.35rem;
@@ -37,11 +39,56 @@
       border: 1px solid #facc15;
       font-size: 0.85rem;
     }
+    .timer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #ecfeff;
+      border: 1px solid #22c55e55;
+      color: #0f766e;
+      margin-bottom: 0.35rem;
+    }
+    .timer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    .quiz-summary-band {
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+    .feedback-block {
+      margin-top: 0.6rem;
+    }
+    .feedback-block h4 {
+      font-size: 0.82rem;
+      margin: 0 0 0.2rem;
+      color: #111827;
+    }
+    .feedback-block ul {
+      padding-left: 1.1rem;
+      margin: 0;
+      font-size: 0.8rem;
+      color: #374151;
+    }
+    .feedback-block ul li {
+      margin-bottom: 0.2rem;
+    }
+    .muted {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
 <div class="page-wrapper">
 
+  <!-- Shared header -->
   <header class="site-header">
     <div class="site-header-inner">
       <a href="index.html" class="brand">
@@ -67,6 +114,7 @@
     </div>
   </header>
 
+  <!-- Page content -->
   <main>
     <div class="container">
 
@@ -76,9 +124,14 @@
           A quick check-in for everyday online habits: passwords, links, sharing, devices and more.
         </p>
         <div class="page-meta">
-          <span>Short and simple</span>
+          <span>6 simple questions</span>
           <span>·</span>
           <span>No technical jargon</span>
+        </div>
+        <div class="timer-pill">
+          <span class="timer-dot"></span>
+          <span>Time so far:</span>
+          <span id="timer-display">00:00</span>
         </div>
       </section>
 
@@ -133,4 +186,183 @@
           <div id="quiz-result" style="display:none;"></div>
         </article>
 
-        <aside class="page-
+        <aside class="page-panel">
+          <h2>How to read your result</h2>
+          <p>
+            This is not an exam. It simply shows which habits are already strong and which
+            ones might need a tiny shift.
+          </p>
+          <p>
+            Even one new habit — like turning on 2FA for email — can dramatically reduce
+            your risk.
+          </p>
+          <a href="tools.html" class="btn btn-ghost">Back to all tools</a>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Shared footer -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // --- TIMER LOGIC ---
+  let quizStart = Date.now();
+  let timerInterval = null;
+
+  function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+    const secs = String(totalSeconds % 60).padStart(2, '0');
+    return mins + ':' + secs;
+  }
+
+  function startTimer() {
+    // Start once only
+    if (timerInterval !== null) return;
+    quizStart = Date.now();
+    const display = document.getElementById('timer-display');
+    timerInterval = setInterval(() => {
+      const now = Date.now();
+      const elapsed = now - quizStart;
+      display.textContent = formatTime(elapsed);
+    }, 500);
+  }
+
+  // Start timer on first interaction (more accurate than page load)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#quiz-form')) {
+      startTimer();
+    }
+  });
+
+  // --- QUIZ RESULT LOGIC ---
+  document.getElementById('quiz-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const questions = ['q1','q2','q3','q4','q5','q6'];
+    const labels = {
+      q1: 'Passwords',
+      q2: 'Two-factor authentication',
+      q3: 'Links & messages',
+      q4: 'Device updates',
+      q5: 'Public Wi-Fi use',
+      q6: 'Sharing & posting'
+    };
+
+    let score = 0;
+    const attention = [];
+    const ok = [];
+    const strong = [];
+
+    for (const q of questions) {
+      const selected = document.querySelector(`input[name="${q}"]:checked`);
+      if (!selected) {
+        alert('Please answer all questions before submitting.');
+        return;
+      }
+      const value = Number(selected.value);
+      score += value;
+
+      if (value === 0) attention.push(labels[q]);
+      else if (value === 2) ok.push(labels[q]);
+      else strong.push(labels[q]);
+    }
+
+    // Stop timer & compute duration
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    const elapsedMs = Date.now() - quizStart;
+    const timeText = formatTime(elapsedMs);
+
+    let band, message, tinySteps;
+
+    if (score <= 8) {
+      band = 'Gentle tune-up needed';
+      message = 'You’re not alone. Many people never had formal cyber training. The good news: a few simple habits can dramatically cut risk.';
+      tinySteps = [
+        'Turn on 2FA for at least your main email account.',
+        'Pick one strong, unique password for banking or important services.'
+      ];
+    } else if (score <= 16) {
+      band = 'Decent habits with a few gaps';
+      message = 'You’re doing a fair bit right, and a few small tweaks could move you into a very strong position.';
+      tinySteps = [
+        'Tidy any reused passwords over time, starting with the most important accounts.',
+        'Slow down when links feel urgent or emotional — that’s often when attackers strike.'
+      ];
+    } else {
+      band = 'Strong foundations';
+      message = 'Your basic habits are strong. Keep them up, and consider helping someone in your life who feels less confident.';
+      tinySteps = [
+        'Review your most important accounts once in a while for security settings.',
+        'Share one gentle tip with a friend, parent or colleague.'
+      ];
+    }
+
+    const box = document.getElementById('quiz-result');
+
+    let attentionHtml = '';
+    if (attention.length) {
+      attentionHtml += `
+        <div class="feedback-block">
+          <h4>Needs the most attention:</h4>
+          <ul>${attention.map(a => `<li>${a}</li>`).join('')}</ul>
+        </div>
+      `;
+    }
+
+    let okHtml = '';
+    if (ok.length) {
+      okHtml += `
+        <div class="feedback-block">
+          <h4>Could be strengthened:</h4>
+          <ul>${ok.map(a => `<li>${a}</li>`).join('')}</ul>
+        </div>
+      `;
+    }
+
+    let strongHtml = '';
+    if (strong.length) {
+      strongHtml += `
+        <div class="feedback-block">
+          <h4>Already strong:</h4>
+          <ul>${strong.map(a => `<li>${a}</li>`).join('')}</ul>
+        </div>
+      `;
+    }
+
+    box.innerHTML = `
+      <p><strong>Your score:</strong> ${score} / 24</p>
+      <p class="quiz-summary-band">${band}</p>
+      <p>${message}</p>
+      <p><strong>Tiny next steps:</strong></p>
+      <ul>${tinySteps.map(s => `<li>${s}</li>`).join('')}</ul>
+      <p><strong>Time taken:</strong> ${timeText}</p>
+      ${attentionHtml}
+      ${okHtml}
+      ${strongHtml}
+      <p class="muted">
+        This quiz is a reflection tool, not a formal assessment.
+        You can retake it later to see how your habits shift over time.
+      </p>
+    `;
+    box.style.display = 'block';
+  });
+</script>
+</body>
+</html>
