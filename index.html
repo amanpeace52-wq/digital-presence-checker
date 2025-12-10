@@ -13,37 +13,49 @@
   --purple:#a86bb8;
   --bronze:#956803;
   --slate:#2a3458;
-  --bg:#f8fbff;
+  --bg:#f6f7fb;
   --card:#ffffff;
-  --soft:#6b7280;
-  --shadow:0 10px 28px rgba(0,0,0,.12);
+  --text-main:#111827;
+  --text-soft:#4b5563;
+  --shadow:0 10px 28px rgba(15,23,42,.14);
+  --border:#e5e7eb;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-  background:linear-gradient(180deg,#f8fbff,#eef4ff);
-  color:var(--slate);
+  background:var(--bg);
+  color:var(--text-main);
 }
 
-a{text-decoration:none;color:inherit}
-.wrap{max-width:1150px;margin:auto;padding:20px}
+a{text-decoration:none;color:inherit;}
 
+.wrap{
+  max-width:1150px;
+  margin:0 auto;
+  padding:20px 16px 40px;
+}
+
+/* HEADER */
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
-  margin-bottom:30px;
+  margin-bottom:26px;
 }
-
+@media(max-width:768px){
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
 .logo{
   width:48px;
   height:48px;
@@ -53,125 +65,228 @@ header{
   align-items:center;
   justify-content:center;
   font-weight:700;
-  color:white;
+  color:#ffffff;
   box-shadow:var(--shadow);
 }
-
+.brand small{
+  font-size:.8rem;
+  color:var(--text-soft);
+}
 nav a{
   margin-left:14px;
+  font-size:.9rem;
   font-weight:500;
   color:var(--slate);
+  padding:6px 10px;
+  border-radius:999px;
+  transition:.15s;
+}
+nav a:hover{
+  background:#e5e7f0;
 }
 
+/* HERO */
 .hero{
-  background:linear-gradient(135deg,var(--navy),var(--slate));
-  border-radius:30px;
-  padding:50px 40px;
-  color:white;
+  background:radial-gradient(circle at top left,#1e3a8a,#040c53);
+  border-radius:28px;
+  padding:34px 30px 34px;
+  color:#f9fafb;
   box-shadow:var(--shadow);
   display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:30px;
+  grid-template-columns:1.5fr 1fr;
+  gap:26px;
 }
-
-.hero h1{font-size:2.6rem;margin:0 0 10px}
-.hero p{font-size:1.05rem;color:#e0f7ff}
-
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+}
+.hero h1{
+  font-size:2.4rem;
+  margin:0 0 10px;
+}
+.hero p{
+  font-size:1rem;
+  color:#e5e7f5;
+  margin:0 0 10px;
+}
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:6px;
+}
+.chip{
+  font-size:.75rem;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(15,23,42,0.4);
+  border:1px solid rgba(148,163,184,0.4);
+}
 .cta-row{
   display:flex;
-  gap:14px;
-  margin-top:20px;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
 }
-
 .btn{
-  padding:12px 24px;
+  padding:11px 22px;
   border-radius:999px;
-  background:var(--gold);
-  color:#040c53;
+  border:none;
+  cursor:pointer;
+  font-size:.9rem;
   font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
   box-shadow:var(--shadow);
+  transition:.15s;
+}
+.btn-primary{
+  background:var(--gold);
+  color:#3f2a07;
+}
+.btn-primary:hover{transform:translateY(-1px);}
+.btn-ghost{
+  background:transparent;
+  color:#e5e7f5;
+  border:1px solid rgba(209,213,219,0.7);
+  box-shadow:none;
+}
+.btn-ghost:hover{
+  background:rgba(15,23,42,0.4);
 }
 
-.btn.alt{
-  background:white;
-  color:var(--navy);
+.hero-card{
+  background:rgba(15,23,42,0.65);
+  border-radius:20px;
+  border:1px solid rgba(148,163,184,0.4);
+  padding:14px 16px 16px;
+}
+.hero-card h3{
+  margin:0 0 6px;
+  font-size:1rem;
+}
+.hero-card p{
+  font-size:.88rem;
+  color:#e5e7f5;
 }
 
+/* GENERIC SECTIONS */
 .section{
   background:var(--card);
-  margin-top:40px;
-  border-radius:24px;
-  padding:36px;
+  margin-top:30px;
+  border-radius:22px;
+  padding:26px 26px 28px;
   box-shadow:var(--shadow);
+  border:1px solid var(--border);
 }
-
-.section h2{font-size:1.6rem;margin-bottom:10px}
+h2{
+  font-size:1.6rem;
+  margin:0 0 8px;
+}
+h3{
+  margin:0 0 4px;
+  font-size:1.05rem;
+}
+p{
+  font-size:.92rem;
+  color:var(--text-soft);
+  margin:0 0 8px;
+}
+.muted{
+  font-size:.82rem;
+  color:#6b7280;
+}
 
 .grid-3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  margin-top:20px;
+  gap:18px;
+  margin-top:16px;
+}
+@media(max-width:900px){
+  .grid-3{grid-template-columns:1fr;}
 }
 
+/* CARDS */
 .card{
+  border-radius:18px;
+  padding:18px 18px 20px;
+  background:#ffffff;
   border:1px solid #e5e7eb;
-  border-radius:20px;
-  padding:22px;
-  background:white;
   transition:.2s;
 }
-
-.card:hover{transform:translateY(-4px)}
-
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
 .tag{
   font-size:.75rem;
-  background:var(--aqua);
-  color:#040c53;
   padding:4px 10px;
   border-radius:999px;
   display:inline-block;
   margin-bottom:6px;
+  background:#e0f2fe;
+  color:#082f49;
+}
+.tag-gold{
+  background:#fef3c7;
+  color:#854d0e;
 }
 
+/* START BOX */
 .start-box{
-  background:linear-gradient(135deg,var(--gold),var(--aqua));
-  border-radius:30px;
-  padding:50px;
-  text-align:center;
-  margin-top:40px;
+  background:linear-gradient(135deg,#ffffff,#fdf7ea);
+  border-radius:26px;
+  padding:28px 26px 30px;
+  margin-top:30px;
   box-shadow:var(--shadow);
+  border:1px solid #f5e6c4;
+  text-align:center;
 }
-
-.start-box h2{color:#040c53}
+.start-box h2{
+  margin-bottom:6px;
+}
+.start-box p{
+  max-width:580px;
+  margin:0 auto 14px;
+}
 
 .tool-links{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  margin-top:20px;
+  gap:14px;
+  margin-top:10px;
 }
-
+@media(max-width:900px){
+  .tool-links{grid-template-columns:1fr;}
+}
 .tool-links a{
-  background:white;
-  border-radius:20px;
-  padding:20px;
+  background:#ffffff;
+  border-radius:18px;
+  padding:14px 12px;
   box-shadow:var(--shadow);
-  text-align:center;
+  font-size:.9rem;
   font-weight:600;
   color:var(--slate);
+  border:1px solid #e5e7eb;
+  transition:.15s;
 }
-
-.pro{
+.tool-links a:hover{
+  transform:translateY(-2px);
+  border-color:#d1d5db;
+}
+.tool-links a.pro{
   border:2px solid var(--gold);
-  background:#fffdf4;
+  background:#fffdf6;
 }
 
+/* FOOTER */
 footer{
   text-align:center;
-  margin:40px 0;
+  margin-top:30px;
   font-size:.85rem;
-  color:#64748b;
+  color:#6b7280;
 }
 </style>
 </head>
@@ -179,105 +294,145 @@ footer{
 <body>
 <div class="wrap">
 
-<header>
-  <div class="brand">
-    <div class="logo">AK</div>
-    <div>
-      <strong>Aman P Kaur</strong><br>
-      <span style="font-size:.8rem;color:#64748b">Digital Safety · UX · AI Literacy</span>
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <div style="font-weight:600;">Aman P Kaur</div>
+        <small>Digital Safety · UX · AI Literacy</small>
+      </div>
     </div>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="tools.html">Tools</a>
-    <a href="services.html">Services</a>
-    <a href="coaching.html">Coaching</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="services.html">Services</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section class="hero">
-  <div>
-    <h1>Your Digital World, Made Clear & Safe</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Your digital life, made calmer and clearer.</h1>
+      <p>
+        I help individuals, families and small businesses feel safer and more confident with technology,
+        websites, AI and everyday online risks — in simple, human language.
+      </p>
+
+      <div class="chips">
+        <span class="chip">Digital footprint & identity</span>
+        <span class="chip">Website clarity & UX</span>
+        <span class="chip">Cyber habits & AI awareness</span>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tools.html">
+          Start with free self-checks
+        </a>
+        <a class="btn btn-ghost" href="services.html">
+          See services & coaching
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="hero-card">
+        <h3>Why this space exists</h3>
+        <p>
+          Tech is getting louder: constant notifications, new AI tools, more accounts, more passwords.
+          This studio is a quiet corner to pause, check your digital world, and make it feel safer and more intentional.
+        </p>
+        <p class="muted" style="color:#cbd5f5;">
+          No judgment. No jargon. Just clarity, tiny steps and support if you want it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU CAN DO HERE -->
+  <section class="section">
+    <h2>What you can do here</h2>
     <p>
-      I help everyday people, families, and small businesses feel confident with technology, websites, AI, and online safety in a calm, human way.
+      You don’t need to know the right terminology or have a “perfect” setup. You can start with quick tools,
+      then add deeper support only if and when you need it.
     </p>
 
-    <div class="cta-row">
-      <a class="btn" href="tools.html">Start Free Self-Checks</a>
-      <a class="btn alt" href="services.html">Explore Services</a>
-    </div>
-  </div>
+    <div class="grid-3">
+      <div class="card">
+        <span class="tag">Free tools</span>
+        <h3>Check your digital presence</h3>
+        <p>
+          Use small, focused tools to explore your digital footprint, website clarity, online habits and risk level.
+        </p>
+      </div>
 
-  <div>
-    <div class="card">
-      <span class="tag">Why this exists</span>
-      <p>
-        Technology is moving fast. AI is everywhere. Online risks are real.  
-        This space is designed to make all of that feel **simpler, safer, and more human**.
-      </p>
-    </div>
-  </div>
-</section>
+      <div class="card">
+        <span class="tag tag-gold">Premium scan</span>
+        <h3>Instant website trust radar</h3>
+        <p>
+          Run an automated website review that gives you clarity, trust and tone scores plus a shareable summary.
+        </p>
+      </div>
 
-<section class="section">
-  <h2>What You Can Do Here</h2>
-  <div class="grid-3">
-    <div class="card">
-      <span class="tag">Free Tools</span>
-      <h3>Check Your Digital Presence</h3>
-      <p>Use instant tools to explore your footprint, website clarity, online habits, and risk level.</p>
+      <div class="card">
+        <span class="tag">Human support</span>
+        <h3>Coaching & gentle guidance</h3>
+        <p>
+          Book short, focused sessions to talk through your situation and agree on realistic next steps.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag">Premium Scan</span>
-      <h3>Instant Website Trust Radar</h3>
-      <p>Automated clarity, trust & AI-tone analysis with PDF report and exportable summary.</p>
+  <!-- WHY PEOPLE CHOOSE THIS STUDIO (moved up) -->
+  <section class="section">
+    <h2>Why people choose this studio</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Human, not scary</h3>
+        <p>
+          You don’t need to be “technical” to belong here. We use plain language, real examples and a gentle tone.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Tools + conversation</h3>
+        <p>
+          You can start with quick self-check tools, then bring your results into a human conversation if you want more help.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Designed for everyday life</h3>
+        <p>
+          This isn’t built just for big companies. It’s for parents, students, professionals and small business owners.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag">Coaching</span>
-      <h3>Human Support</h3>
-      <p>30, 45 or 60 minute cyber literacy & digital confidence coaching sessions.</p>
+  <!-- START HERE -->
+  <section class="start-box">
+    <h2>Where would you like to start?</h2>
+    <p>
+      Pick the option that feels easiest right now. You can always come back and try the others later.
+    </p>
+
+    <div class="tool-links">
+      <a href="quiz.html">2-minute cyber habits quiz</a>
+      <a href="digital-footprint.html">Digital footprint checker</a>
+      <a href="risk-score.html">Digital risk score helper</a>
+      <a href="smart-ux-checker.html">Smart UX checker</a>
+      <a href="ux-checker.html">UX basics checklist</a>
+      <a class="pro" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
+        Run Pro website trust & clarity scan (paid)
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="start-box">
-  <h2>Let’s Start Here</h2>
-  <p>Choose what feels right for you right now.</p>
-
-  <div class="tool-links">
-    <a href="quiz.html">2-Minute Cyber Quiz</a>
-    <a href="digital-footprint.html">Digital Footprint Checker</a>
-    <a href="risk-score.html">Risk Score Generator</a>
-    <a href="smart-ux-checker.html">Smart UX Checker</a>
-    <a href="ux-checker.html">UX Basics Checker</a>
-    <a class="pro" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">Run Pro Website Scan (Paid)</a>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Why People Choose This Studio</h2>
-  <div class="grid-3">
-    <div class="card">
-      <h3>Human First</h3>
-      <p>No jargon. No fear-based tech talk. Just calm, real guidance.</p>
-    </div>
-    <div class="card">
-      <h3>Instant Tools + Real Support</h3>
-      <p>You can self-check instantly, or speak to a real person when needed.</p>
-    </div>
-    <div class="card">
-      <h3>Built for Everyday Life</h3>
-      <p>Families, students, professionals, small business owners.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © <span id="year"></span> Aman P Kaur · Digital Safety Studio
-</footer>
+  <footer>
+    © <span id="year"></span> Aman P Kaur · Digital Safety Studio
+  </footer>
 
 </div>
 
