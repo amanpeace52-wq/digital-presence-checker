@@ -1,146 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Online Risk Score Generator • Aman P Kaur</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <title>Digital Risk Score Helper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:#020617;
-      color:#e5e7eb;
+    .risk-form {
+      display: grid;
+      gap: 0.8rem;
     }
-    .wrap{max-width:750px;margin:auto;padding:18px}
-    a{color:#38bdf8;text-decoration:none}
-    .card{
-      background:#0b1220;
-      border-radius:20px;
-      border:1px solid #1f2937;
-      padding:22px;
-      margin-bottom:20px;
+    .risk-form label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #111827;
+      display: block;
+      margin-bottom: 0.2rem;
     }
-    .q-block{margin-bottom:14px}
-    select,textarea{
-      width:100%;
-      padding:8px;
-      border-radius:8px;
-      border:1px solid #1f2937;
-      background:#020617;
-      color:#e5e7eb;
-      font-size:.9rem;
+    .risk-form select {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font: inherit;
     }
-    .btn{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      padding:8px 16px;
-      border-radius:999px;
-      border:none;
-      cursor:pointer;
-      font-size:.9rem;
-      color:#022c22;
-      margin-top:10px;
+    #risk-result {
+      margin-top: 1rem;
+      padding: 0.85rem 0.9rem;
+      border-radius: 0.9rem;
+      background: #ecfeff;
+      border: 1px solid #06b6d4;
+      font-size: 0.85rem;
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page-wrapper">
 
-  <p><a href="index.html">← Back to main site</a></p>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
+        </div>
+      </a>
 
-  <div class="card">
-    <h1>Online Risk Score Generator</h1>
-    <p>
-      This tool gives you a simple <strong>Low / Medium / High</strong> risk band based on a few key habits.
-      It’s not a full audit, but it’s a useful starting snapshot.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="q-block">
-      <p><strong>1. Password habits</strong></p>
-      <select id="q1">
-        <option value="0">I reuse the same or very similar password almost everywhere</option>
-        <option value="1">I reuse some, but I’ve improved on a few key accounts</option>
-        <option value="2">I use different passwords and/or a password manager</option>
-      </select>
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html" class="active">Tools</a>
+          <a href="services.html">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Run Pro website scan</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="q-block">
-      <p><strong>2. 2FA coverage</strong></p>
-      <select id="q2">
-        <option value="0">I don’t use 2FA anywhere</option>
-        <option value="1">I use 2FA on a few important accounts</option>
-        <option value="2">I use 2FA on email, banking and main platforms</option>
-      </select>
+  <main>
+    <div class="container">
+
+      <section class="page-hero">
+        <h1 class="page-hero-title">Digital risk score helper</h1>
+        <p class="page-hero-subtitle">
+          A gentle way to estimate your rough risk band, based on a few simple questions about your
+          accounts, sharing habits and devices.
+        </p>
+      </section>
+
+      <section class="page-main">
+        <article class="page-panel">
+          <form id="risk-form" class="risk-form">
+            <div>
+              <label for="q1">How many important accounts reuse the same password?</label>
+              <select id="q1">
+                <option value="4">Many (email, banking, social, shopping…)</option>
+                <option value="2">A few (mostly older accounts)</option>
+                <option value="0">Almost none / I use a manager</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="q2">Do you have 2FA on your email and banking?</label>
+              <select id="q2">
+                <option value="4">On neither</option>
+                <option value="2">On one of them</option>
+                <option value="0">On both</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="q3">How often do your phone/laptop install updates?</label>
+              <select id="q3">
+                <option value="4">Rarely / I ignore them</option>
+                <option value="2">When I remember or have time</option>
+                <option value="0">Regularly or automatically</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="q4">If you lost your phone tomorrow…</label>
+              <select id="q4">
+                <option value="4">I’m not sure I could get into my accounts easily.</option>
+                <option value="2">It would be stressful but possible.</option>
+                <option value="0">I have backups / recovery methods noted somewhere safe.</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="q5">How often do you click links from unexpected messages?</label>
+              <select id="q5">
+                <option value="4">Fairly often, especially if they look urgent.</option>
+                <option value="2">Sometimes, but I hesitate first.</option>
+                <option value="0">Rarely; I’m quite suspicious of links.</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Calculate my risk band</button>
+          </form>
+
+          <div id="risk-result" style="display:none;"></div>
+        </article>
+
+        <aside class="page-panel">
+          <h2>How to use this</h2>
+          <ul>
+            <li>Answer as honestly as you can — this is just for you.</li>
+            <li>Note the band you land in (for example: low, moderate, higher).</li>
+            <li>Pick one or two recommended changes to try this week.</li>
+          </ul>
+          <a href="tools.html" class="btn btn-ghost">Back to all tools</a>
+        </aside>
+      </section>
+
     </div>
+  </main>
 
-    <div class="q-block">
-      <p><strong>3. Device + update habits</strong></p>
-      <select id="q3">
-        <option value="0">I often ignore updates or delay them for months</option>
-        <option value="1">I update sometimes, but not always quickly</option>
-        <option value="2">My devices usually update automatically or quickly</option>
-      </select>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
+      </div>
     </div>
-
-    <div class="q-block">
-      <p><strong>4. Social media privacy</strong></p>
-      <select id="q4">
-        <option value="0">I’ve never really checked privacy settings</option>
-        <option value="1">I’ve checked at least once</option>
-        <option value="2">I review privacy settings every so often</option>
-      </select>
-    </div>
-
-    <div class="q-block">
-      <p><strong>5. Backups</strong></p>
-      <select id="q5">
-        <option value="0">If I lost my phone, I’d lose almost everything</option>
-        <option value="1">Some things are backed up, but I’m not fully sure</option>
-        <option value="2">I know where my important files are backed up</option>
-      </select>
-    </div>
-
-    <button class="btn" type="button" onclick="calculateRisk()">Generate my risk band</button>
-    <p id="scoreResult" style="margin-top:12px;"></p>
-  </div>
-
-  <div class="card">
-    <h2>What Your Score Means</h2>
-    <p id="scoreExplain"></p>
-    <p style="margin-top:8px;">
-      If you’d like a human to review your situation, you can mention your risk band
-      when you send an enquiry on the <a href="index.html#enquiry">main site</a>.
-    </p>
-  </div>
+  </footer>
 
 </div>
 
 <script>
-function calculateRisk(){
-  let total = 0;
-  for(let i=1;i<=5;i++){
-    total += parseInt(document.getElementById('q'+i).value);
-  }
-  const max = 10;
-  let band = "";
-  let msg = "";
+  document.getElementById('risk-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const fields = ['q1','q2','q3','q4','q5'];
+    let score = 0;
+    fields.forEach(id => score += Number(document.getElementById(id).value));
 
-  if(total <= 3){
-    band = "HIGH";
-    msg = "Right now, your digital life is likely quite exposed. The good news: a few focused changes in passwords, 2FA and backups can significantly reduce your risk.";
-  } else if(total <= 7){
-    band = "MEDIUM";
-    msg = "You have some protective habits in place, but there are still gaps. Tightening privacy, updates and backups will move you closer to low risk.";
-  } else {
-    band = "LOW";
-    msg = "You’ve built some strong foundations. Your next step is staying consistent, being AI-aware, and reviewing settings regularly as tools change.";
-  }
+    let band, description, actions;
+    if (score >= 14) {
+      band = 'Higher risk band';
+      description = 'There are several open doors in your digital life. You are not alone — most people never received guidance on this.';
+      actions = [
+        'Change passwords on your email and banking to strong, unique ones.',
+        'Turn on 2FA for at least email and banking this week.',
+        'Let your phone and laptop finish their updates.'
+      ];
+    } else if (score >= 7) {
+      band = 'Moderate risk band';
+      description = 'You have some good instincts, and a few areas that, if strengthened, could move you into a much safer zone.';
+      actions = [
+        'Reduce password reuse over time, starting with your most important accounts.',
+        'Practice pausing before you click urgent or emotional links.',
+        'Write down recovery steps for your key accounts and store them safely.'
+      ];
+    } else {
+      band = 'Lower risk band';
+      description = 'You’re doing a lot right. Small ongoing tweaks and check-ins will help you keep it that way.';
+      actions = [
+        'Once or twice a year, review your security settings on key accounts.',
+        'Consider helping a friend or family member who feels less confident.'
+      ];
+    }
 
-  document.getElementById('scoreResult').innerHTML =
-    "Your score: <strong>"+total+" / "+max+"</strong> — Risk band: <strong>"+band+"</strong>";
-  document.getElementById('scoreExplain').textContent = msg;
-}
+    const box = document.getElementById('risk-result');
+    box.innerHTML = `
+      <p><strong>Your estimated band:</strong> ${band}</p>
+      <p>${description}</p>
+      <p><strong>Suggested next steps:</strong></p>
+      <ul>${actions.map(a => `<li>${a}</li>`).join('')}</ul>
+      <p style="font-size:0.75rem;color:#6b7280;">This is not a formal audit — it’s a gentle starting point.</p>
+    `;
+    box.style.display = 'block';
+  });
 </script>
 </body>
 </html>
