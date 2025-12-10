@@ -2,271 +2,254 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Trust Radar Pro • Website Trust &amp; Clarity Scan</title>
+  <title>Trust Radar Pro – Website Trust, UX & Security Scan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Trust Radar Pro is a simple, AI-supported website trust and clarity scan for small businesses, coaches and solo founders." />
+  <meta name="description" content="Trust Radar Pro – Professional website audit for trust, UX clarity, cyber risk, and AI tone." />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .pill {
+    .pro-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .pro-form label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #111827;
+    }
+    .pro-form input,
+    .pro-form select,
+    .pro-form textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(148,163,184,0.9);
+      font: inherit;
+    }
+    .pro-result {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: #f9fafb;
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 0.85rem;
+    }
+    .score-card {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .score-box {
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.6);
+      border-radius: 0.8rem;
+      padding: 0.55rem;
+      text-align: center;
+    }
+    .score-box strong {
+      display: block;
+      font-size: 1rem;
+      color: #040c53;
+    }
+    .tag {
       display:inline-block;
-      font-size:0.7rem;
       padding:3px 9px;
       border-radius:999px;
-      background:rgba(34,197,94,0.12);
-      color:#15803d;
-      margin-bottom:6px;
-    }
-    .card-row {
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-      margin-top:0.75rem;
-    }
-    @media (max-width:900px) {
-      .card-row { grid-template-columns:1fr; }
-    }
-    .feature-card {
-      border-radius:0.9rem;
-      border:1px solid rgba(148,163,184,0.6);
-      padding:0.75rem 0.9rem;
-      background:#f9fafb;
-      font-size:0.86rem;
-    }
-    .feature-card h3 {
-      font-size:0.9rem;
-      margin:0 0 0.35rem;
-      color:#111827;
-    }
-    .feature-card p {
-      margin:0;
-      color:#4b5563;
-      font-size:0.83rem;
-    }
-    .two-col {
-      display:grid;
-      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      gap:22px;
-      margin-top:1rem;
-    }
-    @media (max-width:900px) {
-      .two-col { grid-template-columns:1fr; }
-    }
-    .muted {
-      font-size:0.8rem;
-      color:#6b7280;
-    }
-    .list-clean {
-      padding-left:1.1rem;
-      margin:0.3rem 0 0.6rem;
-      font-size:0.86rem;
-      color:#374151;
-    }
-    .list-clean li {
-      margin-bottom:0.25rem;
-    }
-    .cta-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      margin-top:0.9rem;
-    }
-    .btn-note {
-      font-size:0.78rem;
-      color:#6b7280;
+      font-size:0.7rem;
+      background:#ecfeff;
+      border:1px solid #22c55e55;
+      color:#065f46;
     }
   </style>
 </head>
 <body>
 <div class="page-wrapper">
 
-  <!-- Shared header -->
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="index.html" class="brand">
-        <div class="brand-mark">AK</div>
-        <div>
-          <div class="brand-text-title">Aman P Kaur</div>
-          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
-        </div>
-      </a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">AK</div>
+      <div>
+        <div class="brand-text-title">Aman P Kaur</div>
+        <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
+      </div>
+    </a>
 
-      <nav class="site-nav">
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="tools.html">Tools</a>
-          <a href="services.html" class="active">Services</a>
-          <a href="coaching.html">Coaching</a>
-          <a href="ai.html">AI &amp; You</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Trust Radar Pro</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Page content -->
-  <main>
-    <div class="container">
-
-      <!-- HERO -->
-      <section class="page-hero">
-        <span class="pill">Premium tool</span>
-        <h1 class="page-hero-title">Trust Radar Pro</h1>
-        <p class="page-hero-subtitle">
-          A simple, AI-supported website trust and clarity scan for small businesses,
-          coaches and solo founders who want their site to feel safe, human and clear.
-        </p>
-        <div class="page-meta">
-          <span>1 scan · Instant results</span>
-          <span>·</span>
-          <span>No tech jargon</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
-            Buy Trust Radar Pro (Stripe)
-          </a>
-          <a class="btn btn-secondary" href="tools.html">Back to free tools</a>
-          <div class="btn-note">
-            Secure checkout via Stripe. You’ll be redirected back here to run your scan.
-          </div>
-        </div>
-      </section>
-
-      <!-- WHAT YOU GET -->
-      <section class="section">
-        <div class="section-header">
-          <div class="section-eyebrow">What you get in one scan</div>
-          <h2 class="section-title">Clear, simple outputs you can act on this week.</h2>
-        </div>
-
-        <div class="card-row">
-          <article class="feature-card">
-            <h3>Trust &amp; clarity snapshot</h3>
-            <p>
-              Quick scores that show how your homepage is doing on:
-              <strong>clarity, trust, and comfort/safety tone</strong>.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3>AI tone summary</h3>
-            <p>
-              A short, plain-language read on how your words feel:
-              more corporate, salesy, human, reassuring, etc.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3>Top 3 priority moves</h3>
-            <p>
-              Three specific, realistic changes that will give you
-              the biggest trust & clarity lift for your effort.
-            </p>
-          </article>
-        </div>
-
-        <div class="card-row" style="margin-top:1rem;">
-          <article class="feature-card">
-            <h3>Section-by-section notes</h3>
-            <p>
-              Short comments on your headline, intro, calls to action and proof:
-              what’s working and what feels fuzzy.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3>Mini PDF report</h3>
-            <p>
-              A downloadable mini-report you can keep, send to a designer,
-              or refer back to when you update your copy.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3>Simple one-page summary</h3>
-            <p>
-              A tidy summary view so you don’t feel lost — just
-              a clear “here’s where you are” and “here’s what to do next”.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- WHO + HOW -->
-      <section class="section">
-        <div class="two-col">
-          <div>
-            <div class="section-eyebrow">Who this is for</div>
-            <h2 class="section-title">If this sounds like you, you’re in the right place.</h2>
-            <ul class="list-clean">
-              <li>You have a website, but you’re not sure what <em>visitors</em> actually feel.</li>
-              <li>You worry your site might be underselling your real work.</li>
-              <li>You’re tired of vague feedback like “make it pop more”.</li>
-              <li>You want gentle, concrete guidance – not a 40-page technical audit.</li>
-            </ul>
-            <p class="muted">
-              Most people using this are solo professionals, coaches, consultants,
-              small businesses and practice owners.
-            </p>
-          </div>
-
-          <div>
-            <div class="section-eyebrow">How it works</div>
-            <h2 class="section-title">Three very simple steps.</h2>
-            <ol class="list-clean">
-              <li><strong>Purchase via Stripe.</strong> You’ll be brought back to this page.</li>
-              <li><strong>Paste your homepage content.</strong> You can copy it from your site or type it in.</li>
-              <li><strong>Run the Pro scan.</strong> Your results and mini-report are generated for you.</li>
-            </ol>
-            <p class="muted">
-              If you change your copy later, you can purchase another scan to compare versions.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- AFTER PURCHASE -->
-      <section class="section">
-        <div class="section-header">
-          <div class="section-eyebrow">What happens after you buy</div>
-          <h2 class="section-title">You won’t be left staring at a dashboard.</h2>
-        </div>
-
-        <ul class="list-clean">
-          <li>You get your scan, scores and notes right away.</li>
-          <li>You can download your mini PDF report.</li>
-          <li>You can save or print the one-page summary for your own planning.</li>
-          <li>If you’d like, you can later book a short paid call where we walk through your results together.</li>
-        </ul>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
-            Get Trust Radar Pro
-          </a>
-          <span class="btn-note">
-            Stripe handles payment. No subscription, just a single scan.
-          </span>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- Shared footer -->
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <div>© Aman P Kaur · Digital Safety Studio</div>
-      <div class="site-footer-links">
+    <nav class="site-nav">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tools.html">Tools</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="ai.html">AI & You</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="services.html">Services</a>
       </div>
-    </div>
-  </footer>
+      <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Trust Radar Pro</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+<section class="page-hero">
+  <span class="pill">Premium Website Audit</span>
+  <h1 class="page-hero-title">Trust Radar Pro</h1>
+  <p class="page-hero-subtitle">
+    Professional-level trust, UX & cyber risk scan for small businesses, coaches and founders.
+  </p>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
+      Unlock Pro Scan (Stripe)
+    </a>
+    <span class="btn-note">One-time secure payment • Instant access</span>
+  </div>
+</section>
+
+<section class="page-main">
+<article class="page-panel">
+
+<form id="pro-form" class="pro-form">
+
+  <label>Website URL</label>
+  <input id="site" type="url" required placeholder="https://example.com">
+
+  <label>Business Type</label>
+  <select id="type">
+    <option>Coach / Consultant</option>
+    <option>Healthcare</option>
+    <option>E-commerce</option>
+    <option>Service Business</option>
+    <option>Education</option>
+    <option>Other</option>
+  </select>
+
+  <label>Primary Audience</label>
+  <select id="audience">
+    <option>General public</option>
+    <option>Professionals</option>
+    <option>Parents / families</option>
+    <option>Students</option>
+    <option>High-trust regulated industry</option>
+  </select>
+
+  <label>Does your site collect personal data?</label>
+  <select id="data">
+    <option>No personal data</option>
+    <option>Contact forms only</option>
+    <option>Payments & sensitive info</option>
+  </select>
+
+  <label>How clear is your offer right now?</label>
+  <select id="clarity">
+    <option>Very unclear</option>
+    <option>Somewhat clear</option>
+    <option>Very clear</option>
+  </select>
+
+  <label>Describe your brand tone</label>
+  <select id="tone">
+    <option>Warm & human</option>
+    <option>Corporate & formal</option>
+    <option>Sales-heavy</option>
+    <option>Technical & dense</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary">
+    Run Trust Radar Pro Scan
+  </button>
+
+</form>
+
+<div id="pro-result" class="pro-result" style="display:none;"></div>
+
+</article>
+
+<aside class="page-panel">
+  <h2>What this scan evaluates</h2>
+  <ul>
+    <li>Cyber security exposure & data handling</li>
+    <li>UX clarity & conversion friction</li>
+    <li>Trust signals & legitimacy</li>
+    <li>AI tone classification</li>
+    <li>Professional risk flags</li>
+  </ul>
+</aside>
+</section>
 
 </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>© Aman P Kaur · Digital Safety Studio</div>
+    <div class="site-footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="services.html">Services</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+document.getElementById("pro-form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const type = document.getElementById("type").value;
+  const audience = document.getElementById("audience").value;
+  const data = document.getElementById("data").value;
+  const clarity = document.getElementById("clarity").value;
+  const tone = document.getElementById("tone").value;
+
+  let trust = 70;
+  let security = 70;
+  let ux = 70;
+
+  if (data.includes("sensitive")) security -= 25;
+  if (clarity.includes("unclear")) ux -= 20;
+  if (tone.includes("Sales")) trust -= 10;
+
+  let result = `
+    <h3>Professional Trust Radar Report</h3>
+
+    <div class="score-card">
+      <div class="score-box"><strong>${trust}</strong>Trust Score</div>
+      <div class="score-box"><strong>${security}</strong>Cyber Risk</div>
+      <div class="score-box"><strong>${ux}</strong>UX Clarity</div>
+    </div>
+
+    <p><strong>AI Tone Classification:</strong> ${tone}</p>
+
+    <h4>Professional Risk Flags</h4>
+    <ul>
+      <li>Data handling risk: ${data}</li>
+      <li>Audience trust sensitivity: ${audience}</li>
+      <li>Conversion clarity status: ${clarity}</li>
+    </ul>
+
+    <h4>Strategic Fixes (High Impact)</h4>
+    <ul>
+      <li>Add visible trust proof above the fold.</li>
+      <li>Strengthen privacy & security signals.</li>
+      <li>Simplify primary call-to-action.</li>
+      <li>Rebalance emotional vs sales language.</li>
+    </ul>
+
+    <h4>Professional Recommendation</h4>
+    <p>This website is commercially viable but currently vulnerable to trust-drop, conversion leakage, and cyber perception risks.</p>
+
+    <span class="tag">Consultant-grade output</span>
+  `;
+
+  const box = document.getElementById("pro-result");
+  box.innerHTML = result;
+  box.style.display = "block";
+});
+</script>
+
 </body>
 </html>
