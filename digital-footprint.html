@@ -1,544 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Digital Footprint Checker • Free Check + Smart Snapshot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+  <meta charset="UTF-8" />
+  <title>Digital Footprint Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    :root{
-      --bg:#020617;
-      --card:#050816;
-      --accent:#22c55e;
-      --accent-soft:#22c55e22;
-      --blue:#38bdf8;
-      --text:#e5e7eb;
-      --soft:#9ca3af;
-      --border:#1f2937;
-      --shadow:0 18px 40px rgba(0,0,0,0.45);
+    .tool-form {
+      display: grid;
+      gap: 0.75rem;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:
-        radial-gradient(circle at top left,#1d2a5a,#020617),
-        radial-gradient(circle at bottom right,#022c22,#020617);
-      color:var(--text);
+    .tool-form fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
     }
-    a{text-decoration:none;color:#38bdf8}
-    .wrap{max-width:980px;margin:auto;padding:20px 18px 40px}
-    .card{
-      background:var(--card);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,0.18);
-      padding:20px 22px 22px;
-      margin-bottom:22px;
-      box-shadow:var(--shadow);
+    .tool-form legend {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.3rem;
     }
-    h1{font-size:2rem;margin-bottom:8px}
-    h2{font-size:1.4rem;margin-bottom:10px}
-    h3{font-size:1.05rem;margin-bottom:6px}
-    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
-
-    .pill{
-      display:inline-block;
-      font-size:.7rem;
-      padding:3px 9px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      color:#bbf7d0;
-      margin-bottom:6px;
+    .tool-form label {
+      font-size: 0.85rem;
+      color: #374151;
+      display: block;
+      margin-bottom: 0.15rem;
     }
-    .section-label{
-      font-size:.8rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      color:#9ca3af;
-      margin-bottom:4px;
+    .tool-form input[type="text"],
+    .tool-form input[type="url"],
+    .tool-form select {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font: inherit;
     }
-    .muted{font-size:.8rem;color:#9ca3af}
-
-    .grid-2{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}
-    @media(max-width:860px){.grid-2{grid-template-columns:1fr}}
-
-    .btn{
-      background:linear-gradient(135deg,var(--accent),#16a34a);
-      padding:9px 20px;
-      border-radius:999px;
-      color:#022c22;
-      font-size:.9rem;
-      border:none;
-      cursor:pointer;
-      margin-top:8px;
-      display:inline-block;
-      transition:.2s ease;
-      box-shadow:0 10px 30px rgba(34,197,94,0.3);
+    .tool-form small {
+      font-size: 0.75rem;
+      color: #6b7280;
     }
-    .btn:hover{transform:translateY(-2px) scale(1.02);opacity:.96}
-    .btn.small{padding:6px 14px;font-size:.8rem;margin-top:4px;}
-    .btn.outline{
-      background:transparent;
-      color:#e5e7eb;
-      border:1px solid #64748b;
-      box-shadow:none;
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
     }
-    .btn.outline:hover{
-      border-color:#22c55e;
-      color:#bbf7d0;
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.8rem;
+      background: #ffffff;
     }
-
-    input[type="text"],
-    input[type="email"],
-    textarea,
-    select{
-      width:100%;
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid #1f2937;
-      background:#020617;
-      color:#e5e7eb;
-      font-size:.9rem;
-      margin-top:4px;
-      margin-bottom:8px;
+    .chip input {
+      margin: 0;
     }
-    textarea{min-height:90px;resize:vertical;}
-
-    .flex-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px 16px;
+    .result-box {
+      margin-top: 1rem;
+      padding: 0.85rem 0.9rem;
+      border-radius: 0.9rem;
+      background: #f9fafb;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.85rem;
     }
-    .check-group label{
-      display:block;
-      font-size:.9rem;
-      margin:4px 0;
-      cursor:pointer;
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
     }
-    .check-group input{margin-right:6px}
-
-    .badge{
-      display:inline-block;
-      padding:3px 8px;
-      border-radius:999px;
-      font-size:.7rem;
-      margin-right:4px;
+    .badge-low {
+      background: #dcfce7;
+      color: #166534;
     }
-    .badge-low{background:#22c55e33;color:#bbf7d0}
-    .badge-med{background:#facc1533;color:#fef9c3}
-    .badge-high{background:#ef444433;color:#fecaca}
-
-    .result-box{
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid #1f2937;
-      background:#020617;
-      font-size:.9rem;
+    .badge-medium {
+      background: #fef9c3;
+      color: #92400e;
     }
-
-    .premium-pill{
-      display:inline-block;
-      font-size:.75rem;
-      padding:3px 8px;
-      border-radius:999px;
-      background:#facc1533;
-      color:#fef3c7;
-      margin-bottom:6px;
-    }
-    .premium-panel{
-      background:#020617;
-      border-radius:18px;
-      border:1px solid #4b556333;
-      padding:12px 14px 14px;
-      margin-top:8px;
-    }
-    .url-list{
-      font-size:.85rem;
-      margin-top:6px;
-      padding-left:16px;
-    }
-    .url-list li{margin-bottom:2px}
-
-    .chip-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:4px;
-      font-size:.75rem;
-    }
-    .chip{
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.5);
-      color:#e5e7eb;
-      background:#020617aa;
+    .badge-high {
+      background: #fee2e2;
+      color: #991b1b;
     }
   </style>
 </head>
-
 <body>
-<div class="wrap">
+<div class="page-wrapper">
 
-  <p><a href="index.html">← Back to main page</a></p>
-
-  <!-- Intro -->
-  <section class="card">
-    <span class="pill">Digital Footprint Checker</span>
-    <h1>See what the internet knows about you</h1>
-    <div class="grid-2">
-      <div>
-        <p>
-          Your digital footprint is the trail of profiles, posts, photos, tags and mentions
-          that connect back to your name, face and identity online.
-        </p>
-        <p>
-          On this page you can:
-        </p>
-        <ul>
-          <li><strong>Try a free quick check</strong> to understand your exposure level.</li>
-          <li><strong>Upgrade to a smart snapshot</strong> for an instant, structured view of your links for <strong>$15</strong>.</li>
-        </ul>
-        <p class="muted">
-          A good way to use this page is to start with the free check, then move to the smart snapshot
-          once you are ready to organise what you already know is out there.
-        </p>
-      </div>
-      <div class="premium-panel">
-        <span class="premium-pill">Premium option · $15</span>
-        <h3 style="margin-top:4px;">Smart digital footprint snapshot</h3>
-        <p style="font-size:.9rem;">
-          A faster way to make sense of where you show up online. You paste your key links,
-          and the smart checker sorts them into a simple, readable risk picture.
-        </p>
-        <div class="chip-row">
-          <span class="chip">Instant summary</span>
-          <span class="chip">Risk bands</span>
-          <span class="chip">Priority hints</span>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
         </div>
-        <p class="muted" style="margin-top:6px;">
-          Payment is securely handled via Stripe. After checkout, you can return here
-          anytime to run your snapshot and save or copy the results.
-        </p>
-        <a class="btn" href="https://buy.stripe.com/cNi3cx0rEbZc6mz2WTcfK00" target="_blank">
-          Unlock Smart Snapshot – $15
-        </a>
-        <p class="muted" style="margin-top:6px;">
-          If you prefer a deeper human written report, you can also request the
-          “Digital Footprint and Safety Review” from the main page services section.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FREE VERSION -->
-  <section class="card" id="free">
-    <div class="section-label">Part 1 · Free quick check</div>
-    <h2>Free footprint snapshot</h2>
-    <p>
-      This is a guided version of what a safety aware friend would ask you to check.
-      It gives you a quick sense of how visible and exposed you might be.
-    </p>
-
-    <!-- Step 1 -->
-    <h3 style="margin-top:12px;">Step 1 – Basic details</h3>
-    <p class="muted">
-      These stay in your browser only. They are just used to guide your own search.
-    </p>
-    <div class="flex-row">
-      <div style="flex:1 1 180px;">
-        <label for="name">Name you use online</label>
-        <input type="text" id="name" placeholder="Example: Aman P Kaur">
-      </div>
-      <div style="flex:1 1 160px;">
-        <label for="location">City or region (optional)</label>
-        <input type="text" id="location" placeholder="Example: Adelaide, SA">
-      </div>
-    </div>
-    <div style="max-width:380px;">
-      <label for="handle">Main handle or username (optional)</label>
-      <input type="text" id="handle" placeholder="@yourname on Instagram, X, etc.">
-    </div>
-
-    <!-- Step 2 -->
-    <h3 style="margin-top:14px;">Step 2 – What shows up when you search?</h3>
-    <p>
-      Imagine (or actually do) a search for your name plus city and your main handle.
-      Tick anything that feels like it appears on the first few pages.
-    </p>
-
-    <div class="grid-2" style="margin-top:8px;gap:18px;">
-      <div class="check-group">
-        <strong style="font-size:.9rem;">Profiles and accounts</strong>
-        <label><input type="checkbox" data-group="vis" value="1"> Old or unused social media accounts</label>
-        <label><input type="checkbox" data-group="vis" value="1"> Multiple profiles with the same name and photo</label>
-        <label><input type="checkbox" data-group="vis" value="2"> Public profiles with your full name and location</label>
-        <label><input type="checkbox" data-group="sens" value="2"> Work or school information that feels too detailed</label>
-      </div>
-      <div class="check-group">
-        <strong style="font-size:.9rem;">Photos, tags and extras</strong>
-        <label><input type="checkbox" data-group="sens" value="2"> Photos of you that you did not post yourself</label>
-        <label><input type="checkbox" data-group="sens" value="1"> Photos of children or family with clear faces and locations</label>
-        <label><input type="checkbox" data-group="ctrl" value="1"> Old posts or blogs that do not reflect who you are now</label>
-        <label><input type="checkbox" data-group="ctrl" value="2"> Your phone or email visible in random sites or forums</label>
-      </div>
-    </div>
-
-    <div class="check-group" style="margin-top:10px;">
-      <strong style="font-size:.9rem;">Data and leaks</strong>
-      <label><input type="checkbox" data-group="sens" value="2"> Your details appear in data breach or leak search tools</label>
-      <label><input type="checkbox" data-group="vis" value="1"> Your address or very specific location is visible online</label>
-    </div>
-
-    <!-- Step 3 -->
-    <h3 style="margin-top:16px;">Step 3 – Get your free risk snapshot</h3>
-    <button class="btn small" type="button" onclick="calculateFreeRisk()">Calculate my free footprint risk</button>
-
-    <div id="freeResult" class="result-box" style="display:none;"></div>
-  </section>
-
-  <!-- PREMIUM SMART VERSION -->
-  <section class="card" id="premium">
-    <div class="section-label">Part 2 · Premium smart checker</div>
-    <h2>Smart digital footprint snapshot</h2>
-    <p>
-      This is the premium style engine. After you have paid via Stripe, you can use this section
-      to organise your key links and see an instant summary of where your online presence is strongest
-      and where your risk might be higher.
-    </p>
-
-    <p class="muted">
-      Suggested price: <strong>$15</strong> via secure Stripe checkout.
-      You can pay using the button at the top of this page, then return here to run or re run your snapshot.
-    </p>
-
-    <h3 style="margin-top:10px;">Step 1 – Paste up to 10 links that point to you</h3>
-    <p style="font-size:.9rem;">
-      These might be social profiles, portfolio sites, news mentions or anything else that represents you online.
-      One link per line is best.
-    </p>
-    <textarea id="linksInput" placeholder="Example:
-https://www.linkedin.com/in/yourname
-https://www.instagram.com/yourhandle
-https://x.com/yourhandle
-https://yourname.github.io
-"></textarea>
-
-    <div style="margin-top:6px;">
-      <button class="btn" type="button" onclick="runSmartReport()">Generate instant smart snapshot</button>
-      <a class="btn small outline" href="https://buy.stripe.com/cNi3cx0rEbZc6mz2WTcfK00" target="_blank">
-        Pay $15 via Stripe
       </a>
-    </div>
 
-    <div id="smartResult" class="result-box" style="display:none;"></div>
-  </section>
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html" class="active">Tools</a>
+          <a href="services.html">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Run Pro website scan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <section class="page-hero">
+        <h1 class="page-hero-title">Digital footprint checker</h1>
+        <p class="page-hero-subtitle">
+          A simple way to map where your name, photos and profiles are appearing online —
+          and what that might mean for your privacy and safety.
+        </p>
+        <div class="page-meta">
+          <span>Free self-check</span>
+          <span>·</span>
+          <span>Takes around 5–10 minutes</span>
+        </div>
+      </section>
+
+      <section class="page-main">
+        <article class="page-panel">
+          <form id="footprint-form" class="tool-form">
+            <div>
+              <label for="name">Name you usually use online</label>
+              <input id="name" type="text" placeholder="e.g. Aman P Kaur / @amanpeace52-wq" />
+              <small>Use the version of your name or handle that appears most often.</small>
+            </div>
+
+            <fieldset>
+              <legend>Where do you actively have accounts?</legend>
+              <div class="chip-row">
+                <label class="chip"><input type="checkbox" name="platform" value="big-social" /> Instagram / Facebook</label>
+                <label class="chip"><input type="checkbox" name="platform" value="big-social" /> TikTok / Snapchat</label>
+                <label class="chip"><input type="checkbox" name="platform" value="pro" /> LinkedIn</label>
+                <label class="chip"><input type="checkbox" name="platform" value="public" /> Public X / Twitter</label>
+                <label class="chip"><input type="checkbox" name="platform" value="content" /> YouTube / podcast</label>
+                <label class="chip"><input type="checkbox" name="platform" value="forums" /> Forums / Reddit</label>
+                <label class="chip"><input type="checkbox" name="platform" value="old" /> Old blogs / websites</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>How searchable are you?</legend>
+              <label>
+                <select id="searchability">
+                  <option value="low">I barely show up when I search my name.</option>
+                  <option value="medium">A few results show me clearly.</option>
+                  <option value="high">Many results show my name, photos or work.</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Public vs private</legend>
+              <label>
+                <select id="public-level">
+                  <option value="mostly-private">Most of my profiles are private / friends-only.</option>
+                  <option value="mixed">Some are public, some are private.</option>
+                  <option value="mostly-public">Most of my profiles are public / open.</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Old accounts & “digital dust”</legend>
+              <label>
+                <select id="old-accounts">
+                  <option value="none">I have almost no old or forgotten accounts.</option>
+                  <option value="few">I can think of a few old or unused accounts.</option>
+                  <option value="many">I know there are many old accounts or I’m not sure.</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Check my footprint pattern</button>
+
+            <div id="footprint-result" class="result-box" style="display:none;"></div>
+          </form>
+        </article>
+
+        <aside class="page-panel">
+          <h2>What this helps you notice</h2>
+          <ul>
+            <li>Where your name or photos are most visible.</li>
+            <li>Which platforms feel “noisy” or exposed.</li>
+            <li>Whether your profiles match the story you want online.</li>
+          </ul>
+
+          <h2>Best for</h2>
+          <ul>
+            <li>Students and job seekers getting ready for applications.</li>
+            <li>Parents or caregivers supporting young people online.</li>
+            <li>Small business owners curious about their online footprint.</li>
+          </ul>
+
+          <a href="tools.html" class="btn btn-ghost">Back to all tools</a>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
+      </div>
+    </div>
+  </footer>
 
 </div>
 
 <script>
-  // ---------- FREE VERSION LOGIC ----------
-  function calculateFreeRisk(){
-    const checkboxes = document.querySelectorAll('input[type="checkbox"][data-group]');
-    let visScore = 0, sensScore = 0, ctrlScore = 0;
-    let visMax = 0, sensMax = 0, ctrlMax = 0;
+  document.getElementById('footprint-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    checkboxes.forEach(cb => {
-      const group = cb.getAttribute('data-group');
-      const val = parseInt(cb.value,10);
-      if(group === 'vis'){ visMax += val; if(cb.checked) visScore += val; }
-      if(group === 'sens'){ sensMax += val; if(cb.checked) sensScore += val; }
-      if(group === 'ctrl'){ ctrlMax += val; if(cb.checked) ctrlScore += val; }
-    });
+    const platforms = Array.from(document.querySelectorAll('input[name="platform"]:checked'));
+    const searchability = document.getElementById('searchability').value;
+    const publicLevel = document.getElementById('public-level').value;
+    const oldAccounts = document.getElementById('old-accounts').value;
 
-    const total = visScore + sensScore + ctrlScore;
-    const maxTotal = visMax + sensMax + ctrlMax || 1;
-    const ratio = total / maxTotal;
+    let score = 0;
+    score += platforms.length; // more platforms = more surface
 
-    let band, badgeClass, msg;
+    if (searchability === 'medium') score += 2;
+    if (searchability === 'high') score += 4;
 
-    if(ratio < 0.3){
-      band = 'LOW';
+    if (publicLevel === 'mixed') score += 2;
+    if (publicLevel === 'mostly-public') score += 4;
+
+    if (oldAccounts === 'few') score += 2;
+    if (oldAccounts === 'many') score += 4;
+
+    const resultBox = document.getElementById('footprint-result');
+    let band, badgeClass, summary, suggestions;
+
+    if (score <= 4) {
+      band = 'Quieter footprint';
       badgeClass = 'badge-low';
-      msg = 'Right now your visible trail looks relatively contained. There is still value in tightening a few things, but you are not highly exposed.';
-    }else if(ratio < 0.65){
-      band = 'MEDIUM';
-      badgeClass = 'badge-med';
-      msg = 'You have a moderate digital footprint. Some pieces are fine, others may need tidying, hiding or rewording so that future you is still comfortable with them.';
-    }else{
-      band = 'HIGH';
+      summary = 'Your footprint looks relatively contained. That can feel calming, but it also means some people may struggle to find the “real you” online.';
+      suggestions = [
+        'Decide whether you want to be more visible for work or business.',
+        'Check that the few public things that do show up feel accurate and kind to you.'
+      ];
+    } else if (score <= 10) {
+      band = 'Balanced footprint';
+      badgeClass = 'badge-medium';
+      summary = 'You sit in a common middle space: some visibility, some exposure, some room to tidy or align things a little more.';
+      suggestions = [
+        'Pick one platform to gently clean and update your bio / photo.',
+        'Close or lock any old accounts you no longer use but still recognise.'
+      ];
+    } else {
+      band = 'Louder footprint';
       badgeClass = 'badge-high';
-      msg = 'Your footprint looks quite exposed. This does not mean everything is bad, but it does mean there are many places where your name, face or details are easy to misuse.';
+      summary = 'You are quite searchable and present across multiple platforms. This can be powerful, but it also means more to watch and maintain.';
+      suggestions = [
+        'Review your top 3 most visible profiles and hide or remove anything that no longer feels like you.',
+        'Make a small list of accounts you might want to close or lock over time.'
+      ];
     }
 
-    const parts = [];
-
-    if(visScore > 0){
-      parts.push('<strong>Visibility:</strong> People can find you quickly. Clean and intentional profiles are fine, but random or old ones are worth reviewing.');
-    } else {
-      parts.push('<strong>Visibility:</strong> You are not easily searchable right now. This can be comfortable, but may limit professional discoverability if that is important to you.');
-    }
-
-    if(sensScore > 0){
-      parts.push('<strong>Sensitive details:</strong> There are signs of information that could be misused (family photos, contact details, leaks or location). These are high priority to review.');
-    } else {
-      parts.push('<strong>Sensitive details:</strong> There are no clear red flags from this quick check, but it is still wise to regularly review new photos and posts.');
-    }
-
-    if(ctrlScore > 0){
-      parts.push('<strong>Control:</strong> You have some older or uncomfortable content still visible. Think about what you can delete, untag, archive or rewrite so it matches who you are now.');
-    } else {
-      parts.push('<strong>Control:</strong> You seem to have reasonable control over what is visible. The focus now is keeping this under review as new content appears.');
-    }
-
-    const resultBox = document.getElementById('freeResult');
-    resultBox.style.display = 'block';
     resultBox.innerHTML = `
-      <p>
-        Overall footprint band:
-        <span class="badge ${badgeClass}">${band} RISK</span>
-      </p>
-      <p>${msg}</p>
-      <p style="margin-top:8px;">What this quick snapshot tells you:</p>
-      <ul style="font-size:.9rem;color:#9ca3af;margin-left:18px;">
-        <li>${parts[0]}</li>
-        <li>${parts[1]}</li>
-        <li>${parts[2]}</li>
-      </ul>
-      <p class="muted" style="margin-top:8px;">
-        This free check is only based on what you ticked. The smart snapshot below
-        helps you make sense of specific links you already know about.
-      </p>
+      <div class="result-badge ${badgeClass}">${band}</div>
+      <p>${summary}</p>
+      <p><strong>Gentle next steps:</strong></p>
+      <ul>${suggestions.map(s => `<li>${s}</li>`).join('')}</ul>
     `;
-  }
-
-  // ---------- PREMIUM SMART VERSION LOGIC ----------
-  function classifyUrl(url){
-    const u = url.toLowerCase();
-    if(u.includes('linkedin.com')) return 'Professional / career';
-    if(u.includes('instagram.com') || u.includes('tiktok.com') || u.includes('snapchat.com')) return 'Visual social profile';
-    if(u.includes('facebook.com')) return 'Social and personal';
-    if(u.includes('x.com') || u.includes('twitter.com')) return 'Public broadcast / opinions';
-    if(u.includes('youtube.com')) return 'Video / creator presence';
-    if(u.includes('github.com') || u.includes('gitlab.com')) return 'Technical / code portfolio';
-    if(u.includes('medium.com') || u.includes('substack.com') || u.includes('blogspot') || u.includes('wordpress')) return 'Writing and thought pieces';
-    if(u.includes('reddit.com') || u.includes('discord.gg')) return 'Community and forums';
-    return 'Other / general web presence';
-  }
-
-  function riskHint(category){
-    switch(category){
-      case 'Professional / career':
-        return 'Good for visibility, but check that contact details and job history say what you want them to say today.';
-      case 'Visual social profile':
-        return 'Great for expression but often higher risk for facial recognition, location and family photos. Privacy settings matter a lot here.';
-      case 'Social and personal':
-        return 'Often a mix of life updates and personal history. Review old posts, tagged photos and “about” sections.';
-      case 'Public broadcast / opinions':
-        return 'Posts here are easy to screenshot and reuse. Past opinions can travel further than you expect.';
-      case 'Video / creator presence':
-        return 'Video reveals voice, face and environment. Be mindful of backgrounds and information you say out loud.';
-      case 'Technical / code portfolio':
-        return 'Generally positive, but check for exposed keys, config files or personal information inside repositories.';
-      case 'Writing and thought pieces':
-        return 'Helpful for reputation, but older writing might not reflect how you think today.';
-      case 'Community and forums':
-        return 'Forums can contain emotional posts, late night comments or traces of older usernames.';
-      default:
-        return 'Useful to know this exists. Ask whether this page represents how you want to be seen now.';
-    }
-  }
-
-  function runSmartReport(){
-    const raw = document.getElementById('linksInput').value.trim();
-    const resultBox = document.getElementById('smartResult');
-
-    if(!raw){
-      alert('Paste at least one link to generate a snapshot.');
-      return;
-    }
-
-    const lines = raw.split('\n')
-      .map(l => l.trim())
-      .filter(l => l.length > 0)
-      .slice(0,10);
-
-    if(lines.length === 0){
-      alert('Paste a valid link to get started.');
-      return;
-    }
-
-    const classified = lines.map(url => ({
-      url,
-      category: classifyUrl(url)
-    }));
-
-    const counts = {};
-    classified.forEach(item => {
-      counts[item.category] = (counts[item.category] || 0) + 1;
-    });
-
-    let catHtml = '';
-    Object.keys(counts).forEach(cat => {
-      catHtml += `
-        <p style="margin:4px 0;">
-          <strong>${cat}:</strong> ${counts[cat]} link${counts[cat] > 1 ? 's' : ''}<br/>
-          <span style="font-size:.85rem;color:#9ca3af;">${riskHint(cat)}</span>
-        </p>
-      `;
-    });
-
-    const total = lines.length;
-    const socialLike = (counts['Visual social profile'] || 0) + (counts['Social and personal'] || 0);
-    const publicOpinions = (counts['Public broadcast / opinions'] || 0);
-    const forums = (counts['Community and forums'] || 0);
-
-    let band, badgeClass, msg;
-
-    if(socialLike + publicOpinions + forums >= Math.ceil(total * 0.7)){
-      band = 'HIGH';
-      badgeClass = 'badge-high';
-      msg = 'Most of your visible footprint is social, emotional or opinion based. This is fine if it is intentional, but it is also where misuse and misinterpretation often start.';
-    } else if(socialLike + publicOpinions + forums >= Math.ceil(total * 0.4)){
-      band = 'MEDIUM';
-      badgeClass = 'badge-med';
-      msg = 'You have a balanced mix of professional and social presence. With a little clean up, you can shift this towards a safer and more intentional footprint.';
-    } else{
-      band = 'LOW';
-      badgeClass = 'badge-low';
-      msg = 'Your footprint leans more towards professional, portfolio or lower risk content. The goal now is to keep it that way as new accounts and posts are added.';
-    }
-
-    const listHtml = classified.map(item => `
-      <li>
-        <span style="color:#e5e7eb;">${item.url}</span><br/>
-        <span class="muted">${item.category}</span>
-      </li>
-    `).join('');
-
     resultBox.style.display = 'block';
-    resultBox.innerHTML = `
-      <p>
-        Smart snapshot band:
-        <span class="badge ${badgeClass}">${band} RISK PROFILE</span>
-      </p>
-      <p>${msg}</p>
-
-      <h4 style="margin-top:10px;">How your links are distributed</h4>
-      ${catHtml}
-
-      <h4 style="margin-top:10px;">Links you entered</h4>
-      <ul class="url-list">
-        ${listHtml}
-      </ul>
-
-      <p class="muted" style="margin-top:8px;">
-        In your $15 smart snapshot, you can copy or save this summary and use it as a base
-        for a deeper review or a future human written report.
-      </p>
-    `;
-  }
+  });
 </script>
-
 </body>
 </html>
