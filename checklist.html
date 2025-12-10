@@ -1,200 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Digital Hygiene Checklist • Aman P Kaur</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <title>UX Basics Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:#020617;
-      color:#e5e7eb;
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
     }
-    .wrap{max-width:750px;margin:auto;padding:18px}
-    a{color:#38bdf8;text-decoration:none}
-    .card{
-      background:#0b1220;
-      border-radius:20px;
-      border:1px solid #1f2937;
-      padding:22px;
-      margin-bottom:20px;
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+      font-size: 0.86rem;
+      color: #374151;
     }
-    .checklist-group{
-      margin-bottom:16px;
-      border-bottom:1px dashed #1f2937;
-      padding-bottom:10px;
+    .checklist input {
+      margin-top: 0.1rem;
     }
-    .checklist-group h3{margin-bottom:4px}
-    .checklist-item{
-      display:flex;
-      gap:6px;
-      margin:4px 0;
-      align-items:flex-start;
+    .progress-bar-wrap {
+      margin-top: 0.75rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      height: 10px;
     }
-    .checklist-item label{font-size:.9rem}
-    .checklist-notes{
-      width:100%;
-      margin-top:6px;
-      font-size:.85rem;
-      padding:8px;
-      border-radius:8px;
-      border:1px solid #1f2937;
-      background:#020617;
-      color:#e5e7eb;
+    .progress-bar-inner {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #04b6f5, #22c55e);
+      transition: width 0.2s ease;
     }
-    .btn{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      padding:8px 16px;
-      border-radius:999px;
-      border:none;
-      cursor:pointer;
-      font-size:.9rem;
-      color:#022c22;
-      margin-top:10px;
+    .progress-text {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 0.3rem;
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page-wrapper">
 
-  <p><a href="index.html">← Back to main site</a></p>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
+        </div>
+      </a>
 
-  <div class="card">
-    <h1>Digital Hygiene Checklist</h1>
-    <p>
-      Tick what already feels true for you, and add notes where you want to improve.
-      When you’re done, you can download a simple snapshot file for yourself
-      — or to share parts of it with me in a session.
-    </p>
-  </div>
-
-  <div class="card" id="checklistContainer">
-
-    <div class="checklist-group">
-      <h3>1. Passwords</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use different passwords for important accounts.">
-        <label>I use different passwords for important accounts.</label>
-      </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My main email password is strong and not easily guessed.">
-        <label>My main email password is strong and not easily guessed.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="Password notes" placeholder="Any notes about your passwords (optional)"></textarea>
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html" class="active">Tools</a>
+          <a href="services.html">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Run Pro website scan</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="checklist-group">
-      <h3>2. Two-Factor Authentication (2FA)</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use 2FA on my main email account.">
-        <label>I use 2FA on my main email account.</label>
-      </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I use 2FA on banking or payment apps.">
-        <label>I use 2FA on banking or payment apps.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="2FA notes" placeholder="Any notes about 2FA (optional)"></textarea>
+  <main>
+    <div class="container">
+
+      <section class="page-hero">
+        <h1 class="page-hero-title">UX basics checklist</h1>
+        <p class="page-hero-subtitle">
+          A simple yes/no checklist to tidy up your website experience and reduce friction for visitors.
+        </p>
+      </section>
+
+      <section class="page-main">
+        <article class="page-panel">
+          <ul class="checklist" id="checklist">
+            <li><input type="checkbox" /> <span>The main headline clearly says who you help and how.</span></li>
+            <li><input type="checkbox" /> <span>There is one primary call to action above the fold.</span></li>
+            <li><input type="checkbox" /> <span>Navigation links are short, clear and not overloaded.</span></li>
+            <li><input type="checkbox" /> <span>Text is broken into short paragraphs or bullet points.</span></li>
+            <li><input type="checkbox" /> <span>Buttons look like buttons and are easy to tap on mobile.</span></li>
+            <li><input type="checkbox" /> <span>There is an obvious way to contact you or ask a question.</span></li>
+            <li><input type="checkbox" /> <span>At least one trust signal is visible (testimonial, logo, case study).</span></li>
+            <li><input type="checkbox" /> <span>Pages load reasonably quickly and images are not huge.</span></li>
+            <li><input type="checkbox" /> <span>Important content is readable on mobile without zooming.</span></li>
+          </ul>
+
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-inner" id="progress-bar"></div>
+          </div>
+          <div class="progress-text" id="progress-text">0 of 9 items ticked.</div>
+        </article>
+
+        <aside class="page-panel">
+          <h2>Use this when…</h2>
+          <ul>
+            <li>You’ve just launched or refreshed a website.</li>
+            <li>You want to make your site feel a little kinder and clearer.</li>
+            <li>You are preparing for a bigger redesign and want quick wins first.</li>
+          </ul>
+          <p>
+            You don’t need to tick everything at once. Even moving from 2/9 to 4/9 is a real improvement.
+          </p>
+          <a href="tools.html" class="btn btn-ghost">Back to all tools</a>
+        </aside>
+      </section>
+
     </div>
+  </main>
 
-    <div class="checklist-group">
-      <h3>3. Devices & Updates</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My devices have automatic updates turned on.">
-        <label>My devices have automatic updates turned on.</label>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
       </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I have some basic protection enabled (e.g. built-in security).">
-        <label>I have some basic protection enabled (e.g. built-in security).</label>
-      </div>
-      <textarea class="checklist-notes" data-label="Device notes" placeholder="Any notes about your devices (optional)"></textarea>
     </div>
-
-    <div class="checklist-group">
-      <h3>4. Social Media & Privacy</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I have checked my privacy settings in the last 12 months.">
-        <label>I have checked my privacy settings in the last 12 months.</label>
-      </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="I'm comfortable with what a stranger can see on my profile.">
-        <label>I'm comfortable with what a stranger can see on my profile.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="Social media notes" placeholder="Any notes about socials (optional)"></textarea>
-    </div>
-
-    <div class="checklist-group">
-      <h3>5. Backups & Important Files</h3>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="My important photos/documents are backed up somewhere.">
-        <label>My important photos/documents are backed up somewhere.</label>
-      </div>
-      <div class="checklist-item">
-        <input type="checkbox" class="chk-item" data-label="If I lost my phone, I know how to recover key data.">
-        <label>If I lost my phone, I know how to recover key data.</label>
-      </div>
-      <textarea class="checklist-notes" data-label="Backup notes" placeholder="Any notes about backups (optional)"></textarea>
-    </div>
-
-    <button class="btn" type="button" onclick="downloadChecklistSnapshot()">
-      Download my checklist snapshot
-    </button>
-    <p style="font-size:.8rem;color:#9ca3af;margin-top:8px;">
-      This creates a simple text file on your device. If you book a session, you can copy-paste a few lines
-      from it into your enquiry or email so we can start from where you already are.
-    </p>
-  </div>
+  </footer>
 
 </div>
 
 <script>
-function downloadChecklistSnapshot(){
-  const checkboxes = document.querySelectorAll('.chk-item');
-  const notes = document.querySelectorAll('.checklist-notes');
-  let content = "";
+  const checklist = document.getElementById('checklist');
+  const items = checklist.querySelectorAll('input[type="checkbox"]');
+  const bar = document.getElementById('progress-bar');
+  const text = document.getElementById('progress-text');
 
-  content += "Digital Hygiene Snapshot\n";
-  content += "Generated on: " + new Date().toLocaleString() + "\n\n";
-
-  content += "Ticked items:\n";
-  let anyTicked = false;
-  checkboxes.forEach(cb => {
-    const label = cb.getAttribute('data-label');
-    if (cb.checked){
-      anyTicked = true;
-      content += "  [x] " + label + "\n";
-    }
-  });
-  if (!anyTicked){
-    content += "  (No items ticked yet)\n";
+  function updateProgress() {
+    const total = items.length;
+    const checked = Array.from(items).filter(i => i.checked).length;
+    const percent = (checked / total) * 100;
+    bar.style.width = percent + '%';
+    text.textContent = `${checked} of ${total} items ticked.`;
   }
 
-  content += "\nNotes:\n";
-  let anyNotes = false;
-  notes.forEach(t => {
-    const label = t.getAttribute('data-label');
-    const value = t.value.trim();
-    if (value){
-      anyNotes = true;
-      content += "  " + label + ":\n    " + value.split("\n").join("\n    ") + "\n";
-    }
-  });
-  if (!anyNotes){
-    content += "  (No notes added yet)\n";
-  }
-
-  content += "\nIf you’d like help making sense of this, you can share it (or parts of it) with Aman in a session.";
-
-  const blob = new Blob([content], {type: 'text/plain'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = "digital-hygiene-snapshot.txt";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
+  items.forEach(i => i.addEventListener('change', updateProgress));
+  updateProgress();
 </script>
 </body>
 </html>
