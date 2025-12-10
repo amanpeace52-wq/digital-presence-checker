@@ -1,815 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Aman P Kaur • Digital Safety Studio</title>
-  <meta name="description" content="A calm digital safety studio by Aman P Kaur. Quick self-checks, human support and simple tools for your online life."/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="UTF-8">
+<title>Aman P Kaur – Digital Safety, UX & AI Literacy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root{
-      --bg:#020617;
-      --card:#050816;
-      --card-soft:#020617;
-      --accent:#22c55e;
-      --accent-soft:#22c55e22;
-      --blue:#38bdf8;
-      --pink:#e879f9;
-      --text:#e5e7eb;
-      --soft:#9ca3af;
-      --border:#1f2937;
-      --shadow:0 18px 40px rgba(0,0,0,0.5);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:#020617;
-      color:var(--text);
-    }
-    a{text-decoration:none;color:inherit}
+<style>
+:root{
+  --aqua:#05e1fa;
+  --gold:#fcd784;
+  --navy:#040c53;
+  --purple:#a86bb8;
+  --bronze:#956803;
+  --slate:#2a3458;
+  --bg:#f8fbff;
+  --card:#ffffff;
+  --soft:#6b7280;
+  --shadow:0 10px 28px rgba(0,0,0,.12);
+}
 
-    .wrap{
-      max-width:1120px;
-      margin:auto;
-      padding:22px 18px 40px;
-    }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4ff);
+  color:var(--slate);
+}
 
-    /* NAV */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    @media(max-width:768px){
-      header{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .logo{
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#e879f9,#22c55e);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      color:#022c22;
-      box-shadow:0 8px 20px rgba(0,0,0,0.6);
-    }
-    .brand span{
-      font-size:.75rem;
-      color:var(--soft);
-    }
-    nav a{
-      margin-left:10px;
-      color:var(--soft);
-      font-size:.85rem;
-      padding:5px 10px;
-      border-radius:999px;
-      transition:.2s ease;
-    }
-    nav a:hover{
-      color:white;
-      background:#ffffff12;
-    }
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1150px;margin:auto;padding:20px}
 
-    /* HERO */
-    .hero{
-      position:relative;
-      border-radius:26px;
-      padding:26px 24px 26px;
-      margin-top:10px;
-      margin-bottom:26px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(148,163,184,0.3);
-      background:#020617;
-    }
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:30px;
+}
 
-    .hero-bg{
-      position:absolute;
-      inset:-40px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(56,189,248,0.32), transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(34,197,94,0.34), transparent 55%),
-        radial-gradient(circle at 50% 100%, rgba(232,121,249,0.24), transparent 55%);
-      opacity:0.9;
-      animation:pulseGlow 10s ease-in-out infinite alternate;
-      z-index:-1;
-      transform-origin:center;
-    }
-    @keyframes pulseGlow{
-      0%{transform:translate3d(0,0,0) scale(1);}
-      50%{transform:translate3d(0,-8px,0) scale(1.03);}
-      100%{transform:translate3d(0,4px,0) scale(1.02);}
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .hero-inner{
-      display:grid;
-      grid-template-columns:1.5fr 1fr;
-      gap:20px;
-      align-items:stretch;
-    }
-    @media(max-width:900px){
-      .hero-inner{
-        grid-template-columns:1fr;
-      }
-    }
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--aqua),var(--purple));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:white;
+  box-shadow:var(--shadow);
+}
 
-    h1{
-      font-size:2.3rem;
-      margin:0 0 8px;
-    }
-    .tagline{
-      font-size:1rem;
-      color:#d1d5db;
-      margin-bottom:12px;
-    }
-    .hero-chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-bottom:10px;
-    }
-    .chip{
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(15,23,42,0.2);
-      background:#020617bb;
-      font-size:.78rem;
-      color:#e5e7eb;
-      backdrop-filter:blur(10px);
-    }
+nav a{
+  margin-left:14px;
+  font-weight:500;
+  color:var(--slate);
+}
 
-    .btn{
-      background:linear-gradient(135deg,var(--accent),#16a34a);
-      padding:12px 22px;
-      border-radius:999px;
-      color:#022c22;
-      font-size:.95rem;
-      border:none;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:8px;
-      transition:.2s ease;
-      box-shadow:0 14px 36px rgba(34,197,94,0.35);
-    }
-    .btn:hover{
-      transform:translateY(-2px) scale(1.02);
-      opacity:.97;
-    }
-    .btn-secondary{
-      background:#020617dd;
-      color:#e5e7eb;
-      border:1px solid rgba(148,163,184,0.4);
-      box-shadow:none;
-    }
-    .btn-secondary:hover{
-      border-color:#22c55eaa;
-      box-shadow:0 10px 26px rgba(15,23,42,0.8);
-    }
+.hero{
+  background:linear-gradient(135deg,var(--navy),var(--slate));
+  border-radius:30px;
+  padding:50px 40px;
+  color:white;
+  box-shadow:var(--shadow);
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:30px;
+}
 
-    .mini-reassure{
-      font-size:.8rem;
-      color:#e5e7eb;
-      margin-top:10px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:#020617cc;
-      border:1px dashed rgba(148,163,184,0.5);
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      backdrop-filter:blur(10px);
-    }
+.hero h1{font-size:2.6rem;margin:0 0 10px}
+.hero p{font-size:1.05rem;color:#e0f7ff}
 
-    /* HERO RIGHT PANEL */
-    .hero-panel{
-      border-radius:20px;
-      background:#020617e6;
-      padding:12px 14px 14px;
-      border:1px solid rgba(15,23,42,0.8);
-      backdrop-filter:blur(16px);
-    }
-    .hero-panel-title{
-      font-size:.85rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#9ca3af;
-      margin-bottom:6px;
-    }
-    .hero-panel-box{
-      margin-top:6px;
-      border-radius:14px;
-      padding:10px 11px;
-      background:#020617;
-      border:1px dashed rgba(148,163,184,0.5);
-      font-size:.8rem;
-      color:#d1d5db;
-    }
-    .hero-panel-box ul{
-      margin:6px 0 4px 18px;
-      padding:0;
-    }
-    .hero-panel-tags{
-      margin-top:8px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      font-size:.75rem;
-      color:#9ca3af;
-    }
-    .hero-panel-tags span{
-      padding:3px 8px;
-      border-radius:999px;
-      background:#020617;
-      border:1px solid #1f2937;
-    }
+.cta-row{
+  display:flex;
+  gap:14px;
+  margin-top:20px;
+}
 
-    /* GENERIC SECTIONS */
-    .section{
-      border-radius:22px;
-      padding:20px 18px 18px;
-      margin-bottom:22px;
-      background:radial-gradient(circle at top left,#0b1120, #020617);
-      border:1px solid rgba(15,23,42,0.9);
-      box-shadow:var(--shadow);
-    }
-    h2{
-      font-size:1.4rem;
-      margin:0 0 8px;
-    }
-    .section p{
-      font-size:.93rem;
-      color:var(--soft);
-      margin:0 0 10px;
-    }
+.btn{
+  padding:12px 24px;
+  border-radius:999px;
+  background:var(--gold);
+  color:#040c53;
+  font-weight:600;
+  box-shadow:var(--shadow);
+}
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:8px;
-    }
-    @media(max-width:900px){
-      .grid-3{grid-template-columns:1fr;}
-    }
+.btn.alt{
+  background:white;
+  color:var(--navy);
+}
 
-    .hub-card{
-      background:#020617;
-      border-radius:18px;
-      border:1px solid #1f2937;
-      padding:12px 14px 14px;
-      transition:.2s ease;
-      cursor:pointer;
-      position:relative;
-      overflow:hidden;
-    }
-    .hub-card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:radial-gradient(circle at top,#22c55e22,transparent 60%);
-      opacity:0;
-      transition:.3s ease;
-    }
-    .hub-card:hover::before{
-      opacity:1;
-    }
-    .hub-card:hover{
-      transform:translateY(-2px);
-      border-color:#22c55e88;
-      box-shadow:0 16px 34px rgba(0,0,0,0.7);
-    }
-    .hub-label{
-      font-size:.75rem;
-      text-transform:uppercase;
-      letter-spacing:.09em;
-      color:#9ca3af;
-      margin-bottom:4px;
-    }
-    .hub-title{
-      font-size:1.02rem;
-      margin-bottom:4px;
-      color:#e5e7eb;
-    }
-    .hub-text{
-      font-size:.86rem;
-      color:#9ca3af;
-    }
+.section{
+  background:var(--card);
+  margin-top:40px;
+  border-radius:24px;
+  padding:36px;
+  box-shadow:var(--shadow);
+}
 
-    /* PATH SLIDER */
-    .path-slider-wrapper{
-      margin-top:20px;
-      position:relative;
-    }
-    .path-track{
-      display:flex;
-      gap:16px;
-      overflow:hidden;
-      transition:transform .4s ease;
-    }
-    .path-card{
-      min-width:100%;
-      background:linear-gradient(135deg,#020617,#0b1120);
-      border-radius:22px;
-      padding:20px;
-      border:1px solid rgba(148,163,184,0.25);
-      box-shadow:0 20px 50px rgba(0,0,0,0.6);
-    }
-    .path-title{
-      font-size:1.4rem;
-      margin-bottom:6px;
-    }
-    .path-desc{
-      font-size:.95rem;
-      color:var(--soft);
-      margin-bottom:10px;
-    }
-    .path-list{
-      margin-left:18px;
-      font-size:.9rem;
-      color:#d1d5db;
-    }
-    .path-actions{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .slider-controls{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-top:12px;
-    }
-    .slider-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:#374151;
-      cursor:pointer;
-    }
-    .slider-dot.active{
-      background:#22c55e;
-    }
+.section h2{font-size:1.6rem;margin-bottom:10px}
 
-    /* STATS STRIP */
-    .stats-strip{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:10px;
-    }
-    @media(max-width:900px){
-      .stats-strip{grid-template-columns:1fr;}
-    }
-    .stat-card{
-      background:#020617;
-      border-radius:16px;
-      padding:10px 12px;
-      border:1px dashed #1f2937;
-    }
-    .stat-number{
-      font-size:1.6rem;
-      font-weight:600;
-      color:#a5b4fc;
-      margin-bottom:2px;
-    }
-    .stat-label{
-      font-size:.85rem;
-      color:#e5e7eb;
-    }
-    .stat-note{
-      font-size:.75rem;
-      color:#9ca3af;
-      margin-top:3px;
-    }
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-top:20px;
+}
 
-    /* STRESS & MOOD */
-    .stress-container{
-      display:grid;
-      grid-template-columns:1.3fr 1fr;
-      gap:18px;
-    }
-    @media(max-width:900px){
-      .stress-container{grid-template-columns:1fr;}
-    }
-    .thermo-box{
-      background:#020617;
-      border-radius:18px;
-      border:1px solid #1f2937;
-      padding:14px 14px 16px;
-    }
-    .thermo-label{
-      font-size:.88rem;
-      color:#e5e7eb;
-      margin-bottom:6px;
-    }
-    .thermo-scale{
-      display:flex;
-      justify-content:space-between;
-      font-size:.75rem;
-      color:#9ca3af;
-      margin-top:4px;
-    }
-    input[type="range"]{
-      width:100%;
-      margin-top:8px;
-    }
-    .thermo-output{
-      margin-top:10px;
-      font-size:.9rem;
-      color:#e5e7eb;
-    }
+.card{
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:22px;
+  background:white;
+  transition:.2s;
+}
 
-    .mood-box{
-      background:#020617;
-      border-radius:18px;
-      border:1px solid #1f2937;
-      padding:14px 14px 16px;
-    }
-    .mood-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:6px;
-      margin-bottom:8px;
-    }
-    .mood-btn{
-      width:38px;
-      height:38px;
-      border-radius:999px;
-      border:1px solid #1f2937;
-      background:#020617;
-      font-size:1.2rem;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:.15s ease;
-    }
-    .mood-btn.active,
-    .mood-btn:hover{
-      border-color:#22c55eaa;
-      box-shadow:0 8px 20px rgba(15,23,42,0.9);
-      transform:translateY(-1px);
-    }
-    .mood-output{
-      font-size:.9rem;
-      color:#e5e7eb;
-    }
+.card:hover{transform:translateY(-4px)}
 
-    footer{
-      text-align:center;
-      font-size:.75rem;
-      color:#6b7280;
-      margin-top:26px;
-    }
-  </style>
+.tag{
+  font-size:.75rem;
+  background:var(--aqua);
+  color:#040c53;
+  padding:4px 10px;
+  border-radius:999px;
+  display:inline-block;
+  margin-bottom:6px;
+}
+
+.start-box{
+  background:linear-gradient(135deg,var(--gold),var(--aqua));
+  border-radius:30px;
+  padding:50px;
+  text-align:center;
+  margin-top:40px;
+  box-shadow:var(--shadow);
+}
+
+.start-box h2{color:#040c53}
+
+.tool-links{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:20px;
+}
+
+.tool-links a{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  font-weight:600;
+  color:var(--slate);
+}
+
+.pro{
+  border:2px solid var(--gold);
+  background:#fffdf4;
+}
+
+footer{
+  text-align:center;
+  margin:40px 0;
+  font-size:.85rem;
+  color:#64748b;
+}
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-  <!-- NAV -->
-  <header>
-    <div class="brand">
-      <div class="logo">AK</div>
-      <div>
-        <strong>Aman P Kaur</strong><br/>
-        <span>Digital Safety · UX · AI and Cyber Literacy</span>
-      </div>
+<header>
+  <div class="brand">
+    <div class="logo">AK</div>
+    <div>
+      <strong>Aman P Kaur</strong><br>
+      <span style="font-size:.8rem;color:#64748b">Digital Safety · UX · AI Literacy</span>
     </div>
-    <nav>
-      <a href="about.html">My Story</a>
-      <a href="ai.html">AI & You</a>
-      <a href="tools.html">Tools</a>
-      <a href="services.html">Services</a>
-      <a href="coaching.html">Coaching</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="tools.html">Tools</a>
+    <a href="services.html">Services</a>
+    <a href="coaching.html">Coaching</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-
-    <div class="hero-inner">
-      <!-- LEFT -->
-      <div>
-        <h1>Digital life, made less scary.</h1>
-        <p class="tagline">
-          Quick self-checks and human support for your online identity, AI risks and everyday cyber safety.
-        </p>
-
-        <div class="hero-chips">
-          <span class="chip">For individuals & families</span>
-          <span class="chip">For students & professionals</span>
-          <span class="chip">For small business owners</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-          <a class="btn" href="tools.html">
-            Start a digital check
-            <span>→</span>
-          </a>
-          <a class="btn btn-secondary" href="services.html">
-            Explore services
-          </a>
-        </div>
-
-        <div class="mini-reassure">
-          <span>🧩</span>
-          <span>No technical language needed. We start from where you are.</span>
-        </div>
-      </div>
-
-      <!-- RIGHT PANEL -->
-      <div class="hero-panel">
-        <div class="hero-panel-title">Digital safety studio snapshot</div>
-        <div class="hero-panel-box">
-          <strong>What happens here?</strong><br/>
-          <span style="font-size:.8rem;">
-            A calm corner of the internet where you can:
-          </span>
-          <ul style="font-size:.8rem;color:#d1d5db;">
-            <li>See what your digital footprint looks like.</li>
-            <li>Understand how AI touches your identity.</li>
-            <li>Get human help, not just another app.</li>
-          </ul>
-        </div>
-
-        <div class="hero-panel-tags">
-          <span>👣 Digital footprint</span>
-          <span>🧠 AI & online identity</span>
-          <span>🛡️ Everyday cyber hygiene</span>
-          <span>✨ Simple UX for real people</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHOOSE YOUR PATH SLIDER -->
-  <section class="section">
-    <h2 style="text-align:center;">Choose your path</h2>
-    <p style="text-align:center;max-width:520px;margin:0 auto 12px;">
-      Start in the lane that matches your life right now. You can always switch later.
-    </p>
-
-    <div class="path-slider-wrapper">
-      <div class="path-track" id="pathTrack">
-
-        <!-- PATH 1 -->
-        <div class="path-card">
-          <div class="path-title">🧍 Just Me</div>
-          <div class="path-desc">
-            For individuals, students and everyday users who want clarity and safety.
-          </div>
-          <ul class="path-list">
-            <li>Check what is visible about you online</li>
-            <li>Understand everyday cyber risks</li>
-            <li>See how AI might be shaping what you see</li>
-          </ul>
-          <div class="path-actions">
-            <a class="btn" href="tools.html">Start my check</a>
-            <a class="btn btn-secondary" href="quiz.html">Take smart quiz</a>
-          </div>
-        </div>
-
-        <!-- PATH 2 -->
-        <div class="path-card">
-          <div class="path-title">👨‍👩‍👧 My Family</div>
-          <div class="path-desc">
-            For parents and caregivers navigating screens, sharing and online life together.
-          </div>
-          <ul class="path-list">
-            <li>Use quizzes and checklists together</li>
-            <li>Talk about privacy and AI without fear</li>
-            <li>Build simple, realistic digital rules</li>
-          </ul>
-          <div class="path-actions">
-            <a class="btn" href="quiz.html">Start family quiz</a>
-            <a class="btn btn-secondary" href="coaching.html">Explore coaching</a>
-          </div>
-        </div>
-
-        <!-- PATH 3 -->
-        <div class="path-card">
-          <div class="path-title">💼 My Work</div>
-          <div class="path-desc">
-            For professionals and small businesses concerned about trust, visibility and websites.
-          </div>
-          <ul class="path-list">
-            <li>Audit your website clarity and trust</li>
-            <li>Check your online brand exposure</li>
-            <li>Reduce avoidable digital risk</li>
-          </ul>
-          <div class="path-actions">
-            <a class="btn" href="services.html">View services</a>
-            <a class="btn btn-secondary" href="smart-ux-checker.html">Try UX tool</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="slider-controls">
-        <div class="slider-dot active" onclick="goSlide(0)"></div>
-        <div class="slider-dot" onclick="goSlide(1)"></div>
-        <div class="slider-dot" onclick="goSlide(2)"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS / MINI DASHBOARD -->
-  <section class="section">
-    <h2>Your mini digital safety dashboard here</h2>
-    <p>These are the building blocks we can use together to tidy and strengthen your digital life.</p>
-
-    <div class="stats-strip">
-      <div class="stat-card">
-        <div class="stat-number" id="statTools">0</div>
-        <div class="stat-label">Quick self-check tools</div>
-        <div class="stat-note">Digital footprint, UX checks, quiz, checklist and more.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="statServices">0</div>
-        <div class="stat-label">Personalised review services</div>
-        <div class="stat-note">Website clarity, digital footprint review and ongoing support.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="statCoaching">0</div>
-        <div class="stat-label">Coaching formats</div>
-        <div class="stat-note">30, 45 and 60 minute one-to-one sessions.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STRESS & MOOD -->
-  <section class="section">
-    <h2>How does your digital life feel today?</h2>
+<section class="hero">
+  <div>
+    <h1>Your Digital World, Made Clear & Safe</h1>
     <p>
-      Two tiny check-ins. No scoring, no shame — just a way to notice how things actually feel
-      before you choose a next step.
+      I help everyday people, families, and small businesses feel confident with technology, websites, AI, and online safety in a calm, human way.
     </p>
 
-    <div class="stress-container">
-      <!-- STRESS THERMOMETER -->
-      <div class="thermo-box">
-        <div class="thermo-label">Digital stress thermometer</div>
-        <p style="font-size:.85rem;color:var(--soft);margin-top:2px;">
-          Slide to the point that feels closest to you right now.
-        </p>
-        <input type="range" id="stressRange" min="1" max="5" value="2"/>
-        <div class="thermo-scale">
-          <span>Calm</span>
-          <span>Okay</span>
-          <span>Busy</span>
-          <span>Stretched</span>
-          <span>Overwhelmed</span>
-        </div>
-        <div class="thermo-output" id="stressOutput">
-          You feel mostly okay with moments of noise — small tweaks could help a lot.
-        </div>
-      </div>
-
-      <!-- MOOD EMOJI -->
-      <div class="mood-box">
-        <div class="thermo-label">Your digital mood in one emoji</div>
-        <p style="font-size:.85rem;color:var(--soft);margin-top:2px;">
-          Tap the face that matches how your online world feels today.
-        </p>
-        <div class="mood-buttons" id="moodButtons">
-          <button type="button" class="mood-btn" data-mood="calm">😌</button>
-          <button type="button" class="mood-btn" data-mood="fine">🙂</button>
-          <button type="button" class="mood-btn" data-mood="mixed">😐</button>
-          <button type="button" class="mood-btn" data-mood="stressed">😣</button>
-          <button type="button" class="mood-btn" data-mood="overwhelmed">😵</button>
-        </div>
-        <div class="mood-output" id="moodOutput">
-          Pick an emoji to get a tiny reflection and suggestion.
-        </div>
-      </div>
+    <div class="cta-row">
+      <a class="btn" href="tools.html">Start Free Self-Checks</a>
+      <a class="btn alt" href="services.html">Explore Services</a>
     </div>
-  </section>
+  </div>
 
-  <!-- FINAL CTA -->
-  <section class="section" style="text-align:center;">
-    <h2>Two simple ways to move forward</h2>
-    <p style="max-width:560px;margin:0 auto 10px;">
-      Want to quietly explore on your own, or ready to talk to someone?
-      You can choose either — or both — when you are ready.
-    </p>
+  <div>
+    <div class="card">
+      <span class="tag">Why this exists</span>
+      <p>
+        Technology is moving fast. AI is everywhere. Online risks are real.  
+        This space is designed to make all of that feel **simpler, safer, and more human**.
+      </p>
+    </div>
+  </div>
+</section>
 
-    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:4px;">
-      <a class="btn" href="tools.html">Use free self-check tools</a>
-      <a class="btn btn-secondary" href="contact.html">Send me a short message</a>
+<section class="section">
+  <h2>What You Can Do Here</h2>
+  <div class="grid-3">
+    <div class="card">
+      <span class="tag">Free Tools</span>
+      <h3>Check Your Digital Presence</h3>
+      <p>Use instant tools to explore your footprint, website clarity, online habits, and risk level.</p>
     </div>
 
-    <p style="font-size:.8rem;color:#9ca3af;margin-top:10px;">
-      Even “I don’t know where to start, but something feels off” is a valid message.
-    </p>
-  </section>
+    <div class="card">
+      <span class="tag">Premium Scan</span>
+      <h3>Instant Website Trust Radar</h3>
+      <p>Automated clarity, trust & AI-tone analysis with PDF report and exportable summary.</p>
+    </div>
 
-  <footer>
-    © <span id="year"></span> Aman P Kaur · Digital Safety and AI aware Cyber Literacy
-  </footer>
+    <div class="card">
+      <span class="tag">Coaching</span>
+      <h3>Human Support</h3>
+      <p>30, 45 or 60 minute cyber literacy & digital confidence coaching sessions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="start-box">
+  <h2>Let’s Start Here</h2>
+  <p>Choose what feels right for you right now.</p>
+
+  <div class="tool-links">
+    <a href="quiz.html">2-Minute Cyber Quiz</a>
+    <a href="digital-footprint.html">Digital Footprint Checker</a>
+    <a href="risk-score.html">Risk Score Generator</a>
+    <a href="smart-ux-checker.html">Smart UX Checker</a>
+    <a href="ux-checker.html">UX Basics Checker</a>
+    <a class="pro" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">Run Pro Website Scan (Paid)</a>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Why People Choose This Studio</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Human First</h3>
+      <p>No jargon. No fear-based tech talk. Just calm, real guidance.</p>
+    </div>
+    <div class="card">
+      <h3>Instant Tools + Real Support</h3>
+      <p>You can self-check instantly, or speak to a real person when needed.</p>
+    </div>
+    <div class="card">
+      <h3>Built for Everyday Life</h3>
+      <p>Families, students, professionals, small business owners.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Aman P Kaur · Digital Safety Studio
+</footer>
+
 </div>
 
 <script>
-  // Year
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Path slider
-  let currentSlide = 0;
-  const track = document.getElementById("pathTrack");
-  const dots = document.querySelectorAll(".slider-dot");
-  function goSlide(index){
-    currentSlide = index;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
-
-  // Parallax for hero background
-  const heroBg = document.getElementById("heroBg");
-  document.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    heroBg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.03)`;
-  });
-
-  // Animated stats
-  function animateCounter(id, target){
-    const el = document.getElementById(id);
-    let current = 0;
-    const step = Math.max(1, Math.floor(target / 40));
-    const interval = setInterval(() => {
-      current += step;
-      if(current >= target){
-        current = target;
-        clearInterval(interval);
-      }
-      el.textContent = current;
-    }, 30);
-  }
-  // Numbers are about your offerings (not global stats)
-  animateCounter("statTools", 6);
-  animateCounter("statServices", 3);
-  animateCounter("statCoaching", 3);
-
-  // Stress thermometer
-  const stressRange = document.getElementById("stressRange");
-  const stressOutput = document.getElementById("stressOutput");
-  function updateStress(value){
-    const v = parseInt(value, 10);
-    let text = "";
-    if(v === 1){
-      text = "Your digital world feels calm. Great time to do gentle maintenance and set things up well.";
-    } else if(v === 2){
-      text = "You feel mostly okay with moments of noise — small tweaks could help a lot.";
-    } else if(v === 3){
-      text = "Things feel busy. A focused self-check tool could give you clarity and a quick win.";
-    } else if(v === 4){
-      text = "You feel stretched. This might be a good time to combine a tool with a short coaching session.";
-    } else {
-      text = "You feel overwhelmed. You do not have to untangle this alone — human support can make it lighter.";
-    }
-    stressOutput.textContent = text;
-  }
-  updateStress(stressRange.value);
-  stressRange.addEventListener("input", (e)=>updateStress(e.target.value));
-
-  // Mood picker
-  const moodButtons = document.querySelectorAll(".mood-btn");
-  const moodOutput = document.getElementById("moodOutput");
-  const moodMessages = {
-    calm: "You are in a good place. This is the perfect moment to quietly review privacy and backups while nothing is on fire.",
-    fine: "You are mostly fine. A small nudge, like the digital hygiene checklist, could stop issues before they build up.",
-    mixed: "Some things feel okay, some not. Try the smart cyber quiz or risk score to see which area needs attention first.",
-    stressed: "You are carrying digital worries. Start with one focused tool, then consider a 30 or 45 minute coaching session.",
-    overwhelmed: "Everything feels too much. It is okay to ask for help. A short message on the contact page is a gentle first step."
-  };
-  moodButtons.forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      moodButtons.forEach(b=>b.classList.remove("active"));
-      btn.classList.add("active");
-      const mood = btn.getAttribute("data-mood");
-      moodOutput.textContent = moodMessages[mood] || "Thank you for sharing how it feels today.";
-    });
-  });
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
