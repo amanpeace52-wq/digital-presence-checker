@@ -4,252 +4,838 @@
   <meta charset="UTF-8" />
   <title>Trust Radar Pro – Website Trust, UX & Security Scan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Trust Radar Pro – Professional website audit for trust, UX clarity, cyber risk, and AI tone." />
+  <meta name="description" content="Trust Radar Pro – professional website audit for trust, UX clarity, cyber risk, and AI tone." />
   <link rel="stylesheet" href="styles.css" />
+  <!-- jsPDF for PDF auto-download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
+    .pill {
+      display:inline-block;
+      font-size:0.7rem;
+      padding:3px 9px;
+      border-radius:999px;
+      background:rgba(34,197,94,0.12);
+      color:#15803d;
+      margin-bottom:6px;
+    }
+    .cta-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top:0.9rem;
+    }
+    .btn-note {
+      font-size:0.78rem;
+      color:#6b7280;
+    }
+    .section-eyebrow {
+      font-size:0.75rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#6b7280;
+      margin-bottom:0.15rem;
+    }
+    .section-title {
+      font-size:1.1rem;
+      margin:0 0 0.4rem;
+      color:#111827;
+    }
+    .two-col {
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:20px;
+    }
+    @media (max-width:900px){
+      .two-col {grid-template-columns:1fr;}
+    }
+    .list-clean {
+      padding-left:1.1rem;
+      margin:0.3rem 0;
+      font-size:0.86rem;
+      color:#374151;
+    }
+    .list-clean li { margin-bottom:0.2rem; }
+
+    /* Pro tool form */
     .pro-form {
-      display: grid;
-      gap: 0.9rem;
+      display:grid;
+      gap:0.9rem;
     }
     .pro-form label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #111827;
+      font-size:0.85rem;
+      font-weight:600;
+      color:#111827;
+      display:block;
+      margin-bottom:0.15rem;
+    }
+    .pro-form small {
+      font-size:0.75rem;
+      color:#6b7280;
+      display:block;
+      margin-top:0.1rem;
     }
     .pro-form input,
     .pro-form select,
     .pro-form textarea {
-      width: 100%;
-      padding: 0.55rem 0.7rem;
-      border-radius: 0.6rem;
-      border: 1px solid rgba(148,163,184,0.9);
-      font: inherit;
+      width:100%;
+      padding:0.55rem 0.7rem;
+      border-radius:0.6rem;
+      border:1px solid rgba(148,163,184,0.9);
+      font:inherit;
     }
+    .pro-form textarea {
+      min-height:80px;
+      resize:vertical;
+    }
+    .inline-row {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0.75rem;
+    }
+    @media(max-width:780px){
+      .inline-row {grid-template-columns:1fr;}
+    }
+
+    /* Progress */
+    .progress-wrap {
+      margin-top:0.9rem;
+      display:none;
+    }
+    .progress-bar-bg {
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:#e5e7eb;
+      overflow:hidden;
+    }
+    .progress-bar-fill {
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#05e1fa,#22c55e);
+      transition:width 0.3s ease;
+    }
+    .progress-text {
+      font-size:0.78rem;
+      color:#6b7280;
+      margin-top:0.3rem;
+    }
+
+    /* Result */
     .pro-result {
-      margin-top: 1.2rem;
-      padding: 1rem;
-      border-radius: 1rem;
-      background: #f9fafb;
-      border: 1px solid rgba(148,163,184,0.7);
-      font-size: 0.85rem;
+      margin-top:1.2rem;
+      padding:1rem 1rem 1.1rem;
+      border-radius:1rem;
+      background:#f9fafb;
+      border:1px solid rgba(148,163,184,0.7);
+      font-size:0.85rem;
     }
     .score-card {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0.6rem;
+      margin-bottom:0.8rem;
+    }
+    @media(max-width:780px){
+      .score-card {grid-template-columns:1fr;}
     }
     .score-box {
-      background: #ffffff;
-      border: 1px solid rgba(148,163,184,0.6);
-      border-radius: 0.8rem;
-      padding: 0.55rem;
-      text-align: center;
+      background:#ffffff;
+      border:1px solid rgba(148,163,184,0.6);
+      border-radius:0.9rem;
+      padding:0.6rem;
+      text-align:center;
     }
     .score-box strong {
-      display: block;
-      font-size: 1rem;
-      color: #040c53;
+      display:block;
+      font-size:1.1rem;
+      color:#040c53;
     }
-    .tag {
-      display:inline-block;
+    .score-box span {
+      font-size:0.78rem;
+      color:#6b7280;
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
       padding:3px 9px;
       border-radius:999px;
-      font-size:0.7rem;
-      background:#ecfeff;
-      border:1px solid #22c55e55;
-      color:#065f46;
+      font-size:0.75rem;
+      margin-bottom:0.4rem;
+    }
+    .badge-strong {background:#dcfce7;color:#166534;}
+    .badge-medium {background:#fef9c3;color:#92400e;}
+    .badge-weak {background:#fee2e2;color:#991b1b;}
+    .muted {
+      font-size:0.78rem;
+      color:#6b7280;
+      margin-top:0.5rem;
     }
   </style>
 </head>
 <body>
 <div class="page-wrapper">
 
-<header class="site-header">
-  <div class="site-header-inner">
-    <a href="index.html" class="brand">
-      <div class="brand-mark">AK</div>
-      <div>
-        <div class="brand-text-title">Aman P Kaur</div>
-        <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
-      </div>
-    </a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
+        </div>
+      </a>
 
-    <nav class="site-nav">
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="tools.html">Tools</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="coaching.html">Coaching</a>
-        <a href="ai.html">AI & You</a>
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html">Tools</a>
+          <a href="services.html" class="active">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Trust Radar Pro</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="page-hero">
+        <span class="pill">Premium scan</span>
+        <h1 class="page-hero-title">Trust Radar Pro</h1>
+        <p class="page-hero-subtitle">
+          A professional website scan that looks at trust, UX clarity and cyber risk –
+          from the perspective of your real visitors.
+        </p>
+        <div class="page-meta">
+          <span>Ideal for small businesses & solo founders</span>
+          <span>·</span>
+          <span>One-time scan · Consultant-level output</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
+            Buy Trust Radar Pro (Stripe)
+          </a>
+          <span class="btn-note">
+            Secure Stripe checkout. After payment, you’ll be sent back here to run your scan.
+          </span>
+        </div>
+      </section>
+
+      <!-- PRE-PURCHASE VIEW -->
+      <section class="page-panel" id="pre-purchase">
+        <div class="two-col">
+          <div>
+            <div class="section-eyebrow">What you get</div>
+            <h2 class="section-title">A serious, honest review – not generic fluff.</h2>
+            <ul class="list-clean">
+              <li>Trust, UX and security scores for your homepage.</li>
+              <li>AI tone read: how your words actually land with humans.</li>
+              <li>Professional risk flags viewed from a cyber & privacy lens.</li>
+              <li>High-impact fixes that go beyond "make the button bigger".</li>
+              <li>Auto-generated PDF report you can keep or share with your designer.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="section-eyebrow">How it works</div>
+            <h2 class="section-title">Three simple steps.</h2>
+            <ol class="list-clean">
+              <li><strong>Purchase via Stripe.</strong> You’ll be redirected back to this page.</li>
+              <li><strong>Paste your key website content.</strong> Hero copy, proof and calls to action.</li>
+              <li><strong>Run the scan.</strong> Watch the progress bar, then download your PDF report.</li>
+            </ol>
+            <p class="muted">
+              To unlock the scan, your Stripe success URL should point to:<br/>
+              <code>.../trust-radar-pro.html?paid=1</code>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRO TOOL VIEW (UNLOCKED AFTER PAYMENT) -->
+      <section class="page-panel" id="pro-tool" style="display:none;">
+        <div class="section-eyebrow">Unlocked</div>
+        <h2 class="section-title">Run your Trust Radar Pro scan</h2>
+        <p style="font-size:0.86rem;color:#374151;margin-bottom:0.7rem;">
+          Paste in real content from your homepage. The more honest you are, the more useful the report.
+          This does not crawl your site – it evaluates what you actually say to visitors.
+        </p>
+
+        <form id="pro-form" class="pro-form">
+          <div>
+            <label for="siteUrl">Website URL</label>
+            <input id="siteUrl" type="url" required placeholder="https://example.com">
+            <small>Use the exact URL visitors land on first (usually your homepage).</small>
+          </div>
+
+          <div class="inline-row">
+            <div>
+              <label for="bizType">Business type</label>
+              <select id="bizType">
+                <option>Coach / Consultant</option>
+                <option>Healthcare / Allied health</option>
+                <option>E-commerce / Online store</option>
+                <option>Professional services</option>
+                <option>Education / Training</option>
+                <option>Community / Non-profit</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="audience">Primary audience</label>
+              <select id="audience">
+                <option>General public</option>
+                <option>Parents / families</option>
+                <option>Students / young adults</option>
+                <option>Professionals / B2B clients</option>
+                <option>High-trust / regulated industry</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inline-row">
+            <div>
+              <label for="data">What kind of data do you handle?</label>
+              <select id="data">
+                <option>No personal data</option>
+                <option>Basic contact details only</option>
+                <option>Contact + bookings</option>
+                <option>Payments and/or sensitive information</option>
+              </select>
+            </div>
+            <div>
+              <label for="honesty">How honest do you want this scan?</label>
+              <select id="honesty">
+                <option>Gentle & encouraging</option>
+                <option>Direct but kind</option>
+                <option>Blunt / tell me the truth</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="headline">Main headline (hero title)</label>
+            <input id="headline" type="text" required placeholder="e.g. I help busy parents rebuild their digital confidence.">
+          </div>
+
+          <div>
+            <label for="hero">Top section copy (first screen)</label>
+            <textarea id="hero" required placeholder="Paste the first paragraph or two visitors read at the top of your homepage."></textarea>
+          </div>
+
+          <div class="inline-row">
+            <div>
+              <label for="proof">Trust & proof elements</label>
+              <textarea id="proof" placeholder="Testimonials, case studies, logos, years in practice, certifications, etc."></textarea>
+            </div>
+            <div>
+              <label for="cta">Main call(s) to action</label>
+              <textarea id="cta" placeholder="Buttons or phrases like 'Book a consult', 'Start your intake form', etc."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <label for="worries">If you had to be brutally honest – what worries you about your site right now?</label>
+            <textarea id="worries" placeholder="Write your gut feelings here. This helps tailor the recommendations."></textarea>
+          </div>
+
+          <div class="inline-row">
+            <div>
+              <label for="tone">How would you describe your current tone?</label>
+              <select id="tone">
+                <option>Warm & human</option>
+                <option>Corporate & formal</option>
+                <option>Sales-heavy</option>
+                <option>Technical & dense</option>
+                <option>Unclear / inconsistent</option>
+              </select>
+            </div>
+            <div>
+              <label>
+                <input id="onlinePayments" type="checkbox" />
+                We take payments directly on the site.
+              </label>
+              <small>Tick this if you process card payments or store billing details online.</small>
+            </div>
+          </div>
+
+          <button type="submit" id="scanButton" class="btn btn-primary">
+            Run Pro Scan & Generate PDF
+          </button>
+
+          <!-- Progress -->
+          <div id="progressWrap" class="progress-wrap">
+            <div class="progress-bar-bg">
+              <div id="progressBar" class="progress-bar-fill"></div>
+            </div>
+            <div id="progressText" class="progress-text">Starting analysis…</div>
+          </div>
+        </form>
+
+        <div id="proResult" class="pro-result" style="display:none;"></div>
+        <p id="pdfNote" class="muted" style="display:none;">
+          Your PDF report should have downloaded automatically. If not, you can re-run the scan or press Ctrl+S inside the PDF viewer.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
       </div>
-      <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Trust Radar Pro</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-<div class="container">
-
-<section class="page-hero">
-  <span class="pill">Premium Website Audit</span>
-  <h1 class="page-hero-title">Trust Radar Pro</h1>
-  <p class="page-hero-subtitle">
-    Professional-level trust, UX & cyber risk scan for small businesses, coaches and founders.
-  </p>
-
-  <div class="cta-row">
-    <a class="btn btn-primary" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
-      Unlock Pro Scan (Stripe)
-    </a>
-    <span class="btn-note">One-time secure payment • Instant access</span>
-  </div>
-</section>
-
-<section class="page-main">
-<article class="page-panel">
-
-<form id="pro-form" class="pro-form">
-
-  <label>Website URL</label>
-  <input id="site" type="url" required placeholder="https://example.com">
-
-  <label>Business Type</label>
-  <select id="type">
-    <option>Coach / Consultant</option>
-    <option>Healthcare</option>
-    <option>E-commerce</option>
-    <option>Service Business</option>
-    <option>Education</option>
-    <option>Other</option>
-  </select>
-
-  <label>Primary Audience</label>
-  <select id="audience">
-    <option>General public</option>
-    <option>Professionals</option>
-    <option>Parents / families</option>
-    <option>Students</option>
-    <option>High-trust regulated industry</option>
-  </select>
-
-  <label>Does your site collect personal data?</label>
-  <select id="data">
-    <option>No personal data</option>
-    <option>Contact forms only</option>
-    <option>Payments & sensitive info</option>
-  </select>
-
-  <label>How clear is your offer right now?</label>
-  <select id="clarity">
-    <option>Very unclear</option>
-    <option>Somewhat clear</option>
-    <option>Very clear</option>
-  </select>
-
-  <label>Describe your brand tone</label>
-  <select id="tone">
-    <option>Warm & human</option>
-    <option>Corporate & formal</option>
-    <option>Sales-heavy</option>
-    <option>Technical & dense</option>
-  </select>
-
-  <button type="submit" class="btn btn-primary">
-    Run Trust Radar Pro Scan
-  </button>
-
-</form>
-
-<div id="pro-result" class="pro-result" style="display:none;"></div>
-
-</article>
-
-<aside class="page-panel">
-  <h2>What this scan evaluates</h2>
-  <ul>
-    <li>Cyber security exposure & data handling</li>
-    <li>UX clarity & conversion friction</li>
-    <li>Trust signals & legitimacy</li>
-    <li>AI tone classification</li>
-    <li>Professional risk flags</li>
-  </ul>
-</aside>
-</section>
-
-</div>
-</main>
-
-<footer class="site-footer">
-  <div class="site-footer-inner">
-    <div>© Aman P Kaur · Digital Safety Studio</div>
-    <div class="site-footer-links">
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="services.html">Services</a>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </div>
 
 <script>
-document.getElementById("pro-form").addEventListener("submit", function(e){
-  e.preventDefault();
+  // --- GATE TOOL BY ?paid=1 ---
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const paid = params.get('paid') === '1';
+    const pre = document.getElementById('pre-purchase');
+    const tool = document.getElementById('pro-tool');
+    if (paid) {
+      pre.style.display = 'none';
+      tool.style.display = 'block';
+    } else {
+      pre.style.display = 'block';
+      tool.style.display = 'none';
+    }
+  })();
 
-  const type = document.getElementById("type").value;
-  const audience = document.getElementById("audience").value;
-  const data = document.getElementById("data").value;
-  const clarity = document.getElementById("clarity").value;
-  const tone = document.getElementById("tone").value;
+  // --- HELPER: basic keyword checks ---
+  function countMatches(text, list) {
+    const lower = (text || '').toLowerCase();
+    let count = 0;
+    list.forEach(k => { if (lower.includes(k)) count++; });
+    return count;
+  }
 
-  let trust = 70;
-  let security = 70;
-  let ux = 70;
+  function clamp(num,min,max){ return Math.min(max, Math.max(min, num)); }
 
-  if (data.includes("sensitive")) security -= 25;
-  if (clarity.includes("unclear")) ux -= 20;
-  if (tone.includes("Sales")) trust -= 10;
+  // --- MAIN SCAN LOGIC ---
+  const form = document.getElementById('pro-form');
+  const resultBox = document.getElementById('proResult');
+  const progressWrap = document.getElementById('progressWrap');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const scanButton = document.getElementById('scanButton');
+  const pdfNote = document.getElementById('pdfNote');
 
-  let result = `
-    <h3>Professional Trust Radar Report</h3>
+  form && form.addEventListener('submit', function(e){
+    e.preventDefault();
 
-    <div class="score-card">
-      <div class="score-box"><strong>${trust}</strong>Trust Score</div>
-      <div class="score-box"><strong>${security}</strong>Cyber Risk</div>
-      <div class="score-box"><strong>${ux}</strong>UX Clarity</div>
-    </div>
+    // Grab values
+    const siteUrl = document.getElementById('siteUrl').value.trim();
+    const bizType = document.getElementById('bizType').value;
+    const audience = document.getElementById('audience').value;
+    const data = document.getElementById('data').value;
+    const honesty = document.getElementById('honesty').value;
+    const headline = document.getElementById('headline').value.trim();
+    const hero = document.getElementById('hero').value.trim();
+    const proof = document.getElementById('proof').value.trim();
+    const cta = document.getElementById('cta').value.trim();
+    const worries = document.getElementById('worries').value.trim();
+    const tone = document.getElementById('tone').value;
+    const onlinePayments = document.getElementById('onlinePayments').checked;
 
-    <p><strong>AI Tone Classification:</strong> ${tone}</p>
+    if (!siteUrl || !headline || !hero) {
+      alert('Please fill in at least your URL, headline and top section copy.');
+      return;
+    }
 
-    <h4>Professional Risk Flags</h4>
-    <ul>
-      <li>Data handling risk: ${data}</li>
-      <li>Audience trust sensitivity: ${audience}</li>
-      <li>Conversion clarity status: ${clarity}</li>
-    </ul>
+    // Disable button and show progress
+    scanButton.disabled = true;
+    scanButton.textContent = 'Scanning your site…';
+    progressWrap.style.display = 'block';
+    resultBox.style.display = 'none';
+    pdfNote.style.display = 'none';
+    progressBar.style.width = '0%';
+    progressText.textContent = 'Reading your content…';
 
-    <h4>Strategic Fixes (High Impact)</h4>
-    <ul>
-      <li>Add visible trust proof above the fold.</li>
-      <li>Strengthen privacy & security signals.</li>
-      <li>Simplify primary call-to-action.</li>
-      <li>Rebalance emotional vs sales language.</li>
-    </ul>
+    let step = 0;
+    const steps = [
+      'Reading your hero & headline…',
+      'Reviewing trust signals & calls to action…',
+      'Assessing UX clarity & tone for ' + audience.toLowerCase() + '…',
+      'Checking cyber & data handling risk…',
+      'Preparing your PDF report…'
+    ];
 
-    <h4>Professional Recommendation</h4>
-    <p>This website is commercially viable but currently vulnerable to trust-drop, conversion leakage, and cyber perception risks.</p>
+    const interval = setInterval(() => {
+      step++;
+      const pct = clamp((step / steps.length) * 100, 0, 100);
+      progressBar.style.width = pct + '%';
+      progressText.textContent = steps[Math.min(step-1, steps.length-1)];
 
-    <span class="tag">Consultant-grade output</span>
-  `;
+      if (step >= steps.length) {
+        clearInterval(interval);
+        // Run analysis + show results + generate PDF
+        const report = analyseSite({
+          siteUrl, bizType, audience, data, honesty,
+          headline, hero, proof, cta, worries, tone, onlinePayments
+        });
+        showResults(report);
+        generatePdf(report);
+        scanButton.disabled = false;
+        scanButton.textContent = 'Run Pro Scan & Generate PDF';
+      }
+    }, 600); // ~3 seconds total
+  });
 
-  const box = document.getElementById("pro-result");
-  box.innerHTML = result;
-  box.style.display = "block";
-});
+  function analyseSite(input) {
+    let trustScore = 65;
+    let securityScore = 65;
+    let uxScore = 65;
+
+    const { siteUrl, bizType, audience, data, honesty,
+            headline, hero, proof, cta, worries, tone, onlinePayments } = input;
+
+    const fullText = (headline + ' ' + hero + ' ' + proof + ' ' + cta).toLowerCase();
+
+    // --- Trust heuristics ---
+    const trustKeywords = ['testimonial','client','review','case study','since','years','experience','registered','licensed','certified','accredited','insured','trusted','evidence','results'];
+    const trustCount = countMatches(fullText, trustKeywords);
+
+    if (trustCount === 0) {
+      trustScore -= 10;
+    } else if (trustCount === 1) {
+      trustScore += 0;
+    } else if (trustCount <= 3) {
+      trustScore += 5;
+    } else {
+      trustScore += 10;
+    }
+
+    // Audience sensitivity
+    if (audience.includes('High-trust') || bizType.includes('Healthcare')) {
+      trustScore -= 5; // higher bar
+    }
+
+    // Tone effect on trust
+    if (tone === 'Sales-heavy') trustScore -= 8;
+    if (tone === 'Corporate & formal' && audience === 'Parents / families') trustScore -= 5;
+    if (tone === 'Warm & human' && (audience.includes('Parents') || audience.includes('General'))) trustScore += 5;
+
+    // --- Security heuristics ---
+    const securityKeywords = ['secure','encrypted','encryption','privacy','gdpr','hipaa','pci','ssl','data protection','security'];
+    const securityCount = countMatches(fullText, securityKeywords);
+
+    if (data === 'No personal data') {
+      securityScore += 5;
+    } else if (data === 'Basic contact details only') {
+      securityScore += 0;
+    } else if (data === 'Contact + bookings') {
+      securityScore -= 5;
+    } else if (data.includes('Payments')) {
+      securityScore -= 12;
+    }
+
+    if (onlinePayments) {
+      securityScore -= 5;
+    }
+
+    if (securityCount === 0 && data !== 'No personal data') {
+      securityScore -= 10; // no visible reassurance
+    } else if (securityCount >= 2) {
+      securityScore += 5;
+    }
+
+    if (audience === 'High-trust / regulated industry') {
+      securityScore -= 5; // higher baseline expectations
+    }
+
+    // --- UX / clarity heuristics ---
+    const heroLength = hero.length;
+    const claritySignals = countMatches(hero, ['help','support','for ','so that','so you can','so you don','we work with','i work with']);
+
+    if (heroLength < 60) {
+      uxScore -= 8; // too thin – likely vague
+    } else if (heroLength > 600) {
+      uxScore -= 8; // too dense
+    } else {
+      uxScore += 3; // reasonable length
+    }
+
+    if (claritySignals >= 2) {
+      uxScore += 7;
+    } else if (claritySignals === 0) {
+      uxScore -= 5;
+    }
+
+    const ctaCount = cta.split(/\bbook\b|\bcontact\b|\bstart\b|\bget started\b|\bjoin\b/i).length - 1;
+    if (ctaCount === 0) uxScore -= 6;
+    if (ctaCount >= 2) uxScore += 4;
+
+    if (tone === 'Technical & dense' && audience.includes('General')) uxScore -= 6;
+
+    trustScore = clamp(trustScore, 15, 95);
+    securityScore = clamp(securityScore, 15, 95);
+    uxScore = clamp(uxScore, 15, 95);
+
+    const overall = Math.round((trustScore + securityScore + uxScore) / 3);
+
+    // --- Banding ---
+    let band, bandClass;
+    if (overall >= 80) {
+      band = 'Strong baseline with a few sharp edges to polish.';
+      bandClass = 'badge-strong';
+    } else if (overall >= 60) {
+      band = 'Workable, but leaking trust and clarity in key places.';
+      bandClass = 'badge-medium';
+    } else {
+      band = 'Needs a structured clean-up to feel trustworthy and clear.';
+      bandClass = 'badge-weak';
+    }
+
+    // --- Priority fixes based on flags ---
+    const priorityFixes = [];
+    const trustFixes = [];
+    const securityFixes = [];
+    const uxFixes = [];
+
+    if (trustCount === 0) {
+      trustFixes.push('Move at least one strong testimonial, outcome or proof above the fold where visitors can see it without scrolling.');
+    } else if (trustCount <= 2) {
+      trustFixes.push('Strengthen proof by adding more specific outcomes, client types or before/after stories.');
+    }
+
+    if (securityCount === 0 && data !== 'No personal data') {
+      securityFixes.push('Add a short, plain-language privacy / data handling note near any forms or booking areas.');
+    }
+    if (onlinePayments || data.includes('Payments')) {
+      securityFixes.push('Make sure you clearly name the payment provider (e.g. Stripe) and mention that card details are not stored on your site.');
+    }
+    if (audience === 'High-trust / regulated industry' || bizType.includes('Healthcare')) {
+      securityFixes.push('If relevant, reference any regulatory frameworks you work under (e.g. privacy laws, professional codes).');
+    }
+
+    if (heroLength < 100 || claritySignals === 0) {
+      uxFixes.push('Rewrite the hero section to clearly say: who you help, what problem you solve, and what outcome they can expect.');
+    }
+    if (ctaCount === 0) {
+      uxFixes.push('Add one primary call-to-action (e.g. “Book a 15-min consult”) and make it visually clear and consistent.');
+    }
+    if (heroLength > 500) {
+      uxFixes.push('Break long paragraphs into shorter lines or bullet points to reduce cognitive load for busy visitors.');
+    }
+
+    // Combine some top picks
+    priorityFixes.push(...trustFixes.slice(0,1));
+    priorityFixes.push(...securityFixes.slice(0,1));
+    priorityFixes.push(...uxFixes.slice(0,1));
+
+    // Honesty tone tweak
+    let voiceNote = '';
+    if (honesty === 'Gentle & encouraging') {
+      voiceNote = 'This is a gentle but honest snapshot. Focus on one or two changes first – you do not need to fix everything at once.';
+    } else if (honesty === 'Direct but kind') {
+      voiceNote = 'This report is direct but on your side. Treat it as a working document, not a judgment.';
+    } else {
+      voiceNote = 'This is a blunt read of where your site is helping you – and where it is quietly working against you.';
+    }
+
+    return {
+      siteUrl, bizType, audience, data, honesty, headline, hero, proof, cta, worries, tone,
+      onlinePayments, trustScore, securityScore, uxScore, overall, band, bandClass,
+      priorityFixes, trustFixes, securityFixes, uxFixes, voiceNote
+    };
+  }
+
+  function showResults(r) {
+    const {
+      siteUrl, bizType, audience, data, headline,
+      trustScore, securityScore, uxScore, overall,
+      band, bandClass,
+      priorityFixes, trustFixes, securityFixes, uxFixes,
+      voiceNote, tone
+    } = r;
+
+    resultBox.innerHTML = `
+      <div class="badge ${bandClass}">Overall read: ${band}</div>
+      <p><strong>Site evaluated:</strong> ${siteUrl}</p>
+      <p><strong>Context:</strong> ${bizType} serving ${audience.toLowerCase()}</p>
+
+      <div class="score-card">
+        <div class="score-box">
+          <strong>${trustScore}</strong>
+          <span>Trust & legitimacy</span>
+        </div>
+        <div class="score-box">
+          <strong>${securityScore}</strong>
+          <span>Cyber & data risk posture</span>
+        </div>
+        <div class="score-box">
+          <strong>${uxScore}</strong>
+          <span>UX clarity & conversion</span>
+        </div>
+      </div>
+
+      <p><strong>AI-style tone read:</strong> ${tone}</p>
+      <p><strong>Headline you provided:</strong> “${headline}”</p>
+
+      <h4 style="margin-top:0.7rem;">Top 3 priority moves</h4>
+      <ul class="list-clean">
+        ${priorityFixes.map(f => `<li>${f}</li>`).join('') || '<li>No single glaring issue, focus on refinement and consistency.</li>'}
+      </ul>
+
+      <h4>Trust & proof focus</h4>
+      <ul class="list-clean">
+        ${trustFixes.map(f => `<li>${f}</li>`).join('') || '<li>Your current trust proof is reasonable – consider deepening it with more specific outcomes.</li>'}
+      </ul>
+
+      <h4>Security & data handling focus</h4>
+      <ul class="list-clean">
+        ${securityFixes.map(f => `<li>${f}</li>`).join('') || '<li>No obvious red flags based on what you shared – still review privacy and security text once a year.</li>'}
+      </ul>
+
+      <h4>UX & conversion focus</h4>
+      <ul class="list-clean">
+        ${uxFixes.map(f => `<li>${f}</li>`).join('') || '<li>Structurally solid. Next improvements are about fine-tuning language and microcopy.</li>'}
+      </ul>
+
+      <p class="muted">${voiceNote}</p>
+    `;
+    resultBox.style.display = 'block';
+    pdfNote.style.display = 'block';
+  }
+
+  // --- PDF GENERATION ---
+  function generatePdf(r) {
+    try {
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF) return;
+
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      const margin = 40;
+      let y = margin;
+
+      function addHeading(text, size=14, gap=16) {
+        doc.setFont('helvetica','bold');
+        doc.setFontSize(size);
+        doc.text(text, margin, y);
+        y += gap;
+      }
+      function addBody(text, size=11, gap=14) {
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(size);
+        const lines = doc.splitTextToSize(text, 515);
+        doc.text(lines, margin, y);
+        y += gap + (lines.length-1)*size*0.9;
+      }
+      function addList(items) {
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(11);
+        items.forEach(item => {
+          const lines = doc.splitTextToSize('• ' + item, 515);
+          if (y + lines.length*12 > 780) {
+            doc.addPage(); y = margin;
+          }
+          doc.text(lines, margin, y);
+          y += 14;
+        });
+        y += 6;
+      }
+      function newPageIfNeeded(extra=80) {
+        if (y + extra > 780) {
+          doc.addPage(); y = margin;
+        }
+      }
+
+      const {
+        siteUrl, bizType, audience, data, honesty, headline, hero,
+        worries, tone, onlinePayments,
+        trustScore, securityScore, uxScore, overall, band,
+        priorityFixes, trustFixes, securityFixes, uxFixes
+      } = r;
+
+      // Title
+      addHeading('Trust Radar Pro – Website Report', 16, 20);
+      addBody('Site: ' + siteUrl);
+      addBody('Business type: ' + bizType + ' | Audience: ' + audience);
+      addBody('Data handled: ' + data + (onlinePayments ? ' (online payments enabled)' : ''));
+      addBody('Tone detected: ' + tone + ' | Honesty mode: ' + honesty);
+      newPageIfNeeded();
+
+      // Scores
+      addHeading('1. Score snapshot', 14, 18);
+      addBody('Overall read: ' + band + ' (Overall score: ' + overall + '/100)');
+      addBody('Trust & legitimacy: ' + trustScore + '/100');
+      addBody('Cyber & data posture: ' + securityScore + '/100');
+      addBody('UX clarity & conversion: ' + uxScore + '/100');
+      newPageIfNeeded();
+
+      // Hero + headline
+      addHeading('2. What your homepage is currently saying', 14, 18);
+      addBody('Headline: ' + headline);
+      addBody('Top section copy (first screen):');
+      addBody(hero || '(no hero copy provided)');
+      newPageIfNeeded();
+
+      // Priority moves
+      addHeading('3. Top 3 priority moves', 14, 18);
+      if (priorityFixes.length) {
+        addList(priorityFixes);
+      } else {
+        addBody('No single urgent issue identified – focus on refining proof, clarity and accessibility.');
+      }
+      newPageIfNeeded();
+
+      // Trust
+      addHeading('4. Trust & proof – professional view', 14, 18);
+      if (trustFixes.length) addList(trustFixes);
+      else addBody('Your trust proof is present at a basic level. Consider adding: outcome-specific testimonials, before/after examples, or clearer social proof.');
+      newPageIfNeeded();
+
+      // Security
+      addHeading('5. Cyber & data handling posture', 14, 18);
+      if (securityFixes.length) addList(securityFixes);
+      else addBody('Based on what you shared, there are no immediate visible red flags. Still ensure that privacy notices, cookies and data handling practices are up to date.');
+      newPageIfNeeded();
+
+      // UX
+      addHeading('6. UX & conversion clarity', 14, 18);
+      if (uxFixes.length) addList(uxFixes);
+      else addBody('Structurally, the UX appears largely sound from a content perspective. Next-step improvements involve microcopy, visual hierarchy and accessibility.');
+      newPageIfNeeded();
+
+      // Worries / owner gut
+      addHeading('7. Your own concerns (founder/owner view)', 14, 18);
+      addBody(worries || 'No worries were written. It may still be helpful to reflect on what feels most “off” when you visit your own homepage.');
+      newPageIfNeeded();
+
+      // Closing
+      addHeading('8. Next 7 days – simple action plan', 14, 18);
+      const nextSteps = [
+        'Pick ONE trust improvement and implement it (e.g. add a specific testimonial or case study above the fold).',
+        'Pick ONE clarity improvement (e.g. rewrite your hero to name who you help and the outcome).',
+        'If you handle any personal data, add or update a short privacy / data-handling statement in plain language.',
+        'In two weeks, revisit this report and tick off what has changed.'
+      ];
+      addList(nextSteps);
+
+      doc.save('trust-radar-report.pdf');
+    } catch (err) {
+      console.error('PDF generation error', err);
+    }
+  }
 </script>
-
 </body>
 </html>
