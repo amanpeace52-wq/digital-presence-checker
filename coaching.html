@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Coaching • Cyber Literacy with Aman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root{
+      --bg:#020617;--card:#050816;--accent:#22c55e;--accent-soft:#22c55e22;
+      --text:#e5e7eb;--soft:#9ca3af;--border:#1f2937;--shadow:0 18px 40px rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:
+        radial-gradient(circle at top left,#1d2a5a,#020617),
+        radial-gradient(circle at bottom right,#022c22,#020617);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:900px;margin:auto;padding:22px 18px 40px;}
+    header{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;
+    }
+    @media(max-width:720px){header{flex-direction:column;align-items:flex-start}}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:42px;height:42px;border-radius:16px;
+      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#22c55e);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#022c22;box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+    nav a{margin-left:10px;font-size:.85rem;color:var(--soft);padding:5px 9px;border-radius:999px;}
+    nav a:hover{background:#ffffff12;color:white}
+    .card{
+      background:var(--card);border-radius:22px;padding:22px;border:1px solid rgba(148,163,184,0.18);
+      box-shadow:var(--shadow);margin-bottom:24px;
+    }
+    h1{font-size:1.9rem;margin-bottom:8px}
+    h2{font-size:1.3rem;margin-top:18px;margin-bottom:8px}
+    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
+    .pill{
+      display:inline-block;font-size:.7rem;padding:3px 9px;border-radius:999px;
+      background:var(--accent-soft);color:#bbf7d0;margin-bottom:6px;
+    }
+    .muted{font-size:.8rem;color:var(--soft)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong><a href="index.html">Aman P Kaur</a></strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Safety · UX · AI and Cyber Literacy</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">My Story</a>
+      <a href="ai.html">AI & You</a>
+      <a href="tools.html">Tools</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="card">
+    <span class="pill">Coaching</span>
+    <h1>Cyber literacy coaching — one to one</h1>
+    <p>
+      Private, practical sessions for students, parents, professionals and small business owners.
+      Especially helpful if you feel behind with AI, apps and modern online life.
+    </p>
+
+    <h2>Session options</h2>
+    <ul>
+      <li><strong>30 minutes — $30</strong>: basics, scams, passwords, phone safety.</li>
+      <li><strong>45 minutes — $45</strong>: identity, privacy, social media and AI risks.</li>
+      <li><strong>60 minutes — $60</strong>: full hygiene plan, tools and a next step roadmap.</li>
+    </ul>
+
+    <h2>How coaching can help you</h2>
+    <ul>
+      <li>Turn vague anxiety into a clear, simple plan.</li>
+      <li>Ask all the questions you have been holding back in a safe space.</li>
+      <li>Understand how AI and new tools affect your life, not just in theory.</li>
+      <li>Leave with two or three concrete actions you can take immediately.</li>
+    </ul>
+
+    <p class="muted" style="margin-top:10px;">
+      To book a session, visit the <a href="contact.html">contact page</a>,
+      select “I want to book a coaching session” and tell me a little about your situation.
+    </p>
+  </section>
+</div>
+</body>
+</html>
