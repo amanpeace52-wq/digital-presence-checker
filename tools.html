@@ -1,228 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Tools • Digital Self-Checks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <style>
-    :root{
-      --bg:#020617;--card:#050816;--card-soft:#020617;
-      --accent:#22c55e;--accent-soft:#22c55e22;--text:#e5e7eb;--soft:#9ca3af;
-      --border:#1f2937;--shadow:0 18px 40px rgba(0,0,0,0.45);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-      background:
-        radial-gradient(circle at top left,#1d2a5a,#020617),
-        radial-gradient(circle at bottom right,#022c22,#020617);
-      color:var(--text);
-    }
-    a{text-decoration:none;color:inherit}
-    .wrap{max-width:1120px;margin:auto;padding:22px 18px 40px;}
-    header{
-      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;
-    }
-    @media(max-width:768px){header{flex-direction:column;align-items:flex-start}}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{
-      width:42px;height:42px;border-radius:16px;
-      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#22c55e);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;color:#022c22;box-shadow:0 8px 20px rgba(0,0,0,0.5);
-    }
-    nav a{margin-left:10px;font-size:.85rem;color:var(--soft);padding:5px 9px;border-radius:999px;}
-    nav a:hover{background:#ffffff12;color:white}
-    .card{
-      background:var(--card);border-radius:22px;padding:22px;border:1px solid rgba(148,163,184,0.18);
-      box-shadow:var(--shadow);margin-bottom:24px;
-    }
-    h1{font-size:1.9rem;margin-bottom:8px}
-    h2{font-size:1.4rem;margin-bottom:8px}
-    h3{font-size:1.05rem;margin-bottom:6px}
-    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
-    .muted{font-size:.8rem;color:var(--soft)}
-    .pill{
-      display:inline-block;font-size:.7rem;padding:3px 9px;border-radius:999px;
-      background:var(--accent-soft);color:#bbf7d0;margin-bottom:6px;
-    }
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
-    .tool-card{
-      background:var(--card-soft);border-radius:18px;border:1px solid #1f2937;
-      padding:14px 14px 16px;display:flex;flex-direction:column;justify-content:space-between;
-      transition:.2s ease;
-    }
-    .tool-card:hover{
-      border-color:#22c55e55;transform:translateY(-2px);box-shadow:0 16px 30px rgba(0,0,0,0.55);
-    }
-    .tool-footer{
-      margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;
-      font-size:.75rem;color:var(--soft);
-    }
-    .btn{
-      background:linear-gradient(135deg,var(--accent),#16a34a);
-      padding:7px 16px;border-radius:999px;color:#022c22;font-size:.85rem;
-      border:none;cursor:pointer;display:inline-block;transition:.2s ease;
-      box-shadow:0 10px 30px rgba(34,197,94,0.3);
-    }
-    .btn:hover{transform:translateY(-2px) scale(1.02);opacity:.96}
-  </style>
+  <meta charset="UTF-8" />
+  <title>Tools – Digital Presence Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">
-      <div class="logo">AK</div>
-      <div>
-        <strong><a href="index.html">Aman P Kaur</a></strong><br/>
-        <span style="font-size:.75rem;color:var(--soft)">Digital Safety · UX · AI and Cyber Literacy</span>
-      </div>
+<div class="page-wrapper">
+
+  <!-- Shared header -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
+        </div>
+      </a>
+
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html" class="active">Tools</a>
+          <a href="services.html">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Run Pro website scan</a>
+      </nav>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">My Story</a>
-      <a href="ai.html">AI & You</a>
-      <a href="services.html">Services</a>
-      <a href="coaching.html">Coaching</a>
-      <a href="contact.html">Contact</a>
-    </nav>
   </header>
 
-  <section class="card">
-    <span class="pill">Self-checks and tools</span>
-    <h1>Tools you can use right now</h1>
-    <p>
-      These tools are short, focused and private. You can use any one of them and keep the results to yourself,
-      or use them as a starting point before reaching out for support.
-    </p>
-  </section>
+  <!-- Page content -->
+  <main>
+    <div class="container">
 
-  <section class="card">
-    <h2>Digital identity and privacy</h2>
-    <div class="grid-3" style="margin-top:12px;">
-      <div class="tool-card">
-        <div>
-          <div class="pill">Identity and privacy</div>
-          <h3>Digital Footprint Checker</h3>
-          <p>
-            Start with a free quick check of what is visible about you online,
-            then explore an instant smart snapshot that organises your links into a simple
-            risk view (available as a $15 upgrade through secure Stripe checkout).
+      <section class="page-hero">
+        <h1 class="page-hero-title">Free digital presence tools</h1>
+        <p class="page-hero-subtitle">
+          Small, focused self-check tools to help you understand your digital footprint, risk level,
+          website clarity and everyday online habits — in simple language.
+        </p>
+        <div class="page-meta">
+          <span>Free self-checks</span>
+          <span>·</span>
+          <span>Choose one that feels easy today</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card-grid-3">
+
+          <article class="card">
+            <h3>Digital footprint checker</h3>
+            <p>See where your name, photos and profiles are appearing online.</p>
+            <a href="digital-footprint.html" class="btn btn-ghost">Open tool</a>
+          </article>
+
+          <article class="card">
+            <h3>2-minute cyber habits quiz</h3>
+            <p>A quick check-in for everyday online habits and small risk areas.</p>
+            <a href="quiz.html" class="btn btn-ghost">Start quiz</a>
+          </article>
+
+          <article class="card">
+            <h3>Digital risk score helper</h3>
+            <p>Get a rough risk band and ideas for simple next steps.</p>
+            <a href="risk-score.html" class="btn btn-ghost">Open tool</a>
+          </article>
+
+          <article class="card">
+            <h3>Smart UX checker</h3>
+            <p>Check if your website or page feels clear, friendly and trustworthy.</p>
+            <a href="smart-ux-checker.html" class="btn btn-ghost">Open tool</a>
+          </article>
+
+          <article class="card">
+            <h3>UX basics checklist</h3>
+            <p>A simple yes/no list to tidy your website experience.</p>
+            <a href="checklist.html" class="btn btn-ghost">Open checklist</a>
+          </article>
+
+          <article class="card">
+            <h3>Digital presence quick checks</h3>
+            <p>Short prompts to reflect on your online story and first impressions.</p>
+            <a href="quick-checks.html" class="btn btn-ghost">Open quick checks</a>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-eyebrow">Next step</div>
+          <h2 class="section-title">Want a deeper website scan?</h2>
+          <p class="section-description">
+            If you’d like a more detailed, structured view of how your website looks for trust,
+            clarity and tone, you can use the paid Trust Radar Pro scan.
           </p>
         </div>
-        <div class="tool-footer">
-          <span>Free + Smart snapshot</span>
-          <a class="btn" href="digital-footprint.html">Open tool</a>
-        </div>
-      </div>
+        <a href="trust-radar-pro.html" class="btn btn-primary">See Trust Radar Pro</a>
+      </section>
 
-      <div class="tool-card">
-        <div>
-          <div class="pill">Risk profile</div>
-          <h3>Online Risk Score Generator</h3>
-          <p>
-            Answer a few questions and get a simple risk band
-            with tailored suggestions and a gentle call to action.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>Quick snapshot</span>
-          <a class="btn" href="risk-score.html">Start</a>
-        </div>
-      </div>
+    </div>
+  </main>
 
-      <div class="tool-card">
-        <div>
-          <div class="pill">Habits</div>
-          <h3>Digital Hygiene Checklist</h3>
-          <p>
-            Walk through passwords, updates, backups and privacy.
-            Add notes and keep a snapshot you can use later.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>5–8 minutes</span>
-          <a class="btn" href="checklist.html">Start</a>
-        </div>
+  <!-- Shared footer -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <section class="card">
-    <h2>Websites and user experience</h2>
-    <div class="grid-3" style="margin-top:12px;">
-      <div class="tool-card">
-        <div>
-          <div class="pill">UX and clarity</div>
-          <h3>Website UX and Clarity Checker</h3>
-          <p>
-            Look at your website through your visitor’s eyes.
-            Clarity, trust, navigation and first impressions without design jargon.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>Best for: website owners</span>
-          <a class="btn" href="ux-checker.html">Start</a>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div>
-          <div class="pill">Smart UX</div>
-          <h3>Smart UX Auto Checker</h3>
-          <p>
-            A more guided UX review with prompts that help you think
-            through your user journey and friction points step by step.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>About 10 minutes</span>
-          <a class="btn" href="smart-ux-checker.html">Start</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Awareness and learning</h2>
-    <div class="grid-3" style="margin-top:12px;">
-      <div class="tool-card">
-        <div>
-          <div class="pill">Awareness</div>
-          <h3>Smart Cyber Awareness Quiz</h3>
-          <p>
-            Scenario based quiz that covers passwords, messages, devices,
-            social media, AI content, money and family.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>For: everyday users</span>
-          <a class="btn" href="quiz.html">Start</a>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div>
-          <div class="pill">Quick entry</div>
-          <h3>Quick Self-Checks Hub</h3>
-          <p>
-            A gentle place to start if you just want a two minute sense of where you are
-            before deciding anything else.
-          </p>
-        </div>
-        <div class="tool-footer">
-          <span>Mix of tools</span>
-          <a class="btn" href="quick-checks.html">Open</a>
-        </div>
-      </div>
-    </div>
-
-    <p class="muted" style="margin-top:14px;">
-      If one of these tools brings something up for you — worry, confusion or just curiosity —
-      you can always follow it with a message on the <a href="contact.html">contact page</a>.
-    </p>
-  </section>
 </div>
 </body>
 </html>
