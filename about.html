@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>My Story • Aman P Kaur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root{
+      --bg:#020617;--card:#050816;--accent:#22c55e;--accent-soft:#22c55e22;
+      --text:#e5e7eb;--soft:#9ca3af;--border:#1f2937;--shadow:0 18px 40px rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:
+        radial-gradient(circle at top left,#1d2a5a,#020617),
+        radial-gradient(circle at bottom right,#022c22,#020617);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:900px;margin:auto;padding:22px 18px 40px;}
+    header{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;
+    }
+    @media(max-width:720px){header{flex-direction:column;align-items:flex-start}}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:42px;height:42px;border-radius:16px;
+      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#22c55e);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#022c22;box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+    nav a{margin-left:10px;font-size:.85rem;color:var(--soft);padding:5px 9px;border-radius:999px;}
+    nav a:hover{background:#ffffff12;color:white}
+    .card{
+      background:var(--card);border-radius:22px;padding:22px;border:1px solid rgba(148,163,184,0.18);
+      box-shadow:var(--shadow);
+    }
+    h1{font-size:1.8rem;margin-bottom:8px}
+    h2{font-size:1.3rem;margin-top:18px;margin-bottom:8px}
+    p{font-size:.95rem;color:var(--soft);line-height:1.7}
+    .pill{
+      display:inline-block;font-size:.7rem;padding:3px 9px;border-radius:999px;
+      background:var(--accent-soft);color:#bbf7d0;margin-bottom:6px;
+    }
+    .muted{font-size:.8rem;color:var(--soft)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong><a href="index.html">Aman P Kaur</a></strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Safety · UX · AI and Cyber Literacy</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ai.html">AI & You</a>
+      <a href="tools.html">Tools</a>
+      <a href="services.html">Services</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="card">
+    <span class="pill">My story</span>
+    <h1>Why I care about your digital life</h1>
+    <p>
+      I did not step into cyber security because I love machines.
+      I stepped in because I kept watching ordinary people
+      — parents, students, small business owners —
+      quietly fall behind a digital world that moves faster than their confidence.
+    </p>
+    <p>
+      In my work as a lecturer and PhD researcher, the same sentence keeps coming up:
+      <em>“I feel exposed, but I do not even know what I should be worried about.”</em>
+    </p>
+    <p>
+      I saw people trying their best — using phones, apps, AI tools and social media —
+      but still feeling like there was a secret rule book they never got to read.
+      That feeling of “everyone else seems to know what they are doing” can be very lonely.
+    </p>
+
+    <h2>Turning complexity into calm</h2>
+    <p>
+      My work sits in the middle of a few worlds:
+      academic research, teaching, cyber security, user experience and AI.
+      I translate what is happening in those worlds into:
+    </p>
+    <ul>
+      <li>Simple language that makes sense in everyday life.</li>
+      <li>Tools that help you see your own patterns and risks.</li>
+      <li>Services and coaching that give you a human partner, not just another app.</li>
+    </ul>
+
+    <h2>What this space is for</h2>
+    <p>
+      This site is a small, calm corner of the internet where you can:
+    </p>
+    <ul>
+      <li>Look at your digital footprint without shame or panic.</li>
+      <li>Understand how AI and online systems affect you and your family.</li>
+      <li>Get practical, human help if you want someone to walk through it with you.</li>
+    </ul>
+
+    <p class="muted" style="margin-top:10px;">
+      If you would like to talk, you can always start with a short message on the
+      <a href="contact.html">contact page</a>. You do not have to have the right words —
+      you just have to say, “This is what is on my mind.”
+    </p>
+  </section>
+</div>
+</body>
+</html>
