@@ -1,542 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Website UX & Conversion Checker</title>
-<style>
-    :root {
-        --primary: #0ea5e9;
-        --primary-dark: #0369a1;
-        --accent: #f97316;
-        --bg-gradient-start: #020617;
-        --bg-gradient-end: #0f172a;
-        --card-bg: #ffffff;
-        --text-main: #020617;
-        --muted: #6b7280;
-        --border-subtle: #e5e7eb;
+  <meta charset="UTF-8" />
+  <title>UX Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .ux-mini-form {
+      display: grid;
+      gap: 0.8rem;
     }
-
-    * {
-        box-sizing: border-box;
+    .ux-mini-form label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #111827;
+      display: block;
+      margin-bottom: 0.2rem;
     }
-
-    body {
-        margin: 0;
-        padding: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at top right, #0b1120, #020617);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+    .ux-mini-form input[type="range"] {
+      width: 100%;
     }
-
-    .outer {
-        max-width: 900px;
-        width: 100%;
+    .slider-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #6b7280;
     }
-
-    .header {
-        text-align: center;
-        color: #e5e7eb;
-        margin-bottom: 16px;
+    #ux-mini-result {
+      margin-top: 1rem;
+      padding: 0.85rem 0.9rem;
+      border-radius: 0.9rem;
+      background: #f9fafb;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.85rem;
     }
-
-    .header h1 {
-        margin: 0 0 10px;
-        font-size: 1.9rem;
-    }
-
-    .header p {
-        margin: 0;
-        font-size: 0.95rem;
-        color: #9ca3af;
-    }
-
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.75rem;
-        background: rgba(15, 23, 42, 0.9);
-        color: #e5e7eb;
-        padding: 4px 10px;
-        border-radius: 999px;
-        margin-bottom: 8px;
-    }
-
-    .badge-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 999px;
-        background: var(--primary);
-    }
-
-    .container {
-        background: radial-gradient(circle at top left, #e0f2fe, #f9fafb);
-        border-radius: 16px;
-        padding: 22px 22px 26px;
-        box-shadow:
-            0 18px 40px rgba(15, 23, 42, 0.55),
-            0 0 0 1px rgba(148, 163, 184, 0.4);
-        border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    h2 {
-        margin-top: 0;
-        margin-bottom: 4px;
-        font-size: 1.2rem;
-        color: var(--primary-dark);
-    }
-
-    .subtext {
-        font-size: 0.9rem;
-        color: var(--muted);
-        margin-bottom: 16px;
-    }
-
-    .section-label {
-        margin: 18px 0 8px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--primary-dark);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .section-label span {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: var(--primary);
-    }
-
-    .question {
-        margin-bottom: 16px;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--border-subtle);
-        background: rgba(255, 255, 255, 0.9);
-    }
-
-    .question-title {
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-bottom: 4px;
-        color: var(--text-main);
-    }
-
-    .question-note {
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-bottom: 6px;
-    }
-
-    select {
-        width: 100%;
-        padding: 7px 9px;
-        border-radius: 8px;
-        border: 1px solid #bae6fd;
-        font-size: 0.9rem;
-        outline: none;
-    }
-
-    select:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.35);
-    }
-
-    .btn-primary {
-        padding: 11px 18px;
-        background: var(--primary);
-        color: #f9fafb;
-        border: none;
-        border-radius: 999px;
-        cursor: pointer;
-        font-size: 0.95rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 8px;
-    }
-
-    .btn-primary:hover {
-        background: var(--primary-dark);
-    }
-
-    .btn-primary span {
-        font-size: 1.1rem;
-    }
-
-    #resultBox {
-        margin-top: 22px;
-        padding: 18px 16px 20px;
-        background: #ecfeff;
-        border-radius: 14px;
-        display: none;
-        border: 1px solid rgba(34, 211, 238, 0.7);
-    }
-
-    .score {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-    }
-
-    .score small {
-        font-weight: 500;
-        color: var(--muted);
-        font-size: 0.8rem;
-    }
-
-    .risk {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-top: 8px;
-    }
-
-    .risk.low {
-        color: #047857;
-    }
-
-    .risk.medium {
-        color: #b45309;
-    }
-
-    .risk.high {
-        color: #b91c1c;
-    }
-
-    .advice {
-        margin-top: 10px;
-        font-size: 0.9rem;
-        color: var(--text-main);
-    }
-
-    .premium-box {
-        margin-top: 16px;
-        background: #fef3c7;
-        padding: 12px 12px 14px;
-        border-left: 4px solid var(--accent);
-        border-radius: 10px;
-        font-size: 0.88rem;
-    }
-
-    .premium-box h3 {
-        margin: 0 0 6px;
-        font-size: 0.95rem;
-        color: #92400e;
-    }
-
-    .premium-box ul {
-        padding-left: 20px;
-        margin: 4px 0 6px;
-    }
-
-    .premium-box li {
-        margin-bottom: 2px;
-    }
-
-    .btn-secondary {
-        margin-top: 6px;
-        padding: 8px 13px;
-        border-radius: 999px;
-        border: 1px solid #fed7aa;
-        background: #fff7ed;
-        cursor: pointer;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        color: #9a3412;
-    }
-
-    .btn-secondary:hover {
-        background: #fed7aa;
-    }
-
-    .footnote {
-        margin-top: 10px;
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-</style>
+  </style>
 </head>
 <body>
+<div class="page-wrapper">
 
-<div class="outer">
-    <div class="header">
-        <div class="badge">
-            <span class="badge-dot"></span>
-            10–15 clicks • Website owners • Coaches • Creators • SMEs
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">AK</div>
+        <div>
+          <div class="brand-text-title">Aman P Kaur</div>
+          <div class="brand-text-tagline">Digital Safety · UX · AI Literacy</div>
         </div>
-        <h1>Website UX & Conversion Checker</h1>
-        <p>See if your website is clear, trustworthy, and ready to turn visitors into clients.</p>
-    </div>
+      </a>
 
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="tools.html" class="active">Tools</a>
+          <a href="services.html">Services</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="ai.html">AI &amp; You</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="trust-radar-pro.html" class="btn btn-secondary nav-cta">Run Pro website scan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
     <div class="container">
-        <h2>Rate your site in 15 quick questions</h2>
-        <p class="subtext">
-            Think of your main website or landing page. Answer based on what a first-time visitor sees and feels.
+
+      <section class="page-hero">
+        <h1 class="page-hero-title">UX checker</h1>
+        <p class="page-hero-subtitle">
+          A quick gut-check across clarity, navigation and emotional feel of your page.
         </p>
+      </section>
 
-        <form id="quizForm">
-
-            <!-- Section 1: Clarity -->
-            <div class="section-label"><span></span> Clarity — can people instantly “get it”?</div>
-
-            <div class="question">
-                <div class="question-title">1. Above the fold, is it clear what you do and who it’s for?</div>
-                <div class="question-note">Imagine someone sees your homepage for 5 seconds.</div>
-                <select name="q1">
-                    <option value="0">No — it’s confusing or vague</option>
-                    <option value="5">Somewhat — they might guess with effort</option>
-                    <option value="10">Yes — it’s obvious in one sentence</option>
-                </select>
+      <section class="page-main">
+        <article class="page-panel">
+          <form id="ux-mini-form" class="ux-mini-form">
+            <div>
+              <label for="clarity">How clear is the page (1 = confusing, 10 = crystal clear)?</label>
+              <input id="clarity" type="range" min="1" max="10" value="5" />
+              <div class="slider-row"><span>Confusing</span><span>Crystal clear</span></div>
             </div>
 
-            <div class="question">
-                <div class="question-title">2. Is there a single, obvious primary call-to-action (CTA)?</div>
-                <div class="question-note">Example: “Book a call”, “Shop now”, “Get a quote”.</div>
-                <select name="q2">
-                    <option value="0">No — many competing buttons or none stand out</option>
-                    <option value="5">Sort of — there is one, but it blends in</option>
-                    <option value="10">Yes — one clear main CTA stands out visually</option>
-                </select>
+            <div>
+              <label for="nav">How easy is it to find things (1 = lost, 10 = very easy)?</label>
+              <input id="nav" type="range" min="1" max="10" value="5" />
+              <div class="slider-row"><span>Lost</span><span>Very easy</span></div>
             </div>
 
-            <div class="question">
-                <div class="question-title">3. Are your services or offers clearly listed in simple language?</div>
-                <div class="question-note">No jargon; a non-technical visitor can understand.</div>
-                <select name="q3">
-                    <option value="0">No — it feels technical or vague</option>
-                    <option value="5">Partly — some clear, some confusing</option>
-                    <option value="10">Yes — very simple, benefit-focused language</option>
-                </select>
+            <div>
+              <label for="feel">How does it feel emotionally (1 = cold / pushy, 10 = warm / human)?</label>
+              <input id="feel" type="range" min="1" max="10" value="5" />
+              <div class="slider-row"><span>Cold / pushy</span><span>Warm / human</span></div>
             </div>
 
-            <!-- Section 2: Trust & Credibility -->
-            <div class="section-label"><span></span> Trust & credibility — why should they believe you?</div>
+            <button type="submit" class="btn btn-primary">Get quick UX reading</button>
+          </form>
 
-            <div class="question">
-                <div class="question-title">4. Does your site show trust elements (testimonials, logos, reviews, results)?</div>
-                <div class="question-note">Anything that signals proof.</div>
-                <select name="q4">
-                    <option value="0">No — almost no proof shown</option>
-                    <option value="5">Some — but they’re hidden or not very strong</option>
-                    <option value="10">Yes — clear, visible and relevant proof</option>
-                </select>
-            </div>
+          <div id="ux-mini-result" style="display:none;"></div>
+        </article>
 
-            <div class="question">
-                <div class="question-title">5. Is your About section human and relatable?</div>
-                <div class="question-note">Not just a generic paragraph — it builds connection.</div>
-                <select name="q5">
-                    <option value="0">No — it’s cold, generic, or missing</option>
-                    <option value="5">Somewhat — okay but forgettable</option>
-                    <option value="10">Yes — it feels human, specific, and trustworthy</option>
-                </select>
-            </div>
+        <aside class="page-panel">
+          <p>
+            This is intentionally subjective. It captures <em>how it feels</em> to use your page today.
+            You can repeat this after you make small changes to see if it feels different.
+          </p>
+          <a href="tools.html" class="btn btn-ghost">Back to all tools</a>
+        </aside>
+      </section>
 
-            <div class="question">
-                <div class="question-title">6. Is it easy to find real contact details?</div>
-                <div class="question-note">Email, form, phone, or social links that work.</div>
-                <select name="q6">
-                    <option value="0">No — it’s hard or impossible to reach you</option>
-                    <option value="5">Somewhat — there is something but not obvious</option>
-                    <option value="10">Yes — clear contact options are easy to find</option>
-                </select>
-            </div>
-
-            <!-- Section 3: Navigation & flow -->
-            <div class="section-label"><span></span> Navigation & flow — can visitors move smoothly?</div>
-
-            <div class="question">
-                <div class="question-title">7. Is your navigation/menu simple and logical?</div>
-                <div class="question-note">No overwhelming dropdowns; labels are clear.</div>
-                <select name="q7">
-                    <option value="0">No — lots of items or confusing labels</option>
-                    <option value="5">Okay — manageable, but could be simpler</option>
-                    <option value="10">Yes — focused, simple, and intuitive</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">8. Does each page guide users towards the next logical step?</div>
-                <div class="question-note">Example: Learn → Trust → Book / Buy.</div>
-                <select name="q8">
-                    <option value="0">No — pages feel like dead ends</option>
-                    <option value="5">Sometimes — some pages guide, others don’t</option>
-                    <option value="10">Yes — there’s a clear path through the site</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">9. Are forms (contact, signup, checkout) simple and short?</div>
-                <div class="question-note">Only the essentials; not asking for everything.</div>
-                <select name="q9">
-                    <option value="0">No — too long or overwhelming</option>
-                    <option value="5">Somewhat — okay but still a bit heavy</option>
-                    <option value="10">Yes — quick and simple to complete</option>
-                </select>
-            </div>
-
-            <!-- Section 4: Mobile & performance -->
-            <div class="section-label"><span></span> Mobile & performance — does it work in the real world?</div>
-
-            <div class="question">
-                <div class="question-title">10. How does your site look and feel on mobile?</div>
-                <div class="question-note">Think of your key pages on a phone.</div>
-                <select name="q10">
-                    <option value="0">Poor — text tiny, layout broken, hard to use</option>
-                    <option value="5">Okay — usable but not smooth</option>
-                    <option value="10">Great — very readable and easy on mobile</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">11. Does your site load reasonably fast for most visitors?</div>
-                <div class="question-note">You can judge by feel; no need for exact numbers.</div>
-                <select name="q11">
-                    <option value="0">Slow — often feels stuck or heavy</option>
-                    <option value="5">Average — not too bad</option>
-                    <option value="10">Fast — feels quick and responsive</option>
-                </select>
-            </div>
-
-            <!-- Section 5: Scenario-based UX questions -->
-            <div class="section-label"><span></span> Scenario-based — imagine real visitors using your site</div>
-
-            <div class="question">
-                <div class="question-title">
-                    12. A brand new visitor lands on your homepage from Instagram. How likely are they to know what to do next?
-                </div>
-                <div class="question-note">From their point of view, not yours.</div>
-                <select name="q12">
-                    <option value="0">Low — they might scroll aimlessly or leave</option>
-                    <option value="5">Medium — they’ll probably figure it out after a bit</option>
-                    <option value="10">High — the next step is obvious in seconds</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    13. Someone wants to quickly check your prices or packages. How easy is that?
-                </div>
-                <div class="question-note">No need for perfect price pages, just clarity.</div>
-                <select name="q13">
-                    <option value="0">Hard — they’d have to dig or contact you</option>
-                    <option value="5">Moderate — they can find a rough idea</option>
-                    <option value="10">Easy — clear packages or pricing info is visible</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    14. A busy, distracted visitor opens your site while multitasking. How forgiving is your design?
-                </div>
-                <div class="question-note">Does it help them, or make them work?</div>
-                <select name="q14">
-                    <option value="0">Unforgiving — too much text, cluttered layout</option>
-                    <option value="5">Mixed — some clutter but main message still there</option>
-                    <option value="10">Forgiving — simple sections, clear headings, easy skimming</option>
-                </select>
-            </div>
-
-            <div class="question">
-                <div class="question-title">
-                    15. Imagine your ideal client visiting. How confident are you that your site would make them want to take the next step?
-                </div>
-                <div class="question-note">Be honest — this is for you, not anyone else.</div>
-                <select name="q15">
-                    <option value="0">Not confident — the site doesn’t reflect your real value</option>
-                    <option value="5">Somewhat confident — it’s okay, but not compelling</option>
-                    <option value="10">Very confident — it clearly communicates your value and next step</option>
-                </select>
-            </div>
-
-            <button type="button" class="btn-primary" onclick="calculateScore()">
-                <span>▶</span> Get my UX score
-            </button>
-        </form>
-
-        <div id="resultBox">
-            <div class="score" id="scoreDisplay"></div>
-            <div class="risk" id="riskLevel"></div>
-
-            <div class="advice" id="adviceText"></div>
-
-            <div class="premium-box">
-                <h3>✨ Want a done-for-you UX & website refresh?</h3>
-                <ul>
-                    <li>1-page UX audit of your site (PDF)</li>
-                    <li>Clarity, trust, and flow recommendations</li>
-                    <li>Suggested new homepage layout & wording</li>
-                    <li>Optional support to implement changes</li>
-                </ul>
-                <strong>From $49 for a focused homepage review.</strong><br/>
-                <button class="btn-secondary"
-                    onclick="window.location.href='mailto:amanpeace52@gmail.com?subject=Website%20UX%20Audit%20Request'">
-                    ✉ Request a UX audit
-                </button>
-            </div>
-
-            <div class="footnote">
-                This is a self-assessment tool to guide improvements. It does not replace full analytics, user testing, or technical SEO audits.
-            </div>
-        </div>
     </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>© Aman P Kaur · Digital Safety Studio</div>
+      <div class="site-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="services.html">Services</a>
+      </div>
+    </div>
+  </footer>
+
 </div>
 
 <script>
-function calculateScore() {
-    const form = document.forms["quizForm"];
-    let total = 0;
-    const maxScore = 15 * 10; // 15 questions * 10 points
+  document.getElementById('ux-mini-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const clarity = Number(document.getElementById('clarity').value);
+    const nav = Number(document.getElementById('nav').value);
+    const feel = Number(document.getElementById('feel').value);
+    const avg = (clarity + nav + feel) / 3;
 
-    for (let i = 1; i <= 15; i++) {
-        total += parseInt(form["q" + i].value);
-    }
-
-    const percentage = Math.round((total / maxScore) * 100);
-
-    const resultBox = document.getElementById("resultBox");
-    const scoreDisplay = document.getElementById("scoreDisplay");
-    const riskLevel = document.getElementById("riskLevel");
-    const adviceText = document.getElementById("adviceText");
-
-    resultBox.style.display = "block";
-    scoreDisplay.innerHTML = `Your Website UX Score: ${percentage}/100 <small>(${total} / ${maxScore} raw)</small>`;
-
-    let risk = "";
-    let advice = "";
-    let riskClass = "";
-
-    if (percentage <= 40) {
-        risk = "🚨 Needs rescue — your site is making visitors work too hard.";
-        advice = "<strong>Start here:</strong><br>• Rewrite your top heading in plain language<br>• Choose one main CTA and make it visually strong<br>• Strip your navigation down to 3–5 key items<br>• Add at least 2–3 real trust signals (testimonials, logos, results)";
-        riskClass = "high";
-    } else if (percentage <= 70) {
-        risk = "⚖ Decent, but leaking conversions — good bones with key gaps.";
-        advice = "<strong>Next steps:</strong><br>• Tighten copy around benefits, not just features<br>• Make pricing/offers easier to find and compare<br>• Simplify forms and reduce required fields<br>• Improve mobile spacing and text size for readability";
-        riskClass = "medium";
+    let band, note;
+    if (avg <= 4) {
+      band = 'Needs a calm tidy-up';
+      note = 'Something about the page may feel confusing, cluttered or a bit cold. Start with clarity: headline, navigation and one clear action.';
+    } else if (avg <= 7) {
+      band = 'Decent, with room to smooth';
+      note = 'There is a base that works. Small tweaks in wording, spacing and calls to action could make the experience noticeably smoother.';
     } else {
-        risk = "✅ Strong foundation — your site is doing a lot of things right.";
-        advice = "<strong>Keep going:</strong><br>• Refine microcopy and button labels to feel more human<br>• Add more specific proof (before/after, case snippets)<br>• Run small A/B tests on headlines or CTAs<br>• Consider a focused UX audit to unlock the next level";
-        riskClass = "low";
+      band = 'Warm and mostly clear';
+      note = 'Your page likely feels pretty good already. Focus now on fine details: microcopy, loading speed, and small accessibility improvements.';
     }
 
-    riskLevel.className = "risk " + riskClass;
-    riskLevel.innerHTML = risk;
-    adviceText.innerHTML = advice;
-}
+    const box = document.getElementById('ux-mini-result');
+    box.innerHTML = `
+      <p><strong>Average feel:</strong> ${avg.toFixed(1)} / 10</p>
+      <p><strong>${band}</strong></p>
+      <p>${note}</p>
+      <p style="font-size:0.78rem;color:#6b7280;">You can re-run this after making changes to see how the average shifts.</p>
+    `;
+    box.style.display = 'block';
+  });
 </script>
-
 </body>
 </html>
