@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Services • Personalised Reviews & Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root{
+      --bg:#020617;--card:#050816;--accent:#22c55e;--accent-soft:#22c55e22;
+      --text:#e5e7eb;--soft:#9ca3af;--border:#1f2937;--shadow:0 18px 40px rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:
+        radial-gradient(circle at top left,#1d2a5a,#020617),
+        radial-gradient(circle at bottom right,#022c22,#020617);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1120px;margin:auto;padding:22px 18px 40px;}
+    header{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;
+    }
+    @media(max-width:768px){header{flex-direction:column;align-items:flex-start}}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:42px;height:42px;border-radius:16px;
+      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#22c55e);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#022c22;box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+    nav a{margin-left:10px;font-size:.85rem;color:var(--soft);padding:5px 9px;border-radius:999px;}
+    nav a:hover{background:#ffffff12;color:white}
+    .card{
+      background:var(--card);border-radius:22px;padding:22px;border:1px solid rgba(148,163,184,0.18);
+      box-shadow:var(--shadow);margin-bottom:24px;
+    }
+    h1{font-size:1.9rem;margin-bottom:8px}
+    h2{font-size:1.4rem;margin-bottom:8px}
+    h3{font-size:1.05rem;margin-bottom:6px}
+    p,li{font-size:.95rem;color:var(--soft);line-height:1.7}
+    .muted{font-size:.8rem;color:var(--soft)}
+    .pill{
+      display:inline-block;font-size:.7rem;padding:3px 9px;border-radius:999px;
+      background:var(--accent-soft);color:#bbf7d0;margin-bottom:6px;
+    }
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .service-card{
+      background:#020617;
+      border-radius:18px;
+      border:1px solid #1f2937;
+      padding:14px 14px 16px;
+      position:relative;
+      overflow:hidden;
+      transition:.2s ease;
+    }
+    .service-card:hover{
+      transform:translateY(-2px);
+      border-color:#22c55e55;
+      box-shadow:0 14px 32px rgba(0,0,0,0.55);
+    }
+    .service-badge{
+      position:absolute;
+      top:10px;right:10px;
+      font-size:.7rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#22c55e33;
+      color:#bbf7d0;
+    }
+    .highlight-strip{
+      background:#020617;
+      border-radius:14px;
+      padding:8px 10px;
+      font-size:.85rem;
+      border:1px dashed #1f2937;
+      margin-top:8px;
+      color:#9ca3af;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong><a href="index.html">Aman P Kaur</a></strong><br/>
+        <span style="font-size:.75rem;color:var(--soft)">Digital Safety · UX · AI and Cyber Literacy</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">My Story</a>
+      <a href="ai.html">AI & You</a>
+      <a href="tools.html">Tools</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="card">
+    <span class="pill">Personalised services</span>
+    <h1>Human review and support</h1>
+    <p>
+      Use these when you have tried a tool or two and feel,
+      “I need a human to look at this with me.”
+      Every report and session is done by me, not handed to a script.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Reviews and monthly support</h2>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="service-card">
+        <div class="service-badge">Great starter</div>
+        <h3>UX and Website Clarity Review — $49</h3>
+        <p>Good if your site feels messy, unclear or low trust.</p>
+        <ul>
+          <li>Homepage and one key page review</li>
+          <li>Trust, messaging and first impression check</li>
+          <li>Plain language “fix first” list</li>
+        </ul>
+        <div class="highlight-strip">
+          Best for solo professionals, small businesses, coaches and consultants.
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">Deeper safety</div>
+        <h3>Digital Footprint and Safety Review — $59</h3>
+        <p>
+          A deeper, human version that goes beyond the instant $15 smart snapshot.
+          You get a careful review and a written plan.
+        </p>
+        <ul>
+          <li>Public identity and visibility check across your key platforms</li>
+          <li>Privacy, impersonation and misuse risk notes in plain language</li>
+          <li>Top actions ordered by urgency and effort</li>
+        </ul>
+        <div class="highlight-strip">
+          Helpful for people who feel “too searchable”, parents and anyone in a public facing role,
+          or anyone who has already tried the free and smart footprint tools.
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">Ongoing support</div>
+        <h3>Monthly Digital Support — from $99 per month</h3>
+        <p>Support as your digital life and AI tools keep changing.</p>
+        <ul>
+          <li>Monthly 30 minute check in</li>
+          <li>Help deciding about new tools, apps and settings</li>
+          <li>Gentle accountability for the habits you want to keep</li>
+        </ul>
+        <div class="highlight-strip">
+          Ideal for busy professionals, small business owners and families who want a trusted tech friend.
+        </div>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:14px;">
+      To explore any of these, you can send a message through the
+      <a href="contact.html">contact page</a> and mention the service name
+      that feels closest to what you need.
+    </p>
+  </section>
+</div>
+</body>
+</html>
