@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Tools • Digital Safety Studio by Aman P Kaur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Free and premium tools by Aman P Kaur to check your digital footprint, website UX, risk, and online habits." />
+
+  <style>
+    :root{
+      --bg:#020617;
+      --card:#050816;
+      --accent:#22c55e;
+      --accent-soft:#22c55e22;
+      --blue:#38bdf8;
+      --text:#e5e7eb;
+      --soft:#9ca3af;
+      --border:#1f2937;
+      --shadow:0 18px 40px rgba(0,0,0,0.55);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:#020617;
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{
+      max-width:1120px;
+      margin:auto;
+      padding:22px 18px 40px;
+    }
+
+    /* NAV */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    @media(max-width:768px){
+      header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:conic-gradient(from 140deg,#22c55e,#38bdf8,#e879f9,#22c55e);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#022c22;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+    }
+    .brand span{
+      font-size:.75rem;
+      color:var(--soft);
+    }
+    nav a{
+      margin-left:10px;
+      color:var(--soft);
+      font-size:.85rem;
+      padding:5px 10px;
+      border-radius:999px;
+      transition:.2s ease;
+    }
+    nav a:hover{
+      color:white;
+      background:#ffffff12;
+    }
+
+    /* SECTIONS / CARDS */
+    .section{
+      border-radius:22px;
+      padding:18px 18px 20px;
+      margin-bottom:22px;
+      background:radial-gradient(circle at top left,#0b1120, #020617);
+      border:1px solid rgba(15,23,42,0.9);
+      box-shadow:var(--shadow);
+    }
+    h1{
+      font-size:2rem;
+      margin:0 0 6px;
+    }
+    h2{
+      font-size:1.3rem;
+      margin:0 0 6px;
+    }
+    h3{
+      font-size:1.05rem;
+      margin:0 0 4px;
+    }
+    p{
+      font-size:.9rem;
+      color:var(--soft);
+      margin:0 0 8px;
+    }
+    .muted{
+      font-size:.8rem;
+      color:#9ca3af;
+    }
+    .pill{
+      display:inline-block;
+      font-size:.7rem;
+      padding:3px 9px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:#bbf7d0;
+      margin-bottom:6px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:8px;
+    }
+    @media(max-width:900px){
+      .grid-3{grid-template-columns:1fr;}
+    }
+
+    .tool-card{
+      background:#020617;
+      border-radius:18px;
+      border:1px solid #1f2937;
+      padding:12px 14px 14px;
+      position:relative;
+      overflow:hidden;
+      transition:.2s ease;
+    }
+    .tool-card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:radial-gradient(circle at top,#22c55e17,transparent 60%);
+      opacity:0;
+      transition:.3s ease;
+      pointer-events:none;
+    }
+    .tool-card:hover::before{
+      opacity:1;
+    }
+    .tool-card:hover{
+      transform:translateY(-2px);
+      border-color:#22c55e88;
+      box-shadow:0 16px 34px rgba(0,0,0,0.7);
+    }
+    .tool-label{
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:#9ca3af;
+      margin-bottom:4px;
+    }
+    .tool-label.pro{
+      color:#facc15;
+    }
+    .tool-title{
+      font-size:1rem;
+      margin-bottom:4px;
+      color:#e5e7eb;
+    }
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:6px;
+      font-size:.75rem;
+    }
+    .tag{
+      padding:3px 8px;
+      border-radius:999px;
+      background:#020617;
+      border:1px solid #1f2937;
+      color:#9ca3af;
+    }
+
+    .btn{
+      background:linear-gradient(135deg,var(--accent),#16a34a);
+      padding:8px 16px;
+      border-radius:999px;
+      color:#022c22;
+      font-size:.85rem;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition:.2s ease;
+      box-shadow:0 10px 28px rgba(34,197,94,0.35);
+      margin-top:8px;
+    }
+    .btn:hover{
+      transform:translateY(-1px) scale(1.01);
+      opacity:.97;
+    }
+    .btn-secondary{
+      background:#020617;
+      color:#e5e7eb;
+      border:1px solid #374151;
+      box-shadow:none;
+    }
+    .btn-secondary:hover{
+      border-color:#22c55eaa;
+      box-shadow:0 8px 24px rgba(15,23,42,0.9);
+    }
+
+    footer{
+      text-align:center;
+      font-size:.75rem;
+      color:#6b7280;
+      margin-top:24px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <header>
+    <div class="brand">
+      <div class="logo">AK</div>
+      <div>
+        <strong><a href="index.html">Aman P Kaur</a></strong><br/>
+        <span>Digital Safety · UX · AI and Cyber Literacy</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ai.html">AI & You</a>
+      <a href="tools.html">Tools</a>
+      <a href="services.html">Services</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="section">
+    <span class="pill">Tools hub</span>
+    <h1>Digital tools you can use right now</h1>
+    <p>
+      Start with the free self-check tools, and move into the Pro scan if you want a deeper, structured website audit.
+      Everything here is designed to be simple, human and practical.
+    </p>
+    <p class="muted">
+      You can open any tool in a new tab. The Pro tool unlocks after secure payment via Stripe and gives you instant, real-time results.
+    </p>
+  </section>
+
+  <!-- FREE TOOLS -->
+  <section class="section">
+    <h2>Free self-check tools</h2>
+    <p>These are small, focused tools you can use without any payment or login.</p>
+
+    <div class="grid-3">
+
+      <!-- Digital Footprint Checker -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">Digital Footprint Checker</div>
+        <p>
+          A guided check to help you think about what shows up about you online and where your digital traces live.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Online identity</span>
+          <span class="tag">Awareness</span>
+        </div>
+        <a class="btn" href="digital-footprint.html">
+          Open tool
+        </a>
+      </div>
+
+      <!-- Smart UX Checker -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">Smart UX Checker</div>
+        <p>
+          A semi-automated review that helps you think through how clear, friendly and usable your website feels.
+        </p>
+        <div class="tag-row">
+          <span class="tag">UX thinking</span>
+          <span class="tag">Website clarity</span>
+        </div>
+        <a class="btn" href="smart-ux-checker.html">
+          Open tool
+        </a>
+      </div>
+
+      <!-- Basic UX Checker -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">UX Basics Checklist</div>
+        <p>
+          A simpler checklist-style tool to notice basics: navigation, readability, key actions and first impressions.
+        </p>
+        <div class="tag-row">
+          <span class="tag">UX basics</span>
+          <span class="tag">First impressions</span>
+        </div>
+        <a class="btn" href="ux-checker.html">
+          Open tool
+        </a>
+      </div>
+
+      <!-- Cyber Quiz -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">Smart Cyber Habits Quiz</div>
+        <p>
+          A short, scenario-based quiz about everyday online behaviour, AI, sharing and device use.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Cyber literacy</span>
+          <span class="tag">Everyday life</span>
+        </div>
+        <a class="btn" href="quiz.html">
+          Take the quiz
+        </a>
+      </div>
+
+      <!-- Risk Score -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">Digital Risk Score Helper</div>
+        <p>
+          A light-touch helper to think through where you might be exposed: accounts, devices, passwords and sharing.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Risk awareness</span>
+          <span class="tag">Self reflection</span>
+        </div>
+        <a class="btn" href="risk-score.html">
+          Open risk helper
+        </a>
+      </div>
+
+      <!-- Checklist (if you have a separate page for it) -->
+      <div class="tool-card">
+        <div class="tool-label">Free tool</div>
+        <div class="tool-title">Digital Hygiene Checklist</div>
+        <p>
+          A gentle, step-by-step checklist to review your settings, habits and small maintenance actions.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Digital hygiene</span>
+          <span class="tag">Tiny steps</span>
+        </div>
+        <!-- Update href if your checklist has a different filename -->
+        <a class="btn" href="checklist.html">
+          Open checklist
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRO TOOL -->
+  <section class="section">
+    <h2>Premium: instant website audit (paid)</h2>
+    <p>
+      When you are ready to invest a little more, this Pro tool gives you structured, exportable results you can use to improve your site immediately.
+    </p>
+
+    <div class="grid-3">
+
+      <!-- PRO: Instant Website Trust & Clarity Radar -->
+      <div class="tool-card">
+        <div class="tool-label pro">Pro tool · Automated</div>
+        <div class="tool-title">Instant Website Trust & Clarity Radar (Pro)</div>
+        <p>
+          Paste your homepage content and get instant scores for clarity, trust and comfort/safety tone,
+          plus an AI tone classifier, top 3 priority actions, exportable summary and a downloadable PDF mini-report.
+        </p>
+        <p class="muted">
+          Best for: solo professionals, coaches, consultants, small businesses, and anyone who wants their site to feel
+          more trustworthy, human and safe to visitors.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Website audit</span>
+          <span class="tag">Clarity & trust</span>
+          <span class="tag">AI tone check</span>
+        </div>
+        <!-- HERE is your Stripe payment link wired in -->
+        <a class="btn" href="https://buy.stripe.com/eVq00l7U62oCh1d695cfK02">
+          Run Pro scan (Stripe)
+        </a>
+        <p class="muted" style="margin-top:6px;">
+          After secure payment, you’ll be redirected to the Pro tool page
+          (<code>trust-radar-pro.html</code>) to use it instantly.
+        </p>
+      </div>
+
+      <!-- Optional: Upsell / bundle concept -->
+      <div class="tool-card">
+        <div class="tool-label pro">Optional add-on</div>
+        <div class="tool-title">3-Version Scan Pack (concept)</div>
+        <p>
+          Use the same Pro tool for up to three versions of your homepage: for example, current copy, new draft and
+          an alternative version. Compare scores and choose the strongest.
+        </p>
+        <p class="muted">
+          You can keep pricing this as a simple “use up to 3 scans” note for now and introduce a separate Stripe link later if needed.
+        </p>
+        <a class="btn btn-secondary" href="contact.html">
+          Ask about multi-scan pack
+        </a>
+      </div>
+
+      <!-- Optional: Human review link -->
+      <div class="tool-card">
+        <div class="tool-label pro">Human support</div>
+        <div class="tool-title">15-Minute Website Review Call</div>
+        <p>
+          A short, focused conversation where we use your Pro scan results to decide on one or two high-leverage
+          changes for your website.
+        </p>
+        <p class="muted">
+          Start with the Pro scan, then book this if you want help interpreting or prioritising your changes.
+        </p>
+        <a class="btn btn-secondary" href="contact.html">
+          Request a review
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Aman P Kaur · Digital Safety Studio
+  </footer>
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
