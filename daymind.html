@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DayMind AI — Digital Presence Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="services.html">Services</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="ai.html">AI & You</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container" style="max-width: 920px;">
+    <h1>DayMind AI</h1>
+    <p class="muted">Dump what’s on your mind. Get a calm, realistic plan in seconds.</p>
+
+    <section class="card">
+      <label for="dump"><b>Your mind-dump</b></label>
+      <textarea id="dump" rows="8" placeholder="Everything on your mind… tasks, worries, reminders, meetings, errands"></textarea>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px;">
+        <button class="btn" data-mode="SECOND_BRAIN">🔮 AI Second Brain</button>
+        <button class="btn" data-mode="AI_RUN_MY_DAY">🎭 If AI Ran Your Day…</button>
+
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button class="btn" data-mode="MOOD_AWARE">🧠 Mood-Aware</button>
+          <select id="energy">
+            <option value="low">low energy</option>
+            <option value="medium" selected>medium energy</option>
+            <option value="high">high energy</option>
+          </select>
+        </div>
+
+        <span id="status" class="muted"></span>
+      </div>
+    </section>
+
+    <section id="out" class="card" style="display:none; margin-top:16px;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <h2 style="margin:0;">Your plan</h2>
+        <div style="display:flex; gap:8px;">
+          <button id="copyBtn" class="btn secondary">Copy</button>
+        </div>
+      </div>
+
+      <div id="anchor" style="margin-top:10px;"></div>
+
+      <div class="grid" style="margin-top:12px;">
+        <div>
+          <h3>✅ Must-do today</h3>
+          <ul id="must"></ul>
+        </div>
+        <div>
+          <h3>➡️ Should-do</h3>
+          <ul id="should"></ul>
+        </div>
+        <div>
+          <h3>😌 Can wait (guilt-free)</h3>
+          <ul id="wait"></ul>
+        </div>
+        <div>
+          <h3>🫧 Noise (not actionable today)</h3>
+          <ul id="noise"></ul>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <h3>🗓️ Suggested flow</h3>
+        <div id="flow"></div>
+      </div>
+
+      <div id="runMyDayExtras" style="display:none; margin-top:14px;">
+        <h3>🎭 AI would change this</h3>
+        <div class="grid">
+          <div>
+            <h4>🚫 Cancel</h4>
+            <ul id="cancel"></ul>
+          </div>
+          <div>
+            <h4>↔️ Move</h4>
+            <ul id="moves"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <h3>🕊️ Note</h3>
+        <p id="note" class="muted"></p>
+
+        <h3>🧩 Assumptions</h3>
+        <ul id="assumptions"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="daymind.js"></script>
+</body>
+</html>
