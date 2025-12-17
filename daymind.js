@@ -1,5 +1,9 @@
-// IMPORTANT: replace with your deployed backend URL (Part B).
-const API_URL = "https://YOUR-VERCEL-PROJECT.vercel.app/api/plan";
+// ===============================
+// DayMind AI – Frontend Connector
+// ===============================
+
+// ✅ FINAL VERIFIED API ENDPOINT
+const API_URL = "https://daymind-api.vercel.app/api/plan";
 
 const $ = (id) => document.getElementById(id);
 const out = $("out");
@@ -29,105 +33,101 @@ function setFlow(blocks) {
   });
 }
 
-function textBundle(r) {
-  const lines = [];
-  lines.push(`ANCHOR: ${r.anchor_task}`);
-  lines.push("");
-  lines.push("MUST-DO:");
-  (r.must_do || []).forEach(x => lines.push(`- ${x}`));
-  lines.push("");
-  lines.push("SHOULD-DO:");
-  (r.should_do || []).forEach(x => lines.push(`- ${x}`));
-  lines.push("");
-  lines.push("CAN WAIT:");
-  (r.can_wait || []).forEach(x => lines.push(`- ${x}`));
-  lines.push("");
-  lines.push("NOISE:");
-  (r.noise || []).forEach(x => lines.push(`- ${x}`));
-  lines.push("");
-  lines.push("FLOW:");
-  (r.schedule_blocks || []).forEach(b => lines.push(`- ${b.label} (${b.minutes}m): ${(b.tasks||[]).join(", ")}`));
+function bundleText(r) {
+  let txt = `ANCHOR:\n${r.anchor_task}\n\n`;
+
+  txt += "MUST-DO:\n" + (r.must_do || []).map(x => `- ${x}`).join("\n") + "\n\n";
+  txt += "SHOULD-DO:\n" + (r.should_do || []).map(x => `- ${x}`).join("\n") + "\n\n";
+  txt += "CAN WAIT:\n" + (r.can_wait || []).map(x => `- ${x}`).join("\n") + "\n\n";
+  txt += "NOISE:\n" + (r.noise || []).map(x => `- ${x}`).join("\n") + "\n\n";
+
+  txt += "FLOW:\n";
+  (r.schedule_blocks || []).forEach(b => {
+    txt += `- ${b.label} (${b.minutes}m): ${(b.tasks || []).join(", ")}\n`;
+  });
+
   if (r.cancellations?.length) {
-    lines.push("");
-    lines.push("CANCEL:");
-    r.cancellations.forEach(x => lines.push(`- ${x}`));
+    txt += "\nCANCEL:\n" + r.cancellations.map(x => `- ${x}`).join("\n");
   }
+
   if (r.moves?.length) {
-    lines.push("");
-    lines.push("MOVE:");
-    r.moves.forEach(m => lines.push(`- ${m.task}: ${m.from} → ${m.to} (${m.why})`));
+    txt += "\n\nMOVE:\n";
+    r.moves.forEach(m => {
+      txt += `- ${m.task}: ${m.from} → ${m.to} (${m.why})\n`;
+    });
   }
-  lines.push("");
-  lines.push(`NOTE: ${r.tone_note}`);
+
+  txt += `\nNOTE:\n${r.tone_note}\n`;
+
   if (r.assumptions?.length) {
-    lines.push("");
-    lines.push("ASSUMPTIONS:");
-    r.assumptions.forEach(a => lines.push(`- ${a}`));
+    txt += "\nASSUMPTIONS:\n" + r.assumptions.map(a => `- ${a}`).join("\n");
   }
-  return lines.join("\n");
+
+  return txt;
 }
 
 async function run(mode) {
   const dump = $("dump").value.trim();
   if (dump.length < 10) {
-    alert("Add a little more detail (at least 1–2 lines).");
+    alert("Please add a bit more detail.");
     return;
   }
+
   const energy = $("energy").value;
 
   statusEl.textContent = "Thinking…";
   out.style.display = "none";
 
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mode, dump, energy }),
-  });
-
-  if (!res.ok) {
-    const txt = await res.text();
-    statusEl.textContent = "";
-    alert(`Error: ${txt || res.status}`);
-    return;
-  }
-
-  const r = await res.json();
-
-  $("anchor").innerHTML = `<div class="card"><b>Anchor:</b> ${r.anchor_task}</div>`;
-  fillList($("must"), r.must_do);
-  fillList($("should"), r.should_do);
-  fillList($("wait"), r.can_wait);
-  fillList($("noise"), r.noise);
-  setFlow(r.schedule_blocks);
-
-  // Run-my-day extras
-  const extras = $("runMyDayExtras");
-  if (mode === "AI_RUN_MY_DAY") {
-    extras.style.display = "block";
-    fillList($("cancel"), r.cancellations);
-    $("moves").innerHTML = "";
-    (r.moves || []).forEach(m => {
-      const li = document.createElement("li");
-      li.innerHTML = `<b>${m.task}</b> — ${m.from} → ${m.to} <span class="muted">(${m.why})</span>`;
-      $("moves").appendChild(li);
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode, dump, energy })
     });
-  } else {
-    extras.style.display = "none";
+
+    if (!res.ok) throw new Error("API error");
+
+    const r = await res.json();
+
+    $("anchor").innerHTML = `<div class="card"><b>Anchor:</b> ${r.anchor_task}</div>`;
+    fillList($("must"), r.must_do);
+    fillList($("should"), r.should_do);
+    fillList($("wait"), r.can_wait);
+    fillList($("noise"), r.noise);
+    setFlow(r.schedule_blocks);
+
+    if (mode === "AI_RUN_MY_DAY") {
+      $("runMyDayExtras").style.display = "block";
+      fillList($("cancel"), r.cancellations);
+
+      $("moves").innerHTML = "";
+      (r.moves || []).forEach(m => {
+        const li = document.createElement("li");
+        li.innerHTML = `<b>${m.task}</b> — ${m.from} → ${m.to} <span class="muted">(${m.why})</span>`;
+        $("moves").appendChild(li);
+      });
+    } else {
+      $("runMyDayExtras").style.display = "none";
+    }
+
+    $("note").textContent = r.tone_note || "";
+    fillList($("assumptions"), r.assumptions);
+
+    $("copyBtn").onclick = async () => {
+      await navigator.clipboard.writeText(bundleText(r));
+      statusEl.textContent = "Copied ✓";
+      setTimeout(() => statusEl.textContent = "", 1200);
+    };
+
+    out.style.display = "block";
+    statusEl.textContent = "";
+
+  } catch (err) {
+    statusEl.textContent = "";
+    alert("Something went wrong. Check API or Vercel logs.");
   }
-
-  $("note").textContent = r.tone_note || "";
-  fillList($("assumptions"), r.assumptions);
-
-  $("copyBtn").onclick = async () => {
-    await navigator.clipboard.writeText(textBundle(r));
-    statusEl.textContent = "Copied ✅";
-    setTimeout(() => (statusEl.textContent = ""), 1200);
-  };
-
-  statusEl.textContent = "";
-  out.style.display = "block";
 }
 
-document.querySelectorAll("button[data-mode]").forEach((btn) => {
-  btn.addEventListener("click", () => run(btn.getAttribute("data-mode")));
+document.querySelectorAll("button[data-mode]").forEach(btn => {
+  btn.addEventListener("click", () => run(btn.dataset.mode));
 });
